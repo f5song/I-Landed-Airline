@@ -1,3 +1,17 @@
+<?php
+session_start();
+require_once '../../CRUD/config/db.php';
+if (!isset($_SESSION['user_login'])) {
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+}
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['username']);
+    header('location: ' . $_SESSION['redirect_url']);
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -5,10 +19,59 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="initial-scale=1, width=device-width" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@600&display=swap" />
+<link rel="stylesheet" href="../ALLNAVBAR/navbar.css" />
 <link rel="stylesheet" href="order.css" />
 
 <body>
-    <object data="../ALLNAVBAR/navbar_login.html"></object>
+    <!-- ส่วน bar -->
+    <?php if (isset($_SESSION['user_login'])) { ?>
+
+        <nav>
+            <a href="../HOMEPAGE/homepage.php"> <img src="../ALLNAVBAR/logo_airline.png" alt="logo" class="logo_airline">
+            </a>
+            <ul>
+                <li><a href="../HOMEPAGE/homepage.php"> หน้าแรก </a></li>
+                <li><a href="../FLIGHT/flight.php"> เที่ยวบิน </a></li>
+                <li><a href="../RECCOMMEND/reccom.php"> แนะนำสถานที่ </a></li>
+                <li><a href="../ORDER/order.php"> คำสั่งซื้อ </a></li>
+                <li><a href="../HELP/help.php"> ช่วยเหลือ </a></li>
+            </ul>
+
+            <div class="rightcontainer">
+                <p>สวัสดี,</p>
+                <p>
+                    <?php echo $_SESSION['user_login']; ?>
+                </p>
+                <a href="homepage.php?logout='1'">
+                    <img class="img-logout-icon" id="button-logout" alt="" src="../ALLNAVBAR/logout.png" />
+                </a>
+            </div>
+        </nav>
+
+
+
+
+    <?php } else { ?>
+
+        <nav>
+            <a href="../HOMEPAGE/homepage.php"> <img src="../ALLNAVBAR/logo_airline.png" alt="logo" class="logo_airline">
+            </a>
+
+            <ul>
+                <li><a href="../HOMEPAGE/homepage.php"> หน้าแรก </a></li>
+                <li><a href="../FLIGHT/flight.php"> เที่ยวบิน </a></li>
+                <li><a href="../RECCOMMEND/reccom.php"> แนะนำสถานที่ </a></li>
+                <li><a href="../ORDER/order.php"> คำสั่งซื้อ </a></li>
+                <li><a href="../HELP/help.php"> ช่วยเหลือ </a></li>
+            </ul>
+
+            <div class="rightcontainer">
+                <button class="button-sign-in" type="button" onclick="toLogin()"> เข้าสู่ระบบ </button>
+                <button class="button-sign-up" type="button"> ลงทะเบียน </button>
+            </div>
+        </nav>
+
+    <?php } ?>
 
     <div class="box">
         <div class="leftlock">

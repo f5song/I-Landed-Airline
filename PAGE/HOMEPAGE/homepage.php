@@ -38,9 +38,9 @@
                 <ul>
                     <li><a href="../HOMEPAGE/homepage.php"> หน้าแรก </a></li>
                     <li><a href="../FLIGHT/flight.php"> เที่ยวบิน </a></li>
-                    <li><a href="../RECCOMMEND/reccom.html"> แนะนำสถานที่ </a></li>
-                    <li><a href="../ORDER/order.html"> คำสั่งซื้อ </a></li>
-                    <li><a href="../HELP/help.html"> ช่วยเหลือ </a></li>
+                    <li><a href="../RECCOMMEND/reccom.php"> แนะนำสถานที่ </a></li>
+                    <li><a href="../ORDER/order.php"> คำสั่งซื้อ </a></li>
+                    <li><a href="../HELP/help.php"> ช่วยเหลือ </a></li>
                 </ul>
             
                 <div class="rightcontainer">
@@ -63,9 +63,9 @@
                     <ul>
                         <li><a href="../HOMEPAGE/homepage.php"> หน้าแรก </a></li>
                         <li><a href="../FLIGHT/flight.php"> เที่ยวบิน </a></li>
-                        <li><a href="../RECCOMMEND/reccom.html"> แนะนำสถานที่ </a></li>
-                        <li><a href="../ORDER/order.html"> คำสั่งซื้อ </a></li>
-                        <li><a href="../HELP/help.html"> ช่วยเหลือ </a></li>
+                        <li><a href="../RECCOMMEND/reccom.php"> แนะนำสถานที่ </a></li>
+                        <li><a href="../ORDER/order.php"> คำสั่งซื้อ </a></li>
+                        <li><a href="../HELP/help.php"> ช่วยเหลือ </a></li>
                     </ul>
                 
                 <div class="rightcontainer">
@@ -174,7 +174,7 @@
                         <h1>แนะนำสถานที่ท่องเที่ยว</h1>
                         <p>เลือกสถานที่และการเดินทาง</p>
                     </div>
-                    <button>เพิ่มเติม</button>
+                    <button href="../RECCOMMEND/reccom.php">เพิ่มเติม</button>
                 </div>
                 <div class="have2go-content">
                     <div class="placerow1">
