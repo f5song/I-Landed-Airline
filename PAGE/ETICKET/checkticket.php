@@ -1,3 +1,6 @@
+
+<!-- http://localhost/ISAD-ilal/PAGE/ETICKET/checkticket.php -->
+
 <!DOCTYPE html>
 
 <html>
@@ -12,6 +15,8 @@
     rel="stylesheet" 
     href="checkticket.css"
     />
+
+    <link rel="stylesheet" href="../ALLNAVBAR/navbar.css" />
 </head>
 
 <body>
