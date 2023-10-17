@@ -94,5 +94,7 @@ li a{
 
 li a:hover{
    color: #1F97D4;
+}.img-logout-icon{
+    width: 22px;
+    margin-left: 20px;
 }
-
