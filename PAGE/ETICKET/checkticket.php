@@ -16,7 +16,54 @@
 
 <body>
 
-    <object data="../All_navbar/navbar_login.html" width="100%"> </object>
+    <!-- ส่วน bar -->
+    <?php if (isset($_SESSION['user_login'])) { ?>
+
+        <nav>
+            <a href="../HOMEPAGE/homepage.php"> <img src="../ALLNAVBAR/logo_airline.png" alt="logo" class="logo_airline">
+            </a>
+            <ul>
+                <li><a href="../HOMEPAGE/homepage.php"> หน้าแรก </a></li>
+                <li><a href="../FLIGHT/flight.php"> เที่ยวบิน </a></li>
+                <li><a href="../RECCOMMEND/reccom.php"> แนะนำสถานที่ </a></li>
+                <li><a href="../ORDER/order.php"> คำสั่งซื้อ </a></li>
+                <li><a href="../HELP/help.php"> ช่วยเหลือ </a></li>
+            </ul>
+
+            <div class="rightcontainer">
+                <p>สวัสดี,</p>
+                <p>
+                    <?php echo $_SESSION['user_login']; ?>
+                </p>
+                <a href="homepage.php?logout='1'">
+                    <img class="img-logout-icon" id="button-logout" alt="" src="../ALLNAVBAR/logout.png" />
+                </a>
+            </div>
+        </nav>
+
+
+    <?php } else { ?>
+
+        <nav>
+            <a href="../HOMEPAGE/homepage.php"> <img src="../ALLNAVBAR/logo_airline.png" alt="logo" class="logo_airline">
+            </a>
+
+            <ul>
+                <li><a href="../HOMEPAGE/homepage.php"> หน้าแรก </a></li>
+                <li><a href="../FLIGHT/flight.php"> เที่ยวบิน </a></li>
+                <li><a href="../RECCOMMEND/reccom.php"> แนะนำสถานที่ </a></li>
+                <li><a href="../ORDER/order.php"> คำสั่งซื้อ </a></li>
+                <li><a href="../HELP/help.php"> ช่วยเหลือ </a></li>
+            </ul>
+
+            <div class="rightcontainer">
+                <button class="button-sign-in" type="button" onclick="toLogin()"> เข้าสู่ระบบ </button>
+                <button class="button-sign-up" type="button"> ลงทะเบียน </button>
+            </div>
+        </nav>
+
+    <?php } ?>
+
     
     <div class="paid-box">
 
