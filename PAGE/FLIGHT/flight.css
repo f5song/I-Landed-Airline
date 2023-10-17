@@ -24,6 +24,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 5%;
 }
 
 .searchlock {
@@ -40,7 +41,7 @@ body {
 
 .search-bar {
     width: 700px;
-    height: 200px;
+    height: 150px;
     display: flex;
     align-items: center;
     border-radius: 19px;
@@ -84,7 +85,7 @@ body {
 
 .flightlock {
     width: 80%;
-    height: 2000px;
+    height: 1200px;
     display: flex;
     justify-content: center;
 }

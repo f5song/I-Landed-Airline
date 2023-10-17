@@ -29,19 +29,11 @@
   <body>
   
     <div class="real-login-page">
-      <img class="real-login-page-child" alt="" src="./public/ellipsess-3.svg"/>
+      <img class="real-login-page-child" alt="" src="../SIGNUPLOGIN/public/ellipse-3.svg"/>
       <img class="real-login-page-item" alt="" src="./public/group-4.svg" />
       <img class="logo-3-icon" alt="" src="./public/4137363-logo-3@2x.png" />
 
-        <div class="group-parent">
-          <!-- <div class="group-login1">
-            <div class="button-google">
-              <div class="button-google-child"></div>
-              <div class="google">ดำเนินการต่อด้วย Google</div>
-              <img class="image-3-icon" alt="" src="./public/image-3@2x.png" />
-            </div>
-          </div> -->
-          
+        <div class="group-parent">          
           <div class="parent1">
             <div class="div77">เข้าสู่ระบบ</div>
             <div class="div78">จัดการการจองง่ายดาย พร้อมรับสิทธิประโยชน์เฉพาะสมาชิก</div>

@@ -34,20 +34,20 @@
         <?php if (isset($_SESSION['user_login'])) { ?>
             
             <nav>
-                <a href="#"> <img src="./logo_airline.png" alt="logo" class="logo_airline"> </a>
+                <a href="../HOMEPAGE/homepage.php"> <img src="../ALLNAVBAR/logo_airline.png" alt="logo" class="logo_airline"> </a>
                 <ul>
-                    <li><a href="./homepage.php"> หน้าแรก </a></li>
+                    <li><a href="../HOMEPAGE/homepage.php"> หน้าแรก </a></li>
                     <li><a href="../FLIGHT/flight.php"> เที่ยวบิน </a></li>
-                    <li><a href="#"> แนะนำสถานที่ </a></li>
-                    <li><a href="#"> คำสั่งซื้อ </a></li>
-                    <li><a href="#"> ช่วยเหลือ </a></li>
+                    <li><a href="../RECCOMMEND/reccom.html"> แนะนำสถานที่ </a></li>
+                    <li><a href="../ORDER/order.html"> คำสั่งซื้อ </a></li>
+                    <li><a href="../HELP/help.html"> ช่วยเหลือ </a></li>
                 </ul>
             
                 <div class="rightcontainer">
                     <p>สวัสดี,</p>
                     <p> <?php echo $_SESSION['user_login']; ?> </p>
                     <a href="homepage.php?logout='1'">
-                        <img class="img-logout-icon" id="button-logout"alt="" src="./logout.png" />
+                        <img class="img-logout-icon" id="button-logout"alt="" src="../ALLNAVBAR/logout.png" />
                     </a>
                 </div>
             </nav>
@@ -58,14 +58,14 @@
         <?php } else {?>
 
             <nav>
-                <a href="#"> <img src="./logo_airline.png" alt="logo" class="logo_airline"> </a>
+                <a href="../HOMEPAGE/homepage.php"> <img src="../ALLNAVBAR/logo_airline.png" alt="logo" class="logo_airline"> </a>
 
                     <ul>
-                        <li><a href="./homepage.php"> หน้าแรก </a></li>
-                        <li><a href="#"> เที่ยวบิน </a></li>
-                        <li><a href="#"> แนะนำสถานที่ </a></li>
-                        <li><a href="#"> คำสั่งซื้อ </a></li>
-                        <li><a href="#"> ช่วยเหลือ </a></li>
+                        <li><a href="../HOMEPAGE/homepage.php"> หน้าแรก </a></li>
+                        <li><a href="../FLIGHT/flight.php"> เที่ยวบิน </a></li>
+                        <li><a href="../RECCOMMEND/reccom.html"> แนะนำสถานที่ </a></li>
+                        <li><a href="../ORDER/order.html"> คำสั่งซื้อ </a></li>
+                        <li><a href="../HELP/help.html"> ช่วยเหลือ </a></li>
                     </ul>
                 
                 <div class="rightcontainer">
