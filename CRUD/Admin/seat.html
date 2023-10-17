@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <title>Seat details</title>
+    </head>
+    <body onload="seat_readonly()">
+        <div style="padding: 25px;" class="container">
+            <div class="row justify-content-between" id="admin">
+                
+                
+                <div class="col-sm">
+                    <h1 id="flight_id"></h1>
+                </div>
+                <div class="col-auto">
+                    <a href="seatcreate.html" class="btn btn-primary">Add New seat</a>
+                    <a href="Adminpage.php" class="btn btn-light">Back</a>
+                </div>
+            </div>
+            <div style="margin-top: 15px;" class="row">
+                <div class="col">
+                    <label>Filter by Seat Class: </label>
+                    <select id="seatClassFilter" onchange="seat_readonly()">
+                        <option value="">All</option>
+                        <option value="Economy">Economy</option>
+                        <option value="Business">Business</option>
+                        <option value="First Class">First Class</option>
+                    </select>
+                    <label style="margin-left: 20px;">Filter by Seat Status: </label>
+                    <select id="seatStatusFilter" onchange="seat_readonly()">
+                        <option value="">All</option>
+                        <option value="Available">Available</option>
+                        <option value="Reserved">Reserved</option>
+                        <option value="No activate">No activate</option>
+                    </select>
+                </div>
+            </div>
+            <div style="margin-top: 25px;" class="row">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Seat id</th>
+                        <th scope="col">Seat class</th>
+                        <th scope="col">Seat status</th>
+                        <th scope="col">Manage</th>
+                      </tr>
+                    </thead>
+                    <tbody id="seat_table">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+</html>
+
+<script>
+var seat_readonly = function(){
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+
+    var seat_table = document.getElementById('seat_table');
+    var seatClassFilter = document.getElementById('seatClassFilter').value;
+    var seatStatusFilter = document.getElementById('seatStatusFilter').value;
+
+    seat_table.innerHTML = "Loading..."
+    fetch("../API/seat/readonly.php?id=" + id, requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            seat_table.innerHTML = "";
+            var jsonObj = JSON.parse(result);
+            document.getElementById('flight_id').textContent = id;
+            for(let seat of jsonObj){
+                if ((seatClassFilter === "" || seat.seat_class === seatClassFilter) &&
+                    (seatStatusFilter === "" || seat.seat_status === seatStatusFilter)) {
+                    var row = `
+                            <tr>
+                                <th scope="row">${seat.seat_id}</th>
+                                <td>${seat.seat_class}</td>
+                                <td>${seat.seat_status}</td>
+                                <td><a class="btn btn-outline-warning" href="seatedit.html?id=${seat.seat_id}">Edit</a> 
+                                    ${seat.seat_status !== 'Reserved' ? `<a class="btn btn-outline-danger" onclick="seat_delete('${seat.seat_id}')">Delete</a>` : '<span>cannot delete</span>'}</td>
+                            </tr>
+                        `;
+                    seat_table.insertAdjacentHTML('beforeend', row)
+                }
+            }
+        })
+        .catch(error => console.log('error', error));
+}
+
+
+var seat_delete = function(seat_id){
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "seat_id": seat_id
+    })
+
+    var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+    fetch("../API/seat/delete.php", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            
+            var jsonObj = JSON.parse(result);
+                if (jsonObj.status == 'complete'){
+                    alert('Delete completed');
+                    location.reload();
+                }
+                else{
+                    alert('error');
+                }
+            })
+            .catch(error => console.log('error', error));
+    }
+
+</script>

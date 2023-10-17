@@ -1,0 +1,95 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family:"Noto Sans Thai";
+}
+
+.logo_airline{
+    width: 120px;
+    margin-left: 20px;
+}
+
+/* bg */
+.hero{
+    height: 100vh;
+    width: 100% ;
+    background-color: rgba(255,255,255);
+    background-size: cover;
+    background-position: center;
+}
+
+/* navbar */
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #ebecf0;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 0px;
+}
+
+ul{
+    flex-grow: 1;
+    padding-left: 5%;
+}
+
+/* left */
+/* พวกหน้าแรก คำสั่งซื้อ แนะนำ สถานที่ */
+li{
+    display: inline-block;
+    margin: 2%;
+    font-size: large;
+}
+
+li a{
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s;
+}
+
+
+/* right */
+/* ปุ่ม singup signin */
+.rightcontainer{
+    padding-right: 60px;
+    display:flex;
+    justify-content: flex-end;
+}
+
+.button-sign-in,.button-sign-up{
+    width: auto;
+    height: 38px;
+    font-size: large;
+    border: 0px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-sign-up{
+    padding-left: 10px;
+    padding-right: 10px;
+    color:#555555;
+    background-color: #BABABA;
+    border-radius: 30px;
+}
+
+.button-sign-in{
+    padding-left: 10px;
+    padding-right: 10px;
+    color:#555555;
+    background-color:#C0C0C0;
+    border-radius: 30px;
+    margin-right: 10px;
+}
+
+/* hover */
+.button-sign-in:hover,.button-sign-up:hover{
+    cursor: pointer;
+    color:#FFFFFF;
+    background-color:#2E5AA3;
+}
+
+li a:hover{
+   color: #1F97D4;
+}
+
