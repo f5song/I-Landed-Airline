@@ -37,7 +37,7 @@
                 <a href="#"> <img src="./logo_airline.png" alt="logo" class="logo_airline"> </a>
                 <ul>
                     <li><a href="./homepage.php"> หน้าแรก </a></li>
-                    <li><a href="#"> เที่ยวบิน </a></li>
+                    <li><a href="../FLIGHT/flight.php"> เที่ยวบิน </a></li>
                     <li><a href="#"> แนะนำสถานที่ </a></li>
                     <li><a href="#"> คำสั่งซื้อ </a></li>
                     <li><a href="#"> ช่วยเหลือ </a></li>

@@ -1,0 +1,215 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans Thai";
+}
+
+object {
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: block;
+    width: 100%;
+}
+
+
+body {
+    flex-direction: column;
+}
+
+.all-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchlock {
+    background-image: url('./img/airplane_sky1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 80%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.search-bar {
+    width: 700px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    border-radius: 19px;
+    background-color: white;
+    gap: 3%;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+        0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+        0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.box-search {
+    display: flex;
+    width: 210px;
+    padding-left: 5%;
+}
+
+.logo {
+    height: 120px;
+    width: 120px;
+}
+
+.exchange {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.from {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.to {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flightlock {
+    width: 80%;
+    height: 2000px;
+    display: flex;
+    justify-content: center;
+}
+
+.dropdown-menu {
+    width: 200px;
+    height: 40px;
+    padding-left: 5%;
+    border-radius: 11px;
+}
+
+.table {
+    margin-top: -50px;
+    width: 75%;
+    border-spacing: 0;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 10px;
+    background-color: #005877;
+    position: absolute;
+}
+
+.table th {
+    font-weight: 300;
+    font-size: 16px;
+    color: #70e5f9;
+    line-height: 26px;
+    padding: 18px 30px;
+}
+
+.table thead tr {
+    background: #002e3f;
+
+}
+
+.table td {
+    padding: 30px 10px;
+    font-weight: 300;
+    font-size: 16px;
+    color: black-2;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #fff
+}
+
+.table tbody tr:nth-child(odd) {
+    background: #005877;
+}
+
+.table tbody tr:nth-child(even) {
+    background: #2c87a7;
+}
+
+.table__wrapper {
+    padding-top: 40px;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 25px;
+    text-transform: uppercase;
+    width: 170px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.3s ease;
+    text-decoration: none;
+}
+
+.btn:hover {
+    color: white;
+}
+
+.btn__active {
+    color: #4ed99c;
+    border: 2px solid #4ed99c;
+}
+
+.btn__active:hover {
+    background: #4ed99c;
+}
+
+.btn__pledged {
+    color: #f14044;
+    border: 2px solid #f14044;
+}
+
+.btn__pledged:hover {
+    background: #f14044;
+}
+
+@media (max-width: 768px) {
+    .table td {
+        display: block;
+        text-align: right;
+    }
+
+    .table td:before {
+        content: attr(data-label);
+        float: left;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .table thead display none tr {
+        margin-bottom: 30px;
+        display: block;
+    }
+}
+
+.credit a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 800;
+}
+
+.credit {
+    text-align: center;
+}
+
+.credit {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 10px;
+}
