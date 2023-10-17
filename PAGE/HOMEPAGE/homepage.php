@@ -86,7 +86,7 @@ if (isset($_GET['logout'])) {
 
     <div class="content">
         <div class="bluelock">
-            <img src="./img/samui.jpg" alt="" class="img_samui">
+            <img src="./img/slideshow.gif" alt="" class="img_samui">
             <div class="header">
                 <div class="header-content"><img src="./img/logo_thailand.png" alt="" class="logo_thailand">
                     <p>จองตั๋วเครื่องบินในประเทศไทย</p>
