@@ -1,3 +1,21 @@
+
+<?php
+    session_start();
+    require_once '../../CRUD/config/db.php';
+    if (!isset($_SESSION['user_login'])) {
+      $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+  }
+  if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['username']);
+    header('location: ' . $_SESSION['redirect_url']);
+  }
+
+?>
+
+
+<!-- http://localhost/ISAD-ilal/PAGE/HOMEPAGE/homepage.php -->
+
 <!DOCTYPE html>
 <html>
 
@@ -5,20 +23,63 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-  <link rel="stylesheet" href="./global.css" />
+  <link rel="stylesheest" href="./global.css" />
   <link rel="stylesheet" href="./homepage.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@600&display=swap" />
+  <link rel="stylesheet" href="../ALLNAVBAR/navbar.css" />
 </head>
 
 <body>
         <!-- ส่วน bar -->
+        <?php if (isset($_SESSION['user_login'])) { ?>
+            
+            <nav>
+                <a href="#"> <img src="./logo_airline.png" alt="logo" class="logo_airline"> </a>
+                <ul>
+                    <li><a href="./homepage.php"> หน้าแรก </a></li>
+                    <li><a href="#"> เที่ยวบิน </a></li>
+                    <li><a href="#"> แนะนำสถานที่ </a></li>
+                    <li><a href="#"> คำสั่งซื้อ </a></li>
+                    <li><a href="#"> ช่วยเหลือ </a></li>
+                </ul>
+            
+                <div class="rightcontainer">
+                    <p>สวัสดี,</p>
+                    <p> <?php echo $_SESSION['user_login']; ?> </p>
+                    <a href="index.php?logout='1'">
+                        <img class="img-logout-icon" id="button-logout"alt="" src="./logout.png" />
+                    </a>
+                </div>
+            </nav>
 
-        <link rel="stylesheet" href="../ALLNAVBAR/navbar.html" />
-        <link rel="stylesheet" href="../ALLNAVBAR/navbar.css" />
 
-        <object data="../ALLNAVBAR/navbar.html" type="" width="100%" ></object>
+
+
+        <?php } else {?>
+
+            <nav>
+                <a href="#"> <img src="./logo_airline.png" alt="logo" class="logo_airline"> </a>
+
+                    <ul>
+                        <li><a href="./homepage.php"> หน้าแรก </a></li>
+                        <li><a href="#"> เที่ยวบิน </a></li>
+                        <li><a href="#"> แนะนำสถานที่ </a></li>
+                        <li><a href="#"> คำสั่งซื้อ </a></li>
+                        <li><a href="#"> ช่วยเหลือ </a></li>
+                    </ul>
+                
+                <div class="rightcontainer">
+                        <button class = "button-sign-in" type="button" onclick="toLogin()" > เข้าสู่ระบบ </button>
+                        <button class = "button-sign-up" type="button" > ลงทะเบียน </button>  
+                </div>
+            </nav>
+
+        <?php } ?>
+
 
         <!-- ส่วนหน้าจองตั๋วเครื่องบินบนสุด -->
+
+
 
         <div class="content">
             <div class="bluelock">
@@ -246,6 +307,15 @@
             </div>
         </footer>
 
+    
+    <script>
+    function toLogin(){
+        window.location.href = "../SIGNUPLOGIN/login.php";
+    }
+    </script>
+
 </body>
+
+
 
 </html>

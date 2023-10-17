@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --font-montserrat: Montserrat;
+  --font-noto-sans-thai: "Noto Sans Thai";
+
+  /* font sizes */
+  --font-size-lg-2: 18.2px;
+
+  /* Colors */
+  --blue: #e9f9ff;
+  --color-silver: #bababa;
+  --color-dimgray: #555555;
+  --color-whitesmoke: #efefef;
+  --color-darkgray: #a1a1a1;
+  --color-darkslateblue: #003a6c;
+
+  /* Border radiuses */
+  --br-11xl: 30px;
+  --br-mini-5: 14.5px;
+}
