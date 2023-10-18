@@ -37,16 +37,24 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 20px;
-}
+}.button-search {
+    background-color: #1b75dc; /* สีพื้นหลัง */
+    color: white; /* สีตัวอักษร */
+    border: none; /* ไม่มีเส้นขอบ */
+    font-size: 16px; /* ขนาดตัวอักษร */
+    width: 110px;
+    height: 30px;
+    border-radius: 11px;
+  }  
 
 .search-bar {
-    width: 700px;
-    height: 150px;
+    width: 750px;
+    height: 200px;
     display: flex;
     align-items: center;
     border-radius: 19px;
-    background-color: white;
-    gap: 3%;
+    gap: 1%;
+    background-color: rgb(255, 255, 255);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
         0px 4px 4px 0px rgba(0, 0, 0, 0.25),
         0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -54,8 +62,14 @@ body {
 
 .box-search {
     display: flex;
-    width: 210px;
-    padding-left: 5%;
+    width: 180px;
+    padding-left: 3%;
+}
+.dropdownselect_province{
+    border-radius: 11px;
+    width: 160px;
+    height: 40px;
+    padding-left: 2%;
 }
 
 .logo {
@@ -66,6 +80,12 @@ body {
 .exchange {
     width: 20px;
     height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}.img-exchange{
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;

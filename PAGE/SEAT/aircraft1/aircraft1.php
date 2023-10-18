@@ -412,6 +412,18 @@
       });
   </script>
 
+
+  <script>
+
+    function toBaggage() {
+        window.location.href = '../../BAGGAGE/baggage.php';
+    }
+
+    buttonselectSeats = document.getElementById("selectSeatsButton");
+    buttonselectSeats.addEventListener("click", toBaggage);
+
+  </script>
+
 </body>
 
 </html>
