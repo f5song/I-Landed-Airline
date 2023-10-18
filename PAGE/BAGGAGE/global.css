@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --font-noto-sans-thai: "Noto Sans Thai";
+  /* font sizes */
+  --font-size-mini: 15px;
+  --font-size-lg: 18px;
+  --font-size-6xl: 25px;
+  --font-size-13xl: 32px;
+  --font-size-xl: 20px;
+  --font-size-11xl: 30px;
+
+  /* Colors */
+  --color-whitesmoke-100: #f7f9fa;
+  --low-white: #ebecf0;
+  --color-white: #fff;
+  --blue: #007aa5;
+  --color-dimgray-100: #696969;
+  --color-gray: #7c7c7c;
+  --dark-gray-low-blue: #708090;
+  --color-dodgerblue: #0194f3;
+  --black: #000;
+
+
+  --color-white: #fff;
+  --blue: #007aa5;
+
+  /* Border radiuses */
+  --br-7xs: 6px;
+  --br-2xs: 11px;
+}
