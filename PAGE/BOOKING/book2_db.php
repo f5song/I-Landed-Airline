@@ -1,66 +1,39 @@
-
 <?php
 
-    session_start();
-    require_once '../../CRUD/config/db.php';
-    
+session_start();
 
-    if(isset($_POST['test'])){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "mydb";
 
-        $user_id = $_SESSION['user_login'];
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
-        $dob = $_POST['dob'];
-        $phone_number = $_POST['phone_number'];
-        $id_card = $_POST['id_card'];
-        $title = $_POST['title'];
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-        if(empty($firstname)){
-            $_SESSION['error'] = "กรุณากรอกชื่อ";
-            header("location: book2.php");
-        } else if(empty($lastname)){
-            $_SESSION['error'] = "กรุณากรอกนามสกุล";
-            header("location: book2.php");
-        } else if(empty($dob)){
-            $_SESSION['error'] = "กรุณาใส่วันเกิด";
-            header("location: book2.php");
-        }else if(empty($phone_number)){
-            $_SESSION['error'] = "กรุณากรอกเบอร์โทรศัพท์";
-            header("location: book2.php");
-        }else if(empty($id_card)){
-            $_SESSION['error'] = "กรุณากรอกบัตรประชาชน";
-            header("location: book2.php");
-        }else if(empty($title)){
-            $_SESSION['error'] = "กรุณาเลือกคำนำหน้า";
-            header("location: book2.php");
-        }else {
-            try{
-                if (!isset($_SESSION['error'])){
-                    $stmt = $conn->prepare(
-                    "UPDATE users
-                    set firstname=:firstname, lastname=:lastname, dob=:dob, phone_number=:phone_number, id_card=:id_card, title=:title
-                    WHERE id=:user_id");
-
-                    $stmt->bindParam(":firstname", $firstname);
-                    $stmt->bindParam(":lastname", $lastname);
-                    $stmt->bindParam(":dob", $dob);
-                    $stmt->bindParam(":phone_number", $phone_number);
-                    $stmt->bindParam(":id_card", $id_card);
-                    $stmt->bindParam(":title", $title);
-                    $stmt->bindParam(":user_id", $user_id);
-                    
-                    $stmt->execute();
-                    $_SESSION['success'] = "";
-                    header("location: ../baggage/baggage.php");
-                } else {
-                    $_SESSION['error'] = "มีบางอย่างผิดพลาด";
-                    header("location: book2.php");
-                }
-            }catch (PDOException $e){
-                echo $e->getMessage();
-            }
-        }
-        
-
+    if ($conn->connect_error) {
+        die("การเชื่อมต่อล้มเหลว: " . $conn->connect_error);
     }
+
+    $formNumber = 1;
+    while (isset($_POST["passenger{$formNumber}_firstname"])) {
+        $title = $_POST["passenger{$formNumber}_title"];
+        $firstname = $_POST["passenger{$formNumber}_firstname"];
+        $lastname = $_POST["passenger{$formNumber}_lastname"];
+        $phone_number = $_POST["passenger{$formNumber}_phone_number"];
+        $dob = $_POST["passenger{$formNumber}_dob"];
+
+        $sql = "INSERT INTO passengers (firstname, lastname, phone_number, title, dob) 
+                VALUES ('$firstname', '$lastname', '$phone_number', '$title', '$dob')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "บันทึกข้อมูลสำเร็จสำหรับผู้โดยสารที่ $formNumber";
+        } else {
+            echo "ข้อผิดพลาดในการบันทึกข้อมูล: " . $conn->error;
+        }
+
+        $formNumber++;
+    }
+
+    $conn->close();
+}
 ?>
