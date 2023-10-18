@@ -90,7 +90,7 @@ if (isset($_GET['logout'])) {
     <!-- ส่วนหน้าจองตั๋วเครื่องบินบนสุด -->
 
 
-
+    
     <div class="content">
         <div class="bluelock">
             <img src="./img/slideshow.gif" alt="" class="img_samui">
@@ -190,7 +190,6 @@ if (isset($_GET['logout'])) {
 
 
         <!-- ส่วนของแนะนำสถานที่ท่องเที่ยว -->
-
 
         <div class="recommendlock">
             <div class="header-recomment">
