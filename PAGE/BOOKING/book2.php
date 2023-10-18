@@ -171,6 +171,16 @@ session_start();
                                 <text>ข้อมูลการติดต่อ (สำหรับส่งตั๋ว/ใบจอง)</text>
                             </div>
                             <div class="personal-info">
+
+                                <div class="xxxy">
+                                    <label for="title">คำนำหน้าชื่อ:</label>
+                                    <select id="title" name="title">
+                                        <option value="นาย">Mr.</option>
+                                        <option value="นาง">Ms.</option>
+                                        <option value="นางสาว">Miss</option>
+                                    </select>
+                                </div>
+
                                 <div class="row1-info">
                                     <div class="firstname-info">
                                         <div class="text-firstname">
@@ -191,24 +201,16 @@ session_start();
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row2-info">
-                                    <div class="phone-info">
-                                        <div class="text-phone">
+                                
+                                <div class="phone-info">
+                                    <div class="text-phone">
                                             <p1>หมายเลขโทรศัพท์</p1>
-                                        </div>
-                                        <div class="input-phone">
-                                            <input type="text" placeholder="กรอกหมายเลข">
-                                        </div>
                                     </div>
-                                    <div class="email-info">
-                                        <div class="text-email">
-                                            <p1>อีเมล์</p1>
-                                        </div>
-                                        <div class="input-email">
-                                            <input type="text" placeholder="กรอกอีเมล์">
-                                        </div>
+                                    <div class="input-phone">
+                                            <input type="text" placeholder="กรอกหมายเลข">
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                         <div class="content-airplane">
@@ -291,6 +293,16 @@ session_start();
                                     <p>ผู้โดยสาร 1</p>
                                 </div>
                                 <div class="friend1-info">
+
+                                    <div class="xxxy">
+                                        <label for="title">คำนำหน้าชื่อ:</label>
+                                        <select id="title" name="title">
+                                            <option value="นาย">Mr.</option>
+                                            <option value="นาง">Ms.</option>
+                                            <option value="นางสาว">Miss</option>
+                                        </select>
+                                    </div>
+
                                     <div class="row1-info-friend">
                                         <div class="firstname-info-friend">
                                             <div class="text-firstname-friend">
@@ -328,14 +340,6 @@ session_start();
                                                 <input type="text" placeholder="กรอกหมายเลข">
                                             </div>
                                         </div>
-                                        <div class="email-info-friend">
-                                            <div class="text-email-friend">
-                                                <p1>อีเมล์</p1>
-                                            </div>
-                                            <div class="input-email-friend">
-                                                <input type="text" placeholder="กรอกอีเมล์">
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -350,6 +354,16 @@ session_start();
                                         <p>ผู้โดยสาร 2</p>
                                     </div>
                                     <div class="friend1-info">
+
+                                    <div class="xxxy">
+                                        <label for="title">คำนำหน้าชื่อ:</label>
+                                        <select id="title" name="title">
+                                            <option value="นาย">Mr.</option>
+                                            <option value="นาง">Ms.</option>
+                                            <option value="นางสาว">Miss</option>
+                                        </select>
+                                    </div>
+
                                         <div class="row1-info-friend">
                                             <div class="firstname-info-friend">
                                                 <div class="text-firstname-friend">
@@ -385,14 +399,6 @@ session_start();
                                                 </div>
                                                 <div class="input-phone-friend">
                                                     <input type="text" placeholder="กรอกหมายเลข">
-                                                </div>
-                                            </div>
-                                            <div class="email-info-friend">
-                                                <div class="text-email-friend">
-                                                    <p1>อีเมล์</p1>
-                                                </div>
-                                                <div class="input-email-friend">
-                                                    <input type="text" placeholder="กรอกอีเมล์">
                                                 </div>
                                             </div>
                                         </div>
@@ -410,6 +416,16 @@ session_start();
                                         <p>ผู้โดยสาร 3</p>
                                     </div>
                                     <div class="friend1-info">
+
+                                    <div class="xxxy">
+                                        <label for="title">คำนำหน้าชื่อ:</label>
+                                        <select id="title" name="title">
+                                            <option value="นาย">Mr.</option>
+                                            <option value="นาง">Ms.</option>
+                                            <option value="นางสาว">Miss</option>
+                                        </select>
+                                    </div>
+
                                         <div class="row1-info-friend">
                                             <div class="firstname-info-friend">
                                                 <div class="text-firstname-friend">
@@ -445,14 +461,6 @@ session_start();
                                                 </div>
                                                 <div class="input-phone-friend">
                                                     <input type="text" placeholder="กรอกหมายเลข">
-                                                </div>
-                                            </div>
-                                            <div class="email-info-friend">
-                                                <div class="text-email-friend">
-                                                    <p1>อีเมล์</p1>
-                                                </div>
-                                                <div class="input-email-friend">
-                                                    <input type="text" placeholder="กรอกอีเมล์">
                                                 </div>
                                             </div>
                                         </div>
@@ -470,6 +478,16 @@ session_start();
                                         <p>ผู้โดยสาร 4</p>
                                     </div>
                                     <div class="friend1-info">
+
+                                    <div class="xxxy">
+                                        <label for="title">คำนำหน้าชื่อ:</label>
+                                        <select id="title" name="title">
+                                            <option value="นาย">Mr.</option>
+                                            <option value="นาง">Ms.</option>
+                                            <option value="นางสาว">Miss</option>
+                                        </select>
+                                    </div>
+
                                         <div class="row1-info-friend">
                                             <div class="firstname-info-friend">
                                                 <div class="text-firstname-friend">
@@ -505,14 +523,6 @@ session_start();
                                                 </div>
                                                 <div class="input-phone-friend">
                                                     <input type="text" placeholder="กรอกหมายเลข">
-                                                </div>
-                                            </div>
-                                            <div class="email-info-friend">
-                                                <div class="text-email-friend">
-                                                    <p1>อีเมล์</p1>
-                                                </div>
-                                                <div class="input-email-friend">
-                                                    <input type="text" placeholder="กรอกอีเมล์">
                                                 </div>
                                             </div>
                                         </div>
@@ -530,6 +540,16 @@ session_start();
                                         <p>ผู้โดยสาร 5</p>
                                     </div>
                                     <div class="friend1-info">
+
+                                    <div class="xxxy">
+                                        <label for="title">คำนำหน้าชื่อ:</label>
+                                        <select id="title" name="title">
+                                            <option value="นาย">Mr.</option>
+                                            <option value="นาง">Ms.</option>
+                                            <option value="นางสาว">Miss</option>
+                                        </select>
+                                    </div>
+
                                         <div class="row1-info-friend">
                                             <div class="firstname-info-friend">
                                                 <div class="text-firstname-friend">
@@ -565,14 +585,6 @@ session_start();
                                                 </div>
                                                 <div class="input-phone-friend">
                                                     <input type="text" placeholder="กรอกหมายเลข">
-                                                </div>
-                                            </div>
-                                            <div class="email-info-friend">
-                                                <div class="text-email-friend">
-                                                    <p1>อีเมล์</p1>
-                                                </div>
-                                                <div class="input-email-friend">
-                                                    <input type="text" placeholder="กรอกอีเมล์">
                                                 </div>
                                             </div>
                                         </div>
@@ -590,6 +602,17 @@ session_start();
                                         <p>ผู้โดยสาร 6</p>
                                     </div>
                                     <div class="friend1-info">
+
+                                    <div class="xxxy">
+                                        <label for="title">คำนำหน้าชื่อ:</label>
+                                        <select id="title" name="title">
+                                            <option value="นาย">Mr.</option>
+                                            <option value="นาง">Ms.</option>
+                                            <option value="นางสาว">Miss</option>
+                                        </select>
+                                    </div>
+
+                                    
                                         <div class="row1-info-friend">
                                             <div class="firstname-info-friend">
                                                 <div class="text-firstname-friend">
@@ -625,14 +648,6 @@ session_start();
                                                 </div>
                                                 <div class="input-phone-friend">
                                                     <input type="text" placeholder="กรอกหมายเลข">
-                                                </div>
-                                            </div>
-                                            <div class="email-info-friend">
-                                                <div class="text-email-friend">
-                                                    <p1>อีเมล์</p1>
-                                                </div>
-                                                <div class="input-email-friend">
-                                                    <input type="text" placeholder="กรอกอีเมล์">
                                                 </div>
                                             </div>
                                         </div>
