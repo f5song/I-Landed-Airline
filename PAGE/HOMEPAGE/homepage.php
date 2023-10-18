@@ -194,7 +194,6 @@ if (isset($_GET['logout'])) {
 
         <!-- ส่วนของแนะนำสถานที่ท่องเที่ยว -->
 
-
         <div class="recommendlock">
             <div class="header-recomment">
                 <div>
