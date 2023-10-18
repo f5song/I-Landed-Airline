@@ -253,13 +253,23 @@
     </div>
 
     <div class="bottom-frame">
-       
-        <div class="backtohomeframe">
-            <p class="backtohome"> กลับหน้าหลัก</p>
+        <div class="backtohomeframe" id="backtohome">
+            <p class="backtohome" id="backtohome"> กลับหน้าหลัก</p>
         </div>
-
     </div>
 
+
+
+
+    <script>
+    var backtohome = document.getElementById("backtohome");
+
+    if (backtohome) {
+      backtohome.addEventListener("click", function (e) {
+        window.location.href = "../HOMEPAGE/homepage.php";
+      });
+    }
+  </script>
 
 
 

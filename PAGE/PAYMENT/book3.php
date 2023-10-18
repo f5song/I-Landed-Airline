@@ -1,3 +1,5 @@
+<!-- http://localhost/ISAD-ilal/PAGE/PAYMENT/book3.php -->
+
 <?php
     session_start();
     require_once '../../CRUD/config/db.php';
@@ -422,13 +424,13 @@
     var buttonContinueOrder3 = document.getElementById("buttonContinueOrder3");
     if (buttonContinueOrder1 || buttonContinueOrder2 || buttonContinueOrder3) {
       buttonContinueOrder1.addEventListener("click", function (e) {
-        window.location.href = "../check-ticket/check-ticket.php";
+        window.location.href = "../ETICKET/checkticket.php";
       });
       buttonContinueOrder2.addEventListener("click", function (e) {
-        window.location.href = "../check-ticket/check-ticket.php";
+        window.location.href = "../ETICKET/checkticket.php";
       });
       buttonContinueOrder3.addEventListener("click", function (e) {
-        window.location.href = "../check-ticket/check-ticket.php";
+        window.location.href = "../ETICKET/checkticket.php";
       });
     }
   </script>

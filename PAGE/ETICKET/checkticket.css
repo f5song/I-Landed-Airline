@@ -192,3 +192,7 @@ pname{
     border-radius: 8px;
     text-align: center;
 }
+
+#backtohome:hover{
+    cursor: pointer;
+}
