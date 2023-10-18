@@ -309,7 +309,7 @@ txt{
     background-color: white;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     width: 100%;
-    height: 415px;
+    height: 445px;
 }.bottom-content{
     margin-top: 80px;
 }.header-friend1{
@@ -514,4 +514,12 @@ txt{
     transition: background-color 0.5s ease;
 }.bottom-content-1,.bottom-content-2,.bottom-content-3,.bottom-content-4,.bottom-content-5,.bottom-content-6{
     margin-top: 50px;
+}
+
+.xxxy{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    width: 200px;
+    padding-top: 13px;
 }
