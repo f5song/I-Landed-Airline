@@ -79,15 +79,16 @@ if (isset($_GET['logout'])) {
         <div class="from">
           <p> จาก: </p>
           <div class="box-search">
-            <select class="dropdown-menu">
+            <select class="dropdownselect_province" id="departure">
               <option value="" disabled selected>เลือกเที่ยวบินของคุณ</option>
-              <option value="bkk">กรุงเทพฯ(BKK)</option>
-              <option value="hkt">ภูเก็ต(HKT)</option>
-              <option value="uth">อุดรธานี(UTH)</option>
-              <option value="hdy">หาดใหญ่(HDY)</option>
-              <option value="kbv">กระบี่(KBV)</option>
-              <option value="btz">ยะลา(BTZ)</option>
-              <option value="cei">เชียงราย(CEI)</option>
+              <option value="BKK">กรุงเทพฯ(BKK)</option>
+              <option value="CNX">เชียงใหม่(CNX)</option>
+              <option value="HKT">ภูเก็ต(HKT)</option>
+              <option value="UTH">อุดรธานี(UTH)</option>
+              <option value="HDY">หาดใหญ่(HDY)</option>
+              <option value="KBV">กระบี่(KBV)</option>
+              <option value="BTZ">ยะลา(BTZ)</option>
+              <option value="CEI">เชียงราย(CEI)</option>
             </select>
           </div>
         </div>
@@ -95,20 +96,25 @@ if (isset($_GET['logout'])) {
         <div class="to">
           <p> ถึง: </p>
           <div class="box-search">
-            <select class="dropdown-menu">
-              <option value="" disabled selected>เลือกเที่ยวบินของคุณ</option>
-              <option value="bkk">กรุงเทพฯ(BKK)</option>
-              <option value="hkt">ภูเก็ต(HKT)</option>
-              <option value="uth">อุดรธานี(UTH)</option>
-              <option value="hdy">หาดใหญ่(HDY)</option>
-              <option value="kbv">กระบี่(KBV)</option>
-              <option value="btz">ยะลา(BTZ)</option>
-              <option value="cei">เชียงราย(CEI)</option>
+            <select class="dropdownselect_province" id="arrival">
+                <option value="" disabled selected>เลือกเที่ยวบินของคุณ</option>
+                <option value="BKK">กรุงเทพฯ(BKK)</option>
+                <option value="CNX">เชียงใหม่(CNX)</option>
+                <option value="HKT">ภูเก็ต(HKT)</option>
+                <option value="UTH">อุดรธานี(UTH)</option>
+                <option value="HDY">หาดใหญ่(HDY)</option>
+                <option value="KBV">กระบี่(KBV)</option>
+                <option value="BTZ">ยะลา(BTZ)</option>
+                <option value="CEI">เชียงราย(CEI)</option>
             </select>
           </div>
         </div>
       </div>
+      <div class="bottomcontent">
+        <button class="button-search">ค้นหาเที่ยวบิน </button>
+      </div>
     </div>
+
     <div class="flightlock">
       <table class="table">
         <thead>
@@ -125,43 +131,54 @@ if (isset($_GET['logout'])) {
         </thead>
         <tbody>
           <?php
-          $servername = "localhost"; // เซิร์ฟเวอร์ MySQL
-          $username = "root"; // ชื่อผู้ใช้ฐานข้อมูล
-          $password = ""; // รหัสผ่านฐานข้อมูล
-          $dbname = "mydb"; // ชื่อฐานข้อมูล
-          
-          // สร้างการเชื่อมต่อ
+          $servername = "localhost"; 
+          $username = "root"; 
+          $password = ""; 
+          $dbname = "mydb"; 
+
           $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-          // ตรวจสอบการเชื่อมต่อ
           if (!$conn) {
             die("การเชื่อมต่อล้มเหลว: " . mysqli_connect_error());
           }
 
+          $departure = isset($_GET['departure']) ? $_GET['departure'] : '';
+          $arrival = isset($_GET['arrival']) ? $_GET['arrival'] : '';
+
           $sql = "SELECT * FROM flight";
+
+          if (!empty($departure) && !empty($arrival)) {
+              $sql .= " WHERE departure_airport = '$departure' AND arrival_airport = '$arrival'";
+          }
+
           $result = mysqli_query($conn, $sql);
 
           if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-              echo "<tr>";
-              echo "<td data-label='Flight ID'>" . $row["flight_id"] . "</td>";
-              echo "<td data-label='Departure Airport'>" . $row["departure_airport"] . "</td>";
-              echo "<td data-label='Arrival Airport'>" . $row["arrival_airport"] . "</td>";
-              echo "<td data-label='Departure Time'>" . $row["departure_time"] . "</td>";
-              echo "<td data-label='Arrival Time'>" . $row["arrival_time"] . "</td>";
-              echo "<td data-label='Available Seats'>" . $row["available_seats"] . "</td>";
-              echo "<td data-label='Price'>" . $row["flight_cost"] . "</td>";
-              echo "<td data-label='Booking Status'><a href='../BOOKING/book2.php?flight_id=" . $row["flight_id"] . "' class='btn btn__active' id='btn_active'>Booking Now</a></td>";
-              echo "</tr>";
-            }
+              while ($row = mysqli_fetch_assoc($result)) {
+                  echo "<tr>";
+                  echo "<td data-label='Flight ID'>" . $row["flight_id"] . "</td>";
+                  echo "<td data-label='Departure Airport'>" . $row["departure_airport"] . "</td>";
+                  echo "<td data-label='Arrival Airport'>" . $row["arrival_airport"] . "</td>";
+                  echo "<td data-label='Departure Time'>" . $row["departure_time"] . "</td>";
+                  echo "<td data-label='Arrival Time'>" . $row["arrival_time"] . "</td>";
+                  echo "<td data-label='Available Seats'>" . $row["available_seats"] . "</td>";
+                  echo "<td data-label='Price'>" . $row["flight_cost"] . "</td>";
+                  echo "<td data-label='Booking Status'><a href='../BOOKING/book2.php?flight_id=" . $row["flight_id"] . "' class='btn btn__active' id='btn_active'>Booking Now</a></td>";
+                  echo "</tr>";
+              }
           }
-
-          // ปิดการเชื่อมต่อฐานข้อมูล
           mysqli_close($conn);
           ?>
         </tbody>
       </table>
     </div>
+    <script>
+      document.querySelector('.button-search').addEventListener('click', function() {
+      const departureValue = document.getElementById('departure').value;
+      const arrivalValue = document.getElementById('arrival').value;
+       window.location.href = `../FLIGHT/flight.php?departure=${departureValue}&arrival=${arrivalValue}`;
+      });
+    </script>
   </div>
 </body>
 

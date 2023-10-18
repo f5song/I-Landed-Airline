@@ -94,6 +94,8 @@ if (isset($_GET['logout'])) {
             </div>
         </div>
         <div class="whitelock">
+
+
             <div class="leftcontent">
                 <div class="topcontent">
                     <div class="leftbooking">
@@ -102,15 +104,16 @@ if (isset($_GET['logout'])) {
                             <p>จาก</p>
                         </div>
                         <div class="leftbottombooking">
-                            <select class="dropdownselect_province">
+                            <select class="dropdownselect_province" id="departure">
                                 <option value="" disabled selected>เลือกเที่ยวบินของคุณ</option>
-                                <option value="bkk">กรุงเทพฯ(BKK)</option>
-                                <option value="hkt">ภูเก็ต(HKT)</option>
-                                <option value="uth">อุดรธานี(UTH)</option>
-                                <option value="hdy">หาดใหญ่(HDY)</option>
-                                <option value="kbv">กระบี่(KBV)</option>
-                                <option value="btz">ยะลา(BTZ)</option>
-                                <option value="cei">เชียงราย(CEI)</option>
+                                <option value="BKK">กรุงเทพฯ(BKK)</option>
+                                <option value="CNX">เชียงใหม่(CNX)</option>
+                                <option value="HKT">ภูเก็ต(HKT)</option>
+                                <option value="UTH">อุดรธานี(UTH)</option>
+                                <option value="HDY">หาดใหญ่(HDY)</option>
+                                <option value="KBV">กระบี่(KBV)</option>
+                                <option value="BTZ">ยะลา(BTZ)</option>
+                                <option value="CEI">เชียงราย(CEI)</option>
                             </select>
                         </div>
                     </div>
@@ -121,15 +124,16 @@ if (isset($_GET['logout'])) {
                             <p>ถึง</p>
                         </div>
                         <div class="rightbottombooking">
-                            <select class="dropdownselect_province">
+                            <select class="dropdownselect_province" id="arrival">
                                 <option value="" disabled selected>เลือกเที่ยวบินของคุณ</option>
-                                <option value="bkk">กรุงเทพฯ(BKK)</option>
-                                <option value="hkt">ภูเก็ต(HKT)</option>
-                                <option value="uth">อุดรธานี(UTH)</option>
-                                <option value="hdy">หาดใหญ่(HDY)</option>
-                                <option value="kbv">กระบี่(KBV)</option>
-                                <option value="btz">ยะลา(BTZ)</option>
-                                <option value="cei">เชียงราย(CEI)</option>
+                                <option value="BKK">กรุงเทพฯ(BKK)</option>
+                                <option value="CNX">เชียงใหม่(CNX)</option>
+                                <option value="HKT">ภูเก็ต(HKT)</option>
+                                <option value="UTH">อุดรธานี(UTH)</option>
+                                <option value="HDY">หาดใหญ่(HDY)</option>
+                                <option value="KBV">กระบี่(KBV)</option>
+                                <option value="BTZ">ยะลา(BTZ)</option>
+                                <option value="CEI">เชียงราย(CEI)</option>
                             </select>
                         </div>
                     </div>
@@ -138,6 +142,16 @@ if (isset($_GET['logout'])) {
                     <button class="button-search">ค้นหาเที่ยวบิน </button>
                 </div>
             </div>
+
+            <script>
+                document.querySelector('.button-search').addEventListener('click', function() {
+                const departureValue = document.getElementById('departure').value;
+                const arrivalValue = document.getElementById('arrival').value;
+                window.location.href = `../FLIGHT/flight.php?departure=${departureValue}&arrival=${arrivalValue}`;
+            });
+            </script>
+
+
             <div class="rightcontent">
                 <div class="righttopcotent">
                     <div class="righttop1">

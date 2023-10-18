@@ -75,12 +75,31 @@
               <input type="password" id="password" name="password" required>
             </div>
             <div class="submit-form1">
-              <button type="submit" id="submitbutton1" name="signin">เข้าสู่ระบบ</button>
+              <button class="logintohomepage" type="submit" id="submitbutton1" name="signin">เข้าสู่ระบบ</button>
             </div>
           </form>
           <div class="goto-sing-in">ยังไม่มีบัญชีใช่หรือไม่? <a href="register.php" style="color: #003a6c;">สมัครเลย!</a></div>
         </div>
     </div>
+
+    <?php
+      $email = $_GET['email'];
+      $sql = "SELECT user_id FROM user WHERE email = '$email'";
+      $result = mysqli_query($connection, $sql);
+
+      if ($result) {
+          $row = mysqli_fetch_assoc($result);
+          $user_id = $row['user_id'];
+          header("Location: ../HOMEPAGE/homepage.php?user_id=$user_id");
+      }
+    ?>
+
+    <script>
+        document.querySelector('.submit-form1').addEventListener('click', function() {
+        const email = document.getElementById("usernameEmail").value;
+        window.location.href = `login_db.php?email=${email}`;
+      });
+    </script>
     
     <script>
       var usernameEmailText = document.getElementById("usernameEmailText");
