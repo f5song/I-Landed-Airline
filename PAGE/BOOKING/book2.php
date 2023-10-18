@@ -172,9 +172,9 @@ rel="stylesheet"
                         </div>
                         <div class="content-airplane">
                             <div class="content-fromto">
-                                <img class="img1"src="./airplane.png" alt="">
+                                <img class="img1"src="./public/airplane.png" alt="">
                                 <h1><?php echo $row['departure_airport_state'] ?></h1>
-                                <img  class="img2"src="./right-arrow.png" alt="">
+                                <img  class="img2"src="./public/right-arrow.png" alt="">
                                 <h1><?php echo $row['arrival_airport_state'] ?></h1>
                             </div>
                             <div class="content-date">
@@ -199,7 +199,7 @@ rel="stylesheet"
                                 </div>
                             </div>
                             <div class="content-cant">
-                                <img src="./info.png" alt="">
+                                <img src="./public/info.png" alt="">
                                 <p>ไม่สามารถคืนเงินได้</p>
                             </div>
                         </div>
