@@ -23,6 +23,8 @@ if (isset($_GET['logout'])) {
   <link rel="stylesheet" href="./index.css" />
   <link rel="stylesheet" href="../ALLNAVBAR/navbar.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@600&display=swap" />
+  <script src="../SUGNUPLOGIN/signuplogin.js"></script>
+
 </head>
 
 <body>
@@ -44,13 +46,11 @@ if (isset($_GET['logout'])) {
         <p>
           <?php echo $_SESSION['user_login']; ?>
         </p>
-        <a href="homepage.php?logout='1'">
+        <a href="../HOMEPAGE/homepage.php?logout='1'">
           <img class="img-logout-icon" id="button-logout" alt="" src="../ALLNAVBAR/logout.png" />
         </a>
       </div>
     </nav>
-
-
 
 
   <?php } else { ?>
@@ -68,7 +68,7 @@ if (isset($_GET['logout'])) {
 
       <div class="rightcontainer">
         <button class="button-sign-in" type="button" onclick="toLogin()"> เข้าสู่ระบบ </button>
-        <button class="button-sign-up" type="button"> ลงทะเบียน </button>
+        <button class="button-sign-up" type="button" onclick="toSignup()"> ลงทะเบียน </button>
       </div>
     </nav>
 
@@ -213,6 +213,24 @@ if (isset($_GET['logout'])) {
       </div>
     </div>
   </div>
+
+
+
+  <script>
+        function toLogin() {
+            window.location.href = "../SIGNUPLOGIN/login.php";
+        }
+
+        function toSignup(){
+            window.location.href = "../SIGNUPLOGIN/register.php";
+        }
+    </script>
+
+
+
+
+
+
 </body>
 
 </html>

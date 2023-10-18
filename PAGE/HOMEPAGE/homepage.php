@@ -26,6 +26,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="./homepage.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@600&display=swap" />
     <link rel="stylesheet" href="../ALLNAVBAR/navbar.css" />
+
 </head>
 
 <body>
@@ -73,7 +74,7 @@ if (isset($_GET['logout'])) {
 
             <div class="rightcontainer">
                 <button class="button-sign-in" type="button" onclick="toLogin()"> เข้าสู่ระบบ </button>
-                <button class="button-sign-up" type="button"> ลงทะเบียน </button>
+                <button class="button-sign-up" type="button" onclick="toSignup()"> ลงทะเบียน </button>
             </div>
         </nav>
 
@@ -325,18 +326,14 @@ if (isset($_GET['logout'])) {
         <div class="footer">
             <div class="footer-content1">
                 <h2>I-LANDED AIRLINE</h2>
-                <p>หน้าแรก</p>
-                <p>แนะนำสถานที่</p>
-                <p>ช่วยเหลือ</p>
+                <a href="../HOMEPAGE/homepage.php"><p>หน้าแรก</p></a>
+                <a href="../RECCOMMEND/reccom.php"><p>แนะนำสถานที่</p></a>
+                <a href="../HELP/help.php"><p>ช่วยเหลือ</p></a>
             </div>
             <div class="footer-content2">
                 <h2>ACCOUNT</h2>
-                <p>ลงทะเบียน</p>
-                <p>เข้าสู่ระบบ</p>
-            </div>
-            <div class="footer-content3">
-                <h2>ติดต่อเราได้ที่</h2>
-                <img src="" alt="">
+                <a href="../SIGNUPLOGIN/register.php"><p>ลงทะเบียน</p></a>
+                <a href="../SIGNUPLOGIN/login.php"><p>เข้าสู่ระบบ</p></a>
             </div>
             <div class="footer-content4">
                 <img src="./img/logo_airline_footer.png" alt="">
@@ -348,6 +345,10 @@ if (isset($_GET['logout'])) {
     <script>
         function toLogin() {
             window.location.href = "../SIGNUPLOGIN/login.php";
+        }
+
+        function toSignup(){
+            window.location.href = "../SIGNUPLOGIN/register.php";
         }
     </script>
 

@@ -264,7 +264,7 @@
   left: calc(50% - 34px);
   line-height: 31px;
   display: inline-block;
-  width: 68px;
+  width: 100px;
   height: 24px;
 }
 .button-ani-login,
