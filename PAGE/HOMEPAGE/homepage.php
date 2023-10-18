@@ -26,6 +26,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="./homepage.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@600&display=swap" />
     <link rel="stylesheet" href="../ALLNAVBAR/navbar.css" />
+
 </head>
 
 <body>
@@ -73,7 +74,7 @@ if (isset($_GET['logout'])) {
 
             <div class="rightcontainer">
                 <button class="button-sign-in" type="button" onclick="toLogin()"> เข้าสู่ระบบ </button>
-                <button class="button-sign-up" type="button"> ลงทะเบียน </button>
+                <button class="button-sign-up" type="button" onclick="toSignup()"> ลงทะเบียน </button>
             </div>
         </nav>
 
@@ -334,6 +335,10 @@ if (isset($_GET['logout'])) {
     <script>
         function toLogin() {
             window.location.href = "../SIGNUPLOGIN/login.php";
+        }
+
+        function toSignup(){
+            window.location.href = "../SIGNUPLOGIN/register.php";
         }
     </script>
 
