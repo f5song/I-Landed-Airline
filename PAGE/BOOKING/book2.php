@@ -41,7 +41,7 @@ session_start();
 ?>
 <!-- for go to browser -->
 
-<!-- http://localhost/I-Land-Airline/frontend/book2/book2.php -->
+<!-- http://localhost/ISAD-ILAL/PAGE/BOOKING/book2.php -->
 
 
 
