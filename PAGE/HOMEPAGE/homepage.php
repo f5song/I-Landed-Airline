@@ -31,8 +31,7 @@ if (isset($_GET['logout'])) {
 
 <body>
     <!-- ส่วน bar -->
-    <?php if (isset($_SESSION['user_login'])) { ?>
-
+    <?php if (isset($_SESSION['user_login'])) {;?>
         <nav>
             <a href="../HOMEPAGE/homepage.php"> <img src="../ALLNAVBAR/logo_airline.png" alt="logo" class="logo_airline">
             </a>
@@ -54,8 +53,6 @@ if (isset($_GET['logout'])) {
                 </a>
             </div>
         </nav>
-
-
 
 
     <?php } else { ?>

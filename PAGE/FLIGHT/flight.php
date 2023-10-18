@@ -144,6 +144,7 @@ if (isset($_GET['logout'])) {
           $arrival = isset($_GET['arrival']) ? $_GET['arrival'] : '';
 
           $sql = "SELECT
+              f.flight_id,
               f.travel_date,
               dep.state AS departure_state,
               arr.state AS arrival_state,
