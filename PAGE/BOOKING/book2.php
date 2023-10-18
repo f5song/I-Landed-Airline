@@ -642,7 +642,7 @@ session_start();
 
                     <div class="button-gogolock">
                         <div class="button-mama">
-                            <button>ดำเนินการต่อ</button>
+                            <button id="button-mama">ดำเนินการต่อ</button>
                         </div>
                     </div>
                 </div>
@@ -716,6 +716,16 @@ session_start();
                 }
                 button.addEventListener("click", selectAmountPassenger);
 
+            </script>
+
+            <script>
+
+            function toSeat() {
+                window.location.href = "../SEAT/aircraft1/aircraft1.php";
+            }
+
+            buttonmama = document.getElementById("button-mama");
+            buttonmama.addEventListener("click", toSeat);
 
             </script>
 
