@@ -151,7 +151,7 @@ if (isset($_GET['logout'])) {
               echo "<td data-label='Arrival Time'>" . $row["arrival_time"] . "</td>";
               echo "<td data-label='Available Seats'>" . $row["available_seats"] . "</td>";
               echo "<td data-label='Price'>" . $row["flight_cost"] . "</td>";
-              echo "<td data-label='Booking Status'><a href='../book2/book2.php?flight_id=" . $row["flight_id"] . "' class='btn btn__active' id='btn_active'>Booking Now</a></td>";
+              echo "<td data-label='Booking Status'><a href='../BOOKING/book2.php?flight_id=" . $row["flight_id"] . "' class='btn btn__active' id='btn_active'>Booking Now</a></td>";
               echo "</tr>";
             }
           }

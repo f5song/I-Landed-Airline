@@ -191,7 +191,7 @@ rel="stylesheet"
                                     <p2><?php echo $row['departure_airport'] ?></p2>
                                 </div>
                                 <div class="lineair">
-                                    <img src="./right-arrow.png" alt="">
+                                    <img src="./public/right-arrow.png" alt="">
                                 </div>
                                 <div class="airto">
                                     <p1><?php echo $row['formatted_arrival_time'] ?></p1>
@@ -212,22 +212,7 @@ rel="stylesheet"
                 <option value="3">3</option>
               </select>
               <button id="addFriends">เพิ่มผู้โดยสาร</button>
-
-            <script>
-           document.getElementById("addFriends").addEventListener("click", function() {
-            var selectedValue = document.getElementById("dropdown").value;
-
-            for (var i = 0; i < selectedValue; i++) {
-              var friendInfoDiv = document.createElement("div");
-              friendInfoDiv.className = "friend-info";
-
-              // เพิ่มเนื้อหาของ friend-info ที่คุณต้องการที่นี่
-
-              // แนบ friend-info ใหม่ลงใน container
-              document.querySelector(".container").appendChild(friendInfoDiv);
-            }
-          });
-            </script>
+              
 
             <!-- blank -->
             <div class="bottom-content">
