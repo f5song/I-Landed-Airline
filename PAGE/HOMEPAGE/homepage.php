@@ -312,18 +312,14 @@ if (isset($_GET['logout'])) {
         <div class="footer">
             <div class="footer-content1">
                 <h2>I-LANDED AIRLINE</h2>
-                <p>หน้าแรก</p>
-                <p>แนะนำสถานที่</p>
-                <p>ช่วยเหลือ</p>
+                <a href="../HOMEPAGE/homepage.php"><p>หน้าแรก</p></a>
+                <a href="../RECCOMMEND/reccom.php"><p>แนะนำสถานที่</p></a>
+                <a href="../HELP/help.php"><p>ช่วยเหลือ</p></a>
             </div>
             <div class="footer-content2">
                 <h2>ACCOUNT</h2>
-                <p>ลงทะเบียน</p>
-                <p>เข้าสู่ระบบ</p>
-            </div>
-            <div class="footer-content3">
-                <h2>ติดต่อเราได้ที่</h2>
-                <img src="" alt="">
+                <a href="../SIGNUPLOGIN/register.php"><p>ลงทะเบียน</p></a>
+                <a href="../SIGNUPLOGIN/login.php"><p>เข้าสู่ระบบ</p></a>
             </div>
             <div class="footer-content4">
                 <img src="./img/logo_airline_footer.png" alt="">
