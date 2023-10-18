@@ -92,26 +92,24 @@ if (isset($_GET['logout'])) {
             </select>
           </div>
         </div>
-        <img src="./img/exchange.png" alt="exchange" class="exchange">
+        <div class="img-exchange"><img src="./img/exchange.png" alt="exchange" class="exchange"></div>
         <div class="to">
           <p> ถึง: </p>
           <div class="box-search">
             <select class="dropdownselect_province" id="arrival">
-                <option value="" disabled selected>เลือกเที่ยวบินของคุณ</option>
-                <option value="BKK">กรุงเทพฯ(BKK)</option>
-                <option value="CNX">เชียงใหม่(CNX)</option>
-                <option value="HKT">ภูเก็ต(HKT)</option>
-                <option value="UTH">อุดรธานี(UTH)</option>
-                <option value="HDY">หาดใหญ่(HDY)</option>
-                <option value="KBV">กระบี่(KBV)</option>
-                <option value="BTZ">ยะลา(BTZ)</option>
-                <option value="CEI">เชียงราย(CEI)</option>
+              <option value="" disabled selected>เลือกเที่ยวบินของคุณ</option>
+              <option value="BKK">กรุงเทพฯ(BKK)</option>
+              <option value="CNX">เชียงใหม่(CNX)</option>
+              <option value="HKT">ภูเก็ต(HKT)</option>
+              <option value="UTH">อุดรธานี(UTH)</option>
+              <option value="HDY">หาดใหญ่(HDY)</option>
+              <option value="KBV">กระบี่(KBV)</option>
+              <option value="BTZ">ยะลา(BTZ)</option>
+              <option value="CEI">เชียงราย(CEI)</option>
             </select>
           </div>
         </div>
-      </div>
-      <div class="bottomcontent">
-        <button class="button-search">ค้นหาเที่ยวบิน </button>
+        <button class="button-search">ค้นหาเที่ยวบิน</button>
       </div>
     </div>
 
@@ -131,10 +129,10 @@ if (isset($_GET['logout'])) {
         </thead>
         <tbody>
           <?php
-          $servername = "localhost"; 
-          $username = "root"; 
-          $password = ""; 
-          $dbname = "mydb"; 
+          $servername = "localhost";
+          $username = "root";
+          $password = "";
+          $dbname = "mydb";
 
           $conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -148,24 +146,24 @@ if (isset($_GET['logout'])) {
           $sql = "SELECT * FROM flight";
 
           if (!empty($departure) && !empty($arrival)) {
-              $sql .= " WHERE departure_airport = '$departure' AND arrival_airport = '$arrival'";
+            $sql .= " WHERE departure_airport = '$departure' AND arrival_airport = '$arrival'";
           }
 
           $result = mysqli_query($conn, $sql);
 
           if (mysqli_num_rows($result) > 0) {
-              while ($row = mysqli_fetch_assoc($result)) {
-                  echo "<tr>";
-                  echo "<td data-label='Flight ID'>" . $row["flight_id"] . "</td>";
-                  echo "<td data-label='Departure Airport'>" . $row["departure_airport"] . "</td>";
-                  echo "<td data-label='Arrival Airport'>" . $row["arrival_airport"] . "</td>";
-                  echo "<td data-label='Departure Time'>" . $row["departure_time"] . "</td>";
-                  echo "<td data-label='Arrival Time'>" . $row["arrival_time"] . "</td>";
-                  echo "<td data-label='Available Seats'>" . $row["available_seats"] . "</td>";
-                  echo "<td data-label='Price'>" . $row["flight_cost"] . "</td>";
-                  echo "<td data-label='Booking Status'><a href='../BOOKING/book2.php?flight_id=" . $row["flight_id"] . "' class='btn btn__active' id='btn_active'>Booking Now</a></td>";
-                  echo "</tr>";
-              }
+            while ($row = mysqli_fetch_assoc($result)) {
+              echo "<tr>";
+              echo "<td data-label='Flight ID'>" . $row["flight_id"] . "</td>";
+              echo "<td data-label='Departure Airport'>" . $row["departure_airport"] . "</td>";
+              echo "<td data-label='Arrival Airport'>" . $row["arrival_airport"] . "</td>";
+              echo "<td data-label='Departure Time'>" . $row["departure_time"] . "</td>";
+              echo "<td data-label='Arrival Time'>" . $row["arrival_time"] . "</td>";
+              echo "<td data-label='Available Seats'>" . $row["available_seats"] . "</td>";
+              echo "<td data-label='Price'>" . $row["flight_cost"] . "</td>";
+              echo "<td data-label='Booking Status'><a href='../BOOKING/book2.php?flight_id=" . $row["flight_id"] . "' class='btn btn__active' id='btn_active'>Booking Now</a></td>";
+              echo "</tr>";
+            }
           }
           mysqli_close($conn);
           ?>
@@ -173,10 +171,10 @@ if (isset($_GET['logout'])) {
       </table>
     </div>
     <script>
-      document.querySelector('.button-search').addEventListener('click', function() {
-      const departureValue = document.getElementById('departure').value;
-      const arrivalValue = document.getElementById('arrival').value;
-       window.location.href = `../FLIGHT/flight.php?departure=${departureValue}&arrival=${arrivalValue}`;
+      document.querySelector('.button-search').addEventListener('click', function () {
+        const departureValue = document.getElementById('departure').value;
+        const arrivalValue = document.getElementById('arrival').value;
+        window.location.href = `../FLIGHT/flight.php?departure=${departureValue}&arrival=${arrivalValue}`;
       });
     </script>
   </div>
