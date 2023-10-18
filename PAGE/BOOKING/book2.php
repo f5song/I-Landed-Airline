@@ -43,9 +43,8 @@ session_start();
 
 
 
-<!--    echo $row["flight_id"] ";
-        echo $row["departure_airport"];
-        echo "Arrival Airport: $row["arrival_airport"] ;        -->
+<?php
+    session_start();?>
 
 
 
