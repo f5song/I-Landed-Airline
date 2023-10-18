@@ -7,8 +7,6 @@ $dbname = "mydb"; // ชื่อฐานข้อมูล
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 $flight_id = $_GET['flight_id'];
 
-
-
 $sql_flight = "SELECT 
             f.`flight_id`,
             f.`departure_airport`, 
