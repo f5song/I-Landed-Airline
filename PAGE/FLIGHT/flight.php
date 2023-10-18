@@ -117,11 +117,11 @@ if (isset($_GET['logout'])) {
       <table class="table">
         <thead>
           <tr>
-            <th>Flight ID</th>
-            <th>Departure Airport</th>
-            <th>Arrival Airport</th>
+            <th>Departure State</th>
+            <th>Arrival State</th>
             <th>Departure Time</th>
             <th>Arrival Time</th>
+            <th>Travel Date</th>
             <th>Available Seats</th>
             <th>Price</th>
             <th>Booking Status</th>
@@ -143,7 +143,18 @@ if (isset($_GET['logout'])) {
           $departure = isset($_GET['departure']) ? $_GET['departure'] : '';
           $arrival = isset($_GET['arrival']) ? $_GET['arrival'] : '';
 
-          $sql = "SELECT * FROM flight";
+          $sql = "SELECT
+              f.flight_id,
+              f.travel_date,
+              dep.state AS departure_state,
+              arr.state AS arrival_state,
+              DATE_FORMAT(f.`departure_time`, '%H:%i') AS formatted_departure_time, 
+              DATE_FORMAT(f.`arrival_time`, '%H:%i') AS formatted_arrival_time, 
+              f.available_seats,
+              f.flight_cost
+          FROM flight AS f
+          JOIN airport AS dep ON f.departure_airport = dep.airport_code
+          JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
 
           if (!empty($departure) && !empty($arrival)) {
             $sql .= " WHERE departure_airport = '$departure' AND arrival_airport = '$arrival'";
@@ -152,18 +163,18 @@ if (isset($_GET['logout'])) {
           $result = mysqli_query($conn, $sql);
 
           if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-              echo "<tr>";
-              echo "<td data-label='Flight ID'>" . $row["flight_id"] . "</td>";
-              echo "<td data-label='Departure Airport'>" . $row["departure_airport"] . "</td>";
-              echo "<td data-label='Arrival Airport'>" . $row["arrival_airport"] . "</td>";
-              echo "<td data-label='Departure Time'>" . $row["departure_time"] . "</td>";
-              echo "<td data-label='Arrival Time'>" . $row["arrival_time"] . "</td>";
-              echo "<td data-label='Available Seats'>" . $row["available_seats"] . "</td>";
-              echo "<td data-label='Price'>" . $row["flight_cost"] . "</td>";
-              echo "<td data-label='Booking Status'><a href='../BOOKING/book2.php?flight_id=" . $row["flight_id"] . "' class='btn btn__active' id='btn_active'>Booking Now</a></td>";
-              echo "</tr>";
-            }
+              while ($row = mysqli_fetch_assoc($result)) {
+                  echo "<tr>";
+                  echo "<td data-label='Departure State'>" . $row["departure_state"] . "</td>";
+                  echo "<td data-label='Arrival State'>" . $row["arrival_state"] . "</td>";
+                  echo "<td data-label='Departure Time'>" . $row['formatted_departure_time'] . "</td>";
+                  echo "<td data-label='Arrival Time'>" . $row['formatted_arrival_time'] . "</td>";
+                  echo "<td data-label='Travel Date'>" . $row["travel_date"] . "</td>";
+                  echo "<td data-label='Available Seats'>" . $row["available_seats"] . "</td>";
+                  echo "<td data-label='Price'>" . $row["flight_cost"] . "</td>";
+                  echo "<td data-label='Booking Status'><a href='../BOOKING/book2.php?flight_id=" . $row["flight_id"] . "' class='btn btn__active' id='btn_active'>Booking Now</a></td>";
+                  echo "</tr>";
+              }
           }
           mysqli_close($conn);
           ?>

@@ -82,24 +82,6 @@
         </div>
     </div>
 
-    <?php
-      $email = $_GET['email'];
-      $sql = "SELECT user_id FROM user WHERE email = '$email'";
-      $result = mysqli_query($connection, $sql);
-
-      if ($result) {
-          $row = mysqli_fetch_assoc($result);
-          $user_id = $row['user_id'];
-          header("Location: ../HOMEPAGE/homepage.php?user_id=$user_id");
-      }
-    ?>
-
-    <script>
-        document.querySelector('.submit-form1').addEventListener('click', function() {
-        const email = document.getElementById("usernameEmail").value;
-        window.location.href = `login_db.php?email=${email}`;
-      });
-    </script>
     
     <script>
       var usernameEmailText = document.getElementById("usernameEmailText");
