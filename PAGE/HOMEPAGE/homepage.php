@@ -80,6 +80,15 @@ if (isset($_GET['logout'])) {
 
     <?php } ?>
 
+    <script>
+        function toLogin() {
+            window.location.href = "../SIGNUPLOGIN/login.php";
+        }
+        function toSignup(){
+            window.location.href = "../SIGNUPLOGIN/register.php";
+        }
+    </script>
+
 
     <!-- ส่วนหน้าจองตั๋วเครื่องบินบนสุด -->
 
@@ -342,15 +351,6 @@ if (isset($_GET['logout'])) {
     </footer>
 
 
-    <script>
-        function toLogin() {
-            window.location.href = "../SIGNUPLOGIN/login.php";
-        }
-
-        function toSignup(){
-            window.location.href = "../SIGNUPLOGIN/register.php";
-        }
-    </script>
 
 </body>
 
