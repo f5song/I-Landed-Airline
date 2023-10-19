@@ -1,9 +1,10 @@
+
 <!-- http://localhost/ISAD-ilal/PAGE/SIGNUPLOGIN/register.php -->
 
 
 <?php
-session_start();
-require_once '../../CRUD/config/db.php';
+  session_start();
+  require_once '../../CRUD/config/db.php';
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ require_once '../../CRUD/config/db.php';
       <img class="img2" src="./img/cloud2.svg" alt="">
     </div>
     <div class="right">
-      <form id="register-form" action="register_db.php" method="POST">
+      <form class="form" id="register-form" action="register_db.php" method="POST">
         <?php if (isset($_SESSION['error'])) { ?>
           <div class="alert-danger" role="alert">
             <?php

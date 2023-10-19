@@ -28,7 +28,7 @@ require_once '../../CRUD/config/db.php';
       <img class="img2" src="./img/cloud2.svg" alt="">
     </div>
     <div class="right">
-      <form id="login-form" action="login_db.php" method="POST">
+      <form class="form">
         <?php if (isset($_SESSION['error'])) { ?>
           <div class="alert alert-danger" role="alert">
             <?php
