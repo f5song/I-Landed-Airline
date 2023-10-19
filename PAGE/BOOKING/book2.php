@@ -167,7 +167,7 @@ session_start();
 
                                 <div class="xxxy">
                                     <label for="title">คำนำหน้าชื่อ:</label>
-                                    <select class="selectxxxy"id="title" name="title">
+                                    <select id="title" name="title">
                                         <option value="นาย">Mr.</option>
                                         <option value="นาง">Ms.</option>
                                         <option value="นางสาว">Miss</option>
@@ -294,50 +294,47 @@ session_start();
                                             </select>
                                         </div>
 
-                                        <div class="row1-info-friend">
-                                            <div class="firstname-info-friend">
-                                                <div class="text-firstname-friend">
-                                                    <p1>ชื่อจริงและชื่อกลาง (หากมี)</p1>
-                                                    <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
-                                                </div>
-                                                <div class="input-firstname-friend">
-                                                    <input type="text" placeholder="กรอกข้อมูล"
-                                                        name="passenger1_firstname">
-                                                </div>
+                                    <div class="row1-info-friend">
+                                        <div class="firstname-info-friend">
+                                            <div class="text-firstname-friend">
+                                                <p1>ชื่อจริงและชื่อกลาง (หากมี)</p1>
+                                                <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                             </div>
-                                            <div class="lastname-info-friend">
-                                                <div class="text-lastname-friend">
-                                                    <p1>นามสกุล</p1>
-                                                    <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
-                                                </div>
-                                                <div class="input-lastname-friend">
-                                                    <input type="text" placeholder="กรอกข้อมูล"
-                                                        name="passenger1_lastname">
-                                                </div>
-                                            </div>
-                                            <div class="birthday-info">
-                                                <div class="text-birthday-friend">
-                                                    <p>วันเกิด</p>
-                                                </div>
-                                                <div class="input-birthday-friend">
-                                                    <input type="date" name="passenger1_dob">
-                                                </div>
+                                            <div class="input-firstname-friend">
+                                                <input type="text" placeholder="กรอกข้อมูล" name="passenger1_firstname">
                                             </div>
                                         </div>
-                                        <div class="row2-info-friend">
-                                            <div class="phone-info-friend">
-                                                <div class="text-phone-friend">
-                                                    <p1>หมายเลขโทรศัพท์</p1>
-                                                </div>
-                                                <div class="input-phone-friend">
-                                                    <input type="text" placeholder="กรอกหมายเลข"
-                                                        name="passenger1_phone_number">
-                                                </div>
+                                        <div class="lastname-info-friend">
+                                            <div class="text-lastname-friend">
+                                                <p1>นามสกุล</p1>
+                                                <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
+                                            </div>
+                                            <div class="input-lastname-friend">
+                                                <input type="text" placeholder="กรอกข้อมูล" name="passenger1_lastname">
+                                            </div>
+                                        </div>
+                                        <div class="birthday-info">
+                                            <div class="text-birthday-friend">
+                                                <p>วันเกิด</p>
+                                            </div>
+                                            <div class="input-birthday-friend">
+                                                <input type="date" name="passenger1_dob">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row2-info-friend">
+                                        <div class="phone-info-friend">
+                                            <div class="text-phone-friend">
+                                                <p1>หมายเลขโทรศัพท์</p1>
+                                            </div>
+                                            <div class="input-phone-friend">
+                                                <input type="text" placeholder="กรอกหมายเลข" name="passenger1_phone_number">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
                             <!-- 2 -->
 
@@ -414,57 +411,57 @@ session_start();
                                         </div>
                                         <div class="friend1-info">
 
-                                            <div class="xxxy">
-                                                <label for="title">คำนำหน้าชื่อ:</label>
-                                                <select class="selectxxxy" id="title" name="title">
-                                                    <option value="นาย">Mr.</option>
-                                                    <option value="นาง">Ms.</option>
-                                                    <option value="นางสาว">Miss</option>
-                                                </select>
-                                            </div>
+                                    <div class="xxxy">
+                                        <label for="title">คำนำหน้าชื่อ:</label>
+                                        <select id="title" name="title">
+                                            <option value="นาย">Mr.</option>
+                                            <option value="นาง">Ms.</option>
+                                            <option value="นางสาว">Miss</option>
+                                        </select>
+                                    </div>
 
-                                            <div class="row1-info-friend">
-                                                <div class="firstname-info-friend">
-                                                    <div class="text-firstname-friend">
-                                                        <p1>ชื่อจริงและชื่อกลาง (หากมี)</p1>
-                                                        <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
-                                                    </div>
-                                                    <div class="input-firstname-friend">
-                                                        <input type="text" placeholder="กรอกข้อมูล">
-                                                    </div>
+                                        <div class="row1-info-friend">
+                                            <div class="firstname-info-friend">
+                                                <div class="text-firstname-friend">
+                                                    <p1>ชื่อจริงและชื่อกลาง (หากมี)</p1>
+                                                    <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                                 </div>
-                                                <div class="lastname-info-friend">
-                                                    <div class="text-lastname-friend">
-                                                        <p1>นามสกุล</p1>
-                                                        <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
-                                                    </div>
-                                                    <div class="input-lastname-friend">
-                                                        <input type="text" placeholder="กรอกข้อมูล">
-                                                    </div>
-                                                </div>
-                                                <div class="birthday-info">
-                                                    <div class="text-birthday-friend">
-                                                        <p>วันเกิด</p>
-                                                    </div>
-                                                    <div class="input-birthday-friend">
-                                                        <input type="date">
-                                                    </div>
+                                                <div class="input-firstname-friend">
+                                                    <input type="text" placeholder="กรอกข้อมูล">
                                                 </div>
                                             </div>
-                                            <div class="row2-info-friend">
-                                                <div class="phone-info-friend">
-                                                    <div class="text-phone-friend">
-                                                        <p1>หมายเลขโทรศัพท์</p1>
-                                                    </div>
-                                                    <div class="input-phone-friend">
-                                                        <input type="text" placeholder="กรอกหมายเลข">
-                                                    </div>
+                                            <div class="lastname-info-friend">
+                                                <div class="text-lastname-friend">
+                                                    <p1>นามสกุล</p1>
+                                                    <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
+                                                </div>
+                                                <div class="input-lastname-friend">
+                                                    <input type="text" placeholder="กรอกข้อมูล">
+                                                </div>
+                                            </div>
+                                            <div class="birthday-info">
+                                                <div class="text-birthday-friend">
+                                                    <p>วันเกิด</p>
+                                                </div>
+                                                <div class="input-birthday-friend">
+                                                    <input type="date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row2-info-friend">
+                                            <div class="phone-info-friend">
+                                                <div class="text-phone-friend">
+                                                    <p1>หมายเลขโทรศัพท์</p1>
+                                                </div>
+                                                <div class="input-phone-friend">
+                                                    <input type="text" placeholder="กรอกหมายเลข">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
                             <!-- 4 -->
 
@@ -476,57 +473,57 @@ session_start();
                                         </div>
                                         <div class="friend1-info">
 
-                                            <div class="xxxy">
-                                                <label for="title">คำนำหน้าชื่อ:</label>
-                                                <select class="selectxxxy" id="title" name="title">
-                                                    <option value="Mr.">Mr.</option>
-                                                    <option value="Mrs.">Ms.</option>
-                                                    <option value="Miss">Miss</option>
-                                                </select>
-                                            </div>
+                                    <div class="xxxy">
+                                        <label for="title">คำนำหน้าชื่อ:</label>
+                                        <select id="title" name="title">
+                                            <option value="Mr.">Mr.</option>
+                                            <option value="Mrs.">Ms.</option>
+                                            <option value="Miss">Miss</option>
+                                        </select>
+                                    </div>
 
-                                            <div class="row1-info-friend">
-                                                <div class="firstname-info-friend">
-                                                    <div class="text-firstname-friend">
-                                                        <p1>ชื่อจริงและชื่อกลาง (หากมี)</p1>
-                                                        <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
-                                                    </div>
-                                                    <div class="input-firstname-friend">
-                                                        <input type="text" placeholder="กรอกข้อมูล">
-                                                    </div>
+                                        <div class="row1-info-friend">
+                                            <div class="firstname-info-friend">
+                                                <div class="text-firstname-friend">
+                                                    <p1>ชื่อจริงและชื่อกลาง (หากมี)</p1>
+                                                    <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                                 </div>
-                                                <div class="lastname-info-friend">
-                                                    <div class="text-lastname-friend">
-                                                        <p1>นามสกุล</p1>
-                                                        <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
-                                                    </div>
-                                                    <div class="input-lastname-friend">
-                                                        <input type="text" placeholder="กรอกข้อมูล">
-                                                    </div>
-                                                </div>
-                                                <div class="birthday-info">
-                                                    <div class="text-birthday-friend">
-                                                        <p>วันเกิด</p>
-                                                    </div>
-                                                    <div class="input-birthday-friend">
-                                                        <input type="date">
-                                                    </div>
+                                                <div class="input-firstname-friend">
+                                                    <input type="text" placeholder="กรอกข้อมูล">
                                                 </div>
                                             </div>
-                                            <div class="row2-info-friend">
-                                                <div class="phone-info-friend">
-                                                    <div class="text-phone-friend">
-                                                        <p1>หมายเลขโทรศัพท์</p1>
-                                                    </div>
-                                                    <div class="input-phone-friend">
-                                                        <input type="text" placeholder="กรอกหมายเลข">
-                                                    </div>
+                                            <div class="lastname-info-friend">
+                                                <div class="text-lastname-friend">
+                                                    <p1>นามสกุล</p1>
+                                                    <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
+                                                </div>
+                                                <div class="input-lastname-friend">
+                                                    <input type="text" placeholder="กรอกข้อมูล">
+                                                </div>
+                                            </div>
+                                            <div class="birthday-info">
+                                                <div class="text-birthday-friend">
+                                                    <p>วันเกิด</p>
+                                                </div>
+                                                <div class="input-birthday-friend">
+                                                    <input type="date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row2-info-friend">
+                                            <div class="phone-info-friend">
+                                                <div class="text-phone-friend">
+                                                    <p1>หมายเลขโทรศัพท์</p1>
+                                                </div>
+                                                <div class="input-phone-friend">
+                                                    <input type="text" placeholder="กรอกหมายเลข">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
                             <!-- 5 -->
 
@@ -538,57 +535,57 @@ session_start();
                                         </div>
                                         <div class="friend1-info">
 
-                                            <div class="xxxy">
-                                                <label for="title">คำนำหน้าชื่อ:</label>
-                                                <select class="selectxxxy" id="title" name="title">
-                                                    <option value="นาย">Mr.</option>
-                                                    <option value="นาง">Ms.</option>
-                                                    <option value="นางสาว">Miss</option>
-                                                </select>
-                                            </div>
+                                    <div class="xxxy">
+                                        <label for="title">คำนำหน้าชื่อ:</label>
+                                        <select id="title" name="title">
+                                            <option value="นาย">Mr.</option>
+                                            <option value="นาง">Ms.</option>
+                                            <option value="นางสาว">Miss</option>
+                                        </select>
+                                    </div>
 
-                                            <div class="row1-info-friend">
-                                                <div class="firstname-info-friend">
-                                                    <div class="text-firstname-friend">
-                                                        <p1>ชื่อจริงและชื่อกลาง (หากมี)</p1>
-                                                        <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
-                                                    </div>
-                                                    <div class="input-firstname-friend">
-                                                        <input type="text" placeholder="กรอกข้อมูล">
-                                                    </div>
+                                        <div class="row1-info-friend">
+                                            <div class="firstname-info-friend">
+                                                <div class="text-firstname-friend">
+                                                    <p1>ชื่อจริงและชื่อกลาง (หากมี)</p1>
+                                                    <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                                 </div>
-                                                <div class="lastname-info-friend">
-                                                    <div class="text-lastname-friend">
-                                                        <p1>นามสกุล</p1>
-                                                        <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
-                                                    </div>
-                                                    <div class="input-lastname-friend">
-                                                        <input type="text" placeholder="กรอกข้อมูล">
-                                                    </div>
-                                                </div>
-                                                <div class="birthday-info">
-                                                    <div class="text-birthday-friend">
-                                                        <p>วันเกิด</p>
-                                                    </div>
-                                                    <div class="input-birthday-friend">
-                                                        <input type="date">
-                                                    </div>
+                                                <div class="input-firstname-friend">
+                                                    <input type="text" placeholder="กรอกข้อมูล">
                                                 </div>
                                             </div>
-                                            <div class="row2-info-friend">
-                                                <div class="phone-info-friend">
-                                                    <div class="text-phone-friend">
-                                                        <p1>หมายเลขโทรศัพท์</p1>
-                                                    </div>
-                                                    <div class="input-phone-friend">
-                                                        <input type="text" placeholder="กรอกหมายเลข">
-                                                    </div>
+                                            <div class="lastname-info-friend">
+                                                <div class="text-lastname-friend">
+                                                    <p1>นามสกุล</p1>
+                                                    <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
+                                                </div>
+                                                <div class="input-lastname-friend">
+                                                    <input type="text" placeholder="กรอกข้อมูล">
+                                                </div>
+                                            </div>
+                                            <div class="birthday-info">
+                                                <div class="text-birthday-friend">
+                                                    <p>วันเกิด</p>
+                                                </div>
+                                                <div class="input-birthday-friend">
+                                                    <input type="date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row2-info-friend">
+                                            <div class="phone-info-friend">
+                                                <div class="text-phone-friend">
+                                                    <p1>หมายเลขโทรศัพท์</p1>
+                                                </div>
+                                                <div class="input-phone-friend">
+                                                    <input type="text" placeholder="กรอกหมายเลข">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
                             <!-- 6 -->
 
@@ -600,64 +597,64 @@ session_start();
                                         </div>
                                         <div class="friend1-info">
 
-                                            <div class="xxxy">
-                                                <label for="title">คำนำหน้าชื่อ:</label>
-                                                <select class="selectxxxy" id="title" name="title">
-                                                    <option value="นาย">Mr.</option>
-                                                    <option value="นาง">Ms.</option>
-                                                    <option value="นางสาว">Miss</option>
-                                                </select>
-                                            </div>
+                                    <div class="xxxy">
+                                        <label for="title">คำนำหน้าชื่อ:</label>
+                                        <select id="title" name="title">
+                                            <option value="นาย">Mr.</option>
+                                            <option value="นาง">Ms.</option>
+                                            <option value="นางสาว">Miss</option>
+                                        </select>
+                                    </div>
 
-
-                                            <div class="row1-info-friend">
-                                                <div class="firstname-info-friend">
-                                                    <div class="text-firstname-friend">
-                                                        <p1>ชื่อจริงและชื่อกลาง (หากมี)</p1>
-                                                        <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
-                                                    </div>
-                                                    <div class="input-firstname-friend">
-                                                        <input type="text" placeholder="กรอกข้อมูล">
-                                                    </div>
+                                    
+                                        <div class="row1-info-friend">
+                                            <div class="firstname-info-friend">
+                                                <div class="text-firstname-friend">
+                                                    <p1>ชื่อจริงและชื่อกลาง (หากมี)</p1>
+                                                    <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                                 </div>
-                                                <div class="lastname-info-friend">
-                                                    <div class="text-lastname-friend">
-                                                        <p1>นามสกุล</p1>
-                                                        <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
-                                                    </div>
-                                                    <div class="input-lastname-friend">
-                                                        <input type="text" placeholder="กรอกข้อมูล">
-                                                    </div>
-                                                </div>
-                                                <div class="birthday-info">
-                                                    <div class="text-birthday-friend">
-                                                        <p>วันเกิด</p>
-                                                    </div>
-                                                    <div class="input-birthday-friend">
-                                                        <input type="date">
-                                                    </div>
+                                                <div class="input-firstname-friend">
+                                                    <input type="text" placeholder="กรอกข้อมูล">
                                                 </div>
                                             </div>
-                                            <div class="row2-info-friend">
-                                                <div class="phone-info-friend">
-                                                    <div class="text-phone-friend">
-                                                        <p1>หมายเลขโทรศัพท์</p1>
-                                                    </div>
-                                                    <div class="input-phone-friend">
-                                                        <input type="text" placeholder="กรอกหมายเลข">
-                                                    </div>
+                                            <div class="lastname-info-friend">
+                                                <div class="text-lastname-friend">
+                                                    <p1>นามสกุล</p1>
+                                                    <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
+                                                </div>
+                                                <div class="input-lastname-friend">
+                                                    <input type="text" placeholder="กรอกข้อมูล">
+                                                </div>
+                                            </div>
+                                            <div class="birthday-info">
+                                                <div class="text-birthday-friend">
+                                                    <p>วันเกิด</p>
+                                                </div>
+                                                <div class="input-birthday-friend">
+                                                    <input type="date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row2-info-friend">
+                                            <div class="phone-info-friend">
+                                                <div class="text-phone-friend">
+                                                    <p1>หมายเลขโทรศัพท์</p1>
+                                                </div>
+                                                <div class="input-phone-friend">
+                                                    <input type="text" placeholder="กรอกหมายเลข">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="button-gogolock">
-                                <div class="button-mama">
-                                    <button id="button-mama">ดำเนินการต่อ</button>
-                                </div>
-                            </div>
                         </div>
+                        <div class="button-gogolock">
+                        <div class="button-mama">
+                            <button id="button-mama">ดำเนินการต่อ</button>
+                        </div>
+                    </div>
+                    </div>
                 </div>
                 </form>
             </div>

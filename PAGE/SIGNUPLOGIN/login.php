@@ -65,6 +65,16 @@
                 </div>
 
             <?php } ?>
+            
+            <?php if(isset($_SESSION['notify'])) { ?>
+                <div class="alert alert-warning" role="alert">
+                    <?php
+                        echo $_SESSION['notify'];
+                        unset($_SESSION['notify']);
+                    ?>
+                </div>
+
+            <?php } ?>
 
             <div class="form-group1">
               <label for="usernameEmail">Email</label>
