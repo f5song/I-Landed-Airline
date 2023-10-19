@@ -120,7 +120,7 @@ if (isset($_GET['logout'])) {
               </div>
               <div class="bottombox">
                 <div class="radio-group">
-                  <input type="radio" id="radio1" name="radio-group" class="radio-input">
+                  <input type="radio" id="radio1" name="radio-group" class="radio-input" checked>
                   <label for="radio1" class="radio-label">
                     <div class="groupcircle-0kg">
                       <span class="radio-inner-circle"></span>
