@@ -170,3 +170,37 @@
     opacity: 0;
   }
 }
+
+
+.alert-danger {
+  width: 55%;
+  margin: 30px auto;
+  padding: 10px;
+  border: 1px solid #a94442;
+  color: #a94442;
+  background: #f2dede;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.alert-warning {
+  width: 50%;
+  margin: 30px auto;
+  padding: 10px;
+  border: 1px solid #a97742;
+  color: #a97742;
+  background: #f2eade;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.alert-success {
+  width: 55%;
+  margin: 30px auto;
+  padding: 10px;
+  border: 1px solid #3c763d;
+  color: #3c763d;
+  background: #dff0d8;
+  border-radius: 5px;
+  text-align: left;
+}

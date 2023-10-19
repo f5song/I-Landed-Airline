@@ -28,7 +28,27 @@ require_once '../../CRUD/config/db.php';
       <img class="img2" src="./img/cloud2.svg" alt="">
     </div>
     <div class="right">
-      <form class="form" method="POST" action="login.php">
+      <form class="form" method="POST" action="login_db.php">
+       
+
+
+
+
+        <p class="title">เข้าสู่ระบบ</p>
+        <p class="message">จัดการการจองง่ายดาย พร้อมรับสิทธิประโยชน์เฉพาะสมาชิก</p>
+
+        <label>
+          <input required placeholder="" type="email" id="usernameEmail" class="input" name="email">
+          <span>Email</span>
+        </label>
+
+        <label>
+          <input required placeholder="" type="password" class="input" name="password" >
+          <span>Password</span>
+        </label>
+        <button class="submit" type="submit" name="signin">เข้าสู่ระบบ</button>
+        <p class="signin">ยังไม่มีบัญชีใช่หรือไม่? <a href="register.php">สมัครเลย!</a> </p>
+
         <?php if (isset($_SESSION['error'])) { ?>
           <div class="alert alert-danger" role="alert">
             <?php
@@ -58,21 +78,11 @@ require_once '../../CRUD/config/db.php';
           </div>
 
         <?php } ?>
-        <p class="title">เข้าสู่ระบบ</p>
-        <p class="message">จัดการการจองง่ายดาย พร้อมรับสิทธิประโยชน์เฉพาะสมาชิก</p>
-
-        <label>
-          <input required placeholder="" type="email" id="usernameEmail" class="input" name="email">
-          <span>Email</span>
-        </label>
-
-        <label>
-          <input required placeholder="" type="password" class="input" name="password">
-          <span>Password</span>
-        </label>
-        <button class="submit" type="submit" name="signin">เข้าสู่ระบบ</button>
-        <p class="signin">ยังไม่มีบัญชีใช่หรือไม่? <a href="register.php">สมัครเลย!</a> </p>
       </form>
+
+
+
+
     </div>
   </div>
   <script>

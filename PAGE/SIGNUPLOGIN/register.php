@@ -28,6 +28,26 @@
     </div>
     <div class="right">
       <form class="form" id="register-form" action="register_db.php" method="POST">
+        
+        <p class="title">สมัครสมาชิก/สร้างบัญชี</p>
+        <p class="message">จัดการการจองง่ายดาย พร้อมรับสิทธิประโยชน์เฉพาะสมาชิก</p>
+
+        <label>
+          <input required placeholder="" type="email" class="input" name="email">
+          <span>Email</span>
+        </label>
+
+        <label>
+          <input required placeholder="" type="password" class="input" name="password">
+          <span>Password</span>
+        </label>
+        <label>
+          <input required placeholder="" type="password" class="input" name="c_password">
+          <span>Confirm password</span>
+        </label>
+        <button class="submit" name="signup">ลงทะเบียน</button>
+        <p class="signin">มีบัญชีอยู่แล้วใช่หรือไม่? <a href="login.php">เข้าสู่ระบบ</a> </p>
+
         <?php if (isset($_SESSION['error'])) { ?>
           <div class="alert-danger" role="alert">
             <?php
@@ -54,24 +74,6 @@
             ?>
           </div>
         <?php } ?>
-        <p class="title">สมัครสมาชิก/สร้างบัญชี</p>
-        <p class="message">จัดการการจองง่ายดาย พร้อมรับสิทธิประโยชน์เฉพาะสมาชิก</p>
-
-        <label>
-          <input required placeholder="" type="email" class="input">
-          <span>Email</span>
-        </label>
-
-        <label>
-          <input required placeholder="" type="password" class="input">
-          <span>Password</span>
-        </label>
-        <label>
-          <input required placeholder="" type="password" class="input">
-          <span>Confirm password</span>
-        </label>
-        <button class="submit">ลงทะเบียน</button>
-        <p class="signin">มีบัญชีอยู่แล้วใช่หรือไม่? <a href="login.php">เข้าสู่ระบบ</a> </p>
       </form>
     </div>
   </div>
