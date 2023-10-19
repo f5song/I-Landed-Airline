@@ -36,7 +36,7 @@
                                 header("location: ../../CRUD/Admin/adminpage.php");
                             } else{
                                 $_SESSION['user_login'] = $row['user_id'];
-                                // ลิ้งค์หน้า homepage
+                                $_SESSION['hello_user'] = $row['email'];
                                 if (isset($_SESSION['redirect_url'])) {
                                     header('Location: ' . $_SESSION['redirect_url']);
                                     exit;
