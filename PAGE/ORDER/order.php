@@ -41,7 +41,7 @@ if (isset($_GET['logout'])) {
             <div class="rightcontainer">
                 <p>สวัสดี,</p>
                 <p>
-                    <?php echo $_SESSION['user_login']; ?>
+                    <?php echo $_SESSION['hello_user']; ?>
                 </p>
                 <a href="homepage.php?logout='1'">
                     <img class="img-logout-icon" id="button-logout" alt="" src="../ALLNAVBAR/logout.png" />
@@ -269,17 +269,24 @@ if (isset($_GET['logout'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="myaccpassword">
-                        <div class="header-password">
-                            <p>รหัสผ่าน*</p>
-                        </div>
-                        <div class="content-password">
-                            <div class="box-password-edit">
-                                <input type="text" placeholder="กรอกรหัสผ่านใหม่">
+                    
+                    <form method="post" action="change_password_db.php" class="myaccpassword">
+                            <div class="header-password">
+                                <p>รหัสผ่าน*</p>
                             </div>
-                        </div>
-                    </div>
-                    <button>ยืนยันการแก้ไข</button>
+                            <div class="content-password">
+                                <div class="box-password-edit">
+                                    <input type="password" name="old_password" placeholder="กรอกรหัสผ่านเก่า" required>
+                                </div>
+                                <div class="box-password-edit">
+                                    <input type="password" name="new_password" placeholder="กรอกรหัสผ่านใหม่" required>
+                                </div>
+                            </div>
+                            <div class="submitform2">
+                            <button>บันทึกรหัสผ่านใหม่</button>
+                            </div>
+                    <!-- <button>ยืนยันการแก้ไข</button> -->
+                    </form>
                 </div>
             </div>
             <div class="show-hide-deleteacc" id="deleteacc-content">
