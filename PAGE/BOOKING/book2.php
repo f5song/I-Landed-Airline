@@ -172,9 +172,9 @@ session_start();
                                 <div class="xxxy">
                                     <label for="title">คำนำหน้าชื่อ:</label>
                                     <select id="title" name="title">
-                                        <option value="นาย">Mr.</option>
-                                        <option value="นาง">Ms.</option>
-                                        <option value="นางสาว">Miss</option>
+                                        <option value="Mr.">Mr.</option>
+                                        <option value="Mrs.">Mrs.</option>
+                                        <option value="Miss">Miss</option>
                                     </select>
                                 </div>
 
@@ -299,7 +299,7 @@ session_start();
                                         </select>
                                     </div>
 
-                                    <div class="row1-info-friend">
+                                   <div class="row1-info-friend">
                                         <div class="firstname-info-friend">
                                             <div class="text-firstname-friend">
                                                 <p1>ชื่อจริงและชื่อกลาง (หากมี)</p1>
@@ -415,10 +415,10 @@ session_start();
 
                                     <div class="xxxy">
                                         <label for="title">คำนำหน้าชื่อ:</label>
-                                        <select id="title" name="title">
-                                            <option value="นาย">Mr.</option>
-                                            <option value="นาง">Ms.</option>
-                                            <option value="นางสาว">Miss</option>
+                                        <select id="title" name="title" name="passenger3_title">
+                                            <option value="Mr.">Mr.</option>
+                                            <option value="Mrs.">Mrs.</option>
+                                            <option value="Miss">Miss</option>
                                         </select>
                                     </div>
 
@@ -429,7 +429,7 @@ session_start();
                                                     <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                                 </div>
                                                 <div class="input-firstname-friend">
-                                                    <input type="text" placeholder="กรอกข้อมูล">
+                                                    <input type="text" placeholder="กรอกข้อมูล" name="passenger3_firstname">
                                                 </div>
                                             </div>
                                             <div class="lastname-info-friend">
@@ -438,7 +438,7 @@ session_start();
                                                     <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                                 </div>
                                                 <div class="input-lastname-friend">
-                                                    <input type="text" placeholder="กรอกข้อมูล">
+                                                    <input type="text" placeholder="กรอกข้อมูล" name="passenger3_lastname">
                                                 </div>
                                             </div>
                                             <div class="birthday-info">
@@ -446,7 +446,7 @@ session_start();
                                                     <p>วันเกิด</p>
                                                 </div>
                                                 <div class="input-birthday-friend">
-                                                    <input type="date">
+                                                    <input type="date" name="passenger3_dob">
                                                 </div>
                                             </div>
                                         </div>
@@ -456,7 +456,7 @@ session_start();
                                                     <p1>หมายเลขโทรศัพท์</p1>
                                                 </div>
                                                 <div class="input-phone-friend">
-                                                    <input type="text" placeholder="กรอกหมายเลข">
+                                                    <input type="text" placeholder="กรอกหมายเลข" name="passenger3_phone_number">
                                                 </div>
                                             </div>
                                         </div>
@@ -477,9 +477,9 @@ session_start();
 
                                     <div class="xxxy">
                                         <label for="title">คำนำหน้าชื่อ:</label>
-                                        <select id="title" name="title">
+                                        <select id="title" name="title" name="passenger4_title">
                                             <option value="Mr.">Mr.</option>
-                                            <option value="Mrs.">Ms.</option>
+                                            <option value="Mrs.">Mrs.</option>
                                             <option value="Miss">Miss</option>
                                         </select>
                                     </div>
@@ -491,7 +491,7 @@ session_start();
                                                     <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                                 </div>
                                                 <div class="input-firstname-friend">
-                                                    <input type="text" placeholder="กรอกข้อมูล">
+                                                    <input type="text" placeholder="กรอกข้อมูล" name="passenger4_firstname">
                                                 </div>
                                             </div>
                                             <div class="lastname-info-friend">
@@ -500,7 +500,7 @@ session_start();
                                                     <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                                 </div>
                                                 <div class="input-lastname-friend">
-                                                    <input type="text" placeholder="กรอกข้อมูล">
+                                                    <input type="text" placeholder="กรอกข้อมูล" name="passenger4_lastname">
                                                 </div>
                                             </div>
                                             <div class="birthday-info">
@@ -508,7 +508,7 @@ session_start();
                                                     <p>วันเกิด</p>
                                                 </div>
                                                 <div class="input-birthday-friend">
-                                                    <input type="date">
+                                                    <input type="date" name="passenger4_dob">
                                                 </div>
                                             </div>
                                         </div>
@@ -518,7 +518,7 @@ session_start();
                                                     <p1>หมายเลขโทรศัพท์</p1>
                                                 </div>
                                                 <div class="input-phone-friend">
-                                                    <input type="text" placeholder="กรอกหมายเลข">
+                                                    <input type="text" placeholder="กรอกหมายเลข" name="passenger4_phone_number">
                                                 </div>
                                             </div>
                                         </div>
@@ -539,10 +539,10 @@ session_start();
 
                                     <div class="xxxy">
                                         <label for="title">คำนำหน้าชื่อ:</label>
-                                        <select id="title" name="title">
-                                            <option value="นาย">Mr.</option>
-                                            <option value="นาง">Ms.</option>
-                                            <option value="นางสาว">Miss</option>
+                                        <select id="title" name="title" name="passenger5_title">
+                                            <option value="Mr.">Mr.</option>
+                                            <option value="Mrs.">Mrs.</option>
+                                            <option value="Miss">Miss</option>
                                         </select>
                                     </div>
 
@@ -553,7 +553,7 @@ session_start();
                                                     <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                                 </div>
                                                 <div class="input-firstname-friend">
-                                                    <input type="text" placeholder="กรอกข้อมูล">
+                                                    <input type="text" placeholder="กรอกข้อมูล" name="passenger5_firstname">
                                                 </div>
                                             </div>
                                             <div class="lastname-info-friend">
@@ -562,7 +562,7 @@ session_start();
                                                     <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                                 </div>
                                                 <div class="input-lastname-friend">
-                                                    <input type="text" placeholder="กรอกข้อมูล">
+                                                    <input type="text" placeholder="กรอกข้อมูล" name="passenger5_lastname">
                                                 </div>
                                             </div>
                                             <div class="birthday-info">
@@ -570,7 +570,7 @@ session_start();
                                                     <p>วันเกิด</p>
                                                 </div>
                                                 <div class="input-birthday-friend">
-                                                    <input type="date">
+                                                    <input type="date" name="passenger5_dob">
                                                 </div>
                                             </div>
                                         </div>
@@ -580,7 +580,7 @@ session_start();
                                                     <p1>หมายเลขโทรศัพท์</p1>
                                                 </div>
                                                 <div class="input-phone-friend">
-                                                    <input type="text" placeholder="กรอกหมายเลข">
+                                                    <input type="text" placeholder="กรอกหมายเลข" name="passenger5_phone_number">
                                                 </div>
                                             </div>
                                         </div>
@@ -601,10 +601,10 @@ session_start();
 
                                     <div class="xxxy">
                                         <label for="title">คำนำหน้าชื่อ:</label>
-                                        <select id="title" name="title">
-                                            <option value="นาย">Mr.</option>
-                                            <option value="นาง">Ms.</option>
-                                            <option value="นางสาว">Miss</option>
+                                        <select id="title" name="title" name="passenger6_title">
+                                            <option value="Mr.">Mr.</option>
+                                            <option value="Mrs.">Mrs.</option>
+                                            <option value="Miss">Miss</option>
                                         </select>
                                     </div>
 
@@ -616,7 +616,7 @@ session_start();
                                                     <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                                 </div>
                                                 <div class="input-firstname-friend">
-                                                    <input type="text" placeholder="กรอกข้อมูล">
+                                                    <input type="text" placeholder="กรอกข้อมูล" name="passenger6_firstname">
                                                 </div>
                                             </div>
                                             <div class="lastname-info-friend">
@@ -625,7 +625,7 @@ session_start();
                                                     <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                                 </div>
                                                 <div class="input-lastname-friend">
-                                                    <input type="text" placeholder="กรอกข้อมูล">
+                                                    <input type="text" placeholder="กรอกข้อมูล" name="passenger6_lastname">
                                                 </div>
                                             </div>
                                             <div class="birthday-info">
@@ -633,7 +633,7 @@ session_start();
                                                     <p>วันเกิด</p>
                                                 </div>
                                                 <div class="input-birthday-friend">
-                                                    <input type="date">
+                                                    <input type="date" name="passenger6_dob">
                                                 </div>
                                             </div>
                                         </div>
@@ -643,7 +643,7 @@ session_start();
                                                     <p1>หมายเลขโทรศัพท์</p1>
                                                 </div>
                                                 <div class="input-phone-friend">
-                                                    <input type="text" placeholder="กรอกหมายเลข">
+                                                    <input type="text" placeholder="กรอกหมายเลข" name="passenger6_phone_number">
                                                 </div>
                                             </div>
                                         </div>
