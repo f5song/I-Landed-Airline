@@ -1,3 +1,6 @@
+<!-- http://localhost/ISAD-ilal/PAGE/SEAT/aircraft1/aircraft1.php -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 
