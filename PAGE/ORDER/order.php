@@ -3,13 +3,14 @@ session_start();
 require_once '../../CRUD/config/db.php';
 if (!isset($_SESSION['user_login'])) {
     $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+    $_SESSION['notify'] = "กรุณาเข้าสู่ระบบก่อนใช้งาน";
+    header('location: ../SIGNUPLOGIN/login.php');
 }
 if (isset($_GET['logout'])) {
     session_destroy();
     unset($_SESSION['username']);
     header('location: ' . $_SESSION['redirect_url']);
 }
-
 ?>
 
 <!DOCTYPE html>
