@@ -173,7 +173,7 @@ session_start();
                                     <label for="title">คำนำหน้าชื่อ:</label>
                                     <select id="title" name="title">
                                         <option value="นาย">Mr.</option>
-                                        <option value="นาง">Ms.</option>
+                                        <option value="นาง">Mrs.</option>
                                         <option value="นางสาว">Miss</option>
                                     </select>
                                 </div>
@@ -346,7 +346,7 @@ session_start();
                         <div class="bottom-content-2">
                             <div class="for-bottom-content">
                                 <div class="friend-info">
-                                    <div class="header-friend1">
+                                    <div class="header-friend1">   
                                         <p>ผู้โดยสาร 2</p>
                                     </div>
                                     <div class="friend1-info">
