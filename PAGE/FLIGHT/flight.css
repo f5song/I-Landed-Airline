@@ -48,6 +48,11 @@ body {
     transition: background-color 0.3s;
   }  
 
+.button-search:hover{
+    background-color:#1355a1 ;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+}
 .search-bar {
     width: 750px;
     height: 200px;

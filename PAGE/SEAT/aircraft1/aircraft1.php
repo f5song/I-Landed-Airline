@@ -17,11 +17,13 @@
     </div>
     <div class="frame">
       <div class="customer-info">
-        <p>ID: 12345</p>
-        <p>Name: John Doe</p>
-        <p>Last Name: Smith</p>
-        <p>Tickets: 3</p>
-        <input type="number" id="ticketQuantity" min="1" max="6">
+        <hr>
+        <p class="passenger-item" data-passenger="<?php echo $row['passenger_id'] ?>"><?php echo $row['first_name'] ?> <?php echo $row['last_name'] ?></p>
+        <hr>
+        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+          <p class="passenger-item" data-passenger="<?php echo $row['passenger_id'] ?>"><?php echo $row['first_name'] ?> <?php echo $row['last_name'] ?></p>
+          <hr>
+        <?php } ?>
       </div>
     </div>
   </div>
@@ -38,31 +40,31 @@
         <li class="row row--1">
           <ol class="seats" type="A">
             <li class="seat">
-              <input type="checkbox" id="1A" onchange="seatChanged(this)" class="seat-group1" />
+              <input type="checkbox" id="1A" onchange="seatChanged(this)" class="seat available" />
               <label for="1A">1A</label>
             </li>
             <li class="seat">
-              <input type="checkbox" id="1B" onchange="seatChanged(this)" class="seat-group1" />
+              <input type="checkbox" id="1B" onchange="seatChanged(this)" class="seat available" />
               <label for="1B">1B</label>
             </li>
             <li class="seat">
-              <input type="checkbox" id="1C" onchange="seatChanged(this)" class="seat-group1" />
+              <input type="checkbox" id="1C" onchange="seatChanged(this)" class="seat available" />
               <label for="1C">1C</label>
             </li>
             <!-- <li class="seat">
-              <input type="checkbox" disabled id="1D" onchange="seatChanged(this)" class="seat-group1" />
+              <input type="checkbox" disabled id="1D" onchange="seatChanged(this)" class="seat available" />
               <label for="1D">Occupied</label>
             </li> -->
             <li class="seat">
-              <input type="checkbox" id="1D" onchange="seatChanged(this)" class="seat-group1" />
+              <input type="checkbox" id="1D" onchange="seatChanged(this)" class="seat available" />
               <label for="1D">1D</label>
             </li>
             <li class="seat">
-              <input type="checkbox" id="1E" onchange="seatChanged(this)" class="seat-group1" />
+              <input type="checkbox" id="1E" onchange="seatChanged(this)" class="seat available" />
               <label for="1E">1E</label>
             </li>
             <li class="seat">
-              <input type="checkbox" id="1F" onchange="seatChanged(this)" class="seat-group1" />
+              <input type="checkbox" id="1F" onchange="seatChanged(this)" class="seat available" />
               <label for="1F">1F</label>
             </li>
           </ol>
@@ -369,60 +371,99 @@
     </div>
   </div>
 
-  <script>
-    let selectedSeatsCount = 0; // สร้างตัวแปรเพื่อเก็บจำนวนที่ถูกเลือก
 
-    function seatChanged(checkbox) {
-      const seatId = checkbox.id;
-      const label = checkbox.nextElementSibling.textContent;
-      const selectedSeatsList = document.getElementById("selected-seats-list");
 
-      if (checkbox.checked) {
-        const listItem = document.createElement("li");
-        listItem.textContent = label;
-        listItem.setAttribute("data-seat-id", seatId);
-        selectedSeatsList.appendChild(listItem);
 
-        selectedSeatsCount++; // เพิ่มจำนวนที่ถูกเลือกเมื่อ checkbox ถูกตรวจสอบ
 
-        // ตรวจสอบจำนวนที่ถูกเลือกและกำหนดสีตามจำนวน
-        if (seatId >= "1A" && seatId <= "3F") {
-          listItem.classList.add("blue-bg"); // เพิ่ม CSS class "blue-bg" เพื่อกำหนดสีพื้นหลังเป็นสีฟ้า
-        } else if (seatId >= "4A" && seatId <= "7F") {
-          listItem.classList.add("orange-bg"); // เพิ่ม CSS class "orange-bg" เพื่อกำหนดสีพื้นหลังเป็นสีส้ม
-        } else{
-          listItem.classList.add("blue1-bg"); // เพิ่ม CSS class "blue-bg" เพื่อกำหนดสีพื้นหลังเป็นสีฟ้า
+  <!------------------------------------------ script click click add value--------------------------------------------------->
+
+<!------------------------------------------ script click click add value--------------------------------------------------->
+
+<style>
+        .seat-map {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
         }
-      } else {
-        const listItemToRemove = selectedSeatsList.querySelector(`[data-seat-id="${seatId}"]`);
-        if (listItemToRemove) {
-          selectedSeatsList.removeChild(listItemToRemove);
-          selectedSeatsCount--; // ลดจำนวนที่ถูกเลือกเมื่อ checkbox ถูกยกเลิก
+
+        .row {
+            display: flex;
+            margin: 5px 0;
         }
-      }
-    }
 
-      document.getElementById("selectSeatsButton").addEventListener("click", function () {
-        const ticketQuantity = parseInt(document.getElementById("ticketQuantity").value);
-        if (selectedSeatsCount > ticketQuantity) {
-          alert("คุณเลือกเกินจำนวนตั๋วที่ระบุ");
-          // ครั้งที่คลิกปุ่ม "เลือกที่นั่ง" เราไม่จำเป็นต้องเปลี่ยนค่า checkbox
-          // แต่สามารถให้ผู้ใช้เลือกใหม่หรือลดจำนวนตั๋วเพิ่มเอง
+        .seat {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #000;
+            margin: 0 5px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 14px;
+            cursor: pointer;
         }
-      });
-  </script>
+
+        .booked {
+            background-color: #ff0000;
+            color: #fff;
+        }
+
+        .available {
+            background-color: #00ff00;
+        }
+
+        .passenger-list {
+            margin-left: 20px;
+        }
+
+        .passenger-item {
+            display: block;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        .selected {
+            background-color: #ffff00;
+        }
+    </style>
 
 
-  <script>
+<!------------------------------------------ script click click add value--------------------------------------------------->
 
-    function toBaggage() {
-        window.location.href = '../../BAGGAGE/baggage.php';
-    }
+<script>
+        const seats = document.querySelectorAll('.seat');
+        const passengerItems = document.querySelectorAll('.passenger-item');
 
-    buttonselectSeats = document.getElementById("selectSeatsButton");
-    buttonselectSeats.addEventListener("click", toBaggage);
+        let selectedPassenger = null;
+        let selectedSeats = {};
 
-  </script>
+        passengerItems.forEach((passengerItem) => {
+            passengerItem.addEventListener('click', () => {
+                if (selectedPassenger) {
+                    selectedPassenger.classList.remove('selected');
+                }
+                selectedPassenger = passengerItem;
+                selectedPassenger.classList.add('selected');
+            });
+        });
+
+        seats.forEach((seat) => {
+            seat.addEventListener('click', () => {
+                if (seat.classList.contains('available') && selectedPassenger) {
+                    if (selectedSeats[selectedPassenger.getAttribute('data-passenger')]) {
+                        selectedSeats[selectedPassenger.getAttribute('data-passenger')].classList.remove('booked');
+                        selectedSeats[selectedPassenger.getAttribute('data-passenger')].classList.add('available');
+                        const seatNumber = selectedSeats[selectedPassenger.getAttribute('data-passenger')].innerText;
+                        selectedPassenger.innerHTML = `<span>${selectedPassenger.getAttribute('data-passenger')}</span>`;
+                    }
+                    seat.classList.remove('available');
+                    seat.classList.add('booked');
+                    const seatNumber = seat.innerText;
+                    selectedPassenger.innerHTML = `<span>${selectedPassenger.getAttribute('data-passenger')} เลือกที่นั่ง ${seatNumber}</span>`;
+                    selectedSeats[selectedPassenger.getAttribute('data-passenger')] = seat;
+                }
+            });
+        });
+    </script>
 
 </body>
 
