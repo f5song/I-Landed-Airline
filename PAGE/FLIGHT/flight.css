@@ -47,6 +47,11 @@ body {
     border-radius: 11px;
   }  
 
+.button-search:hover{
+    background-color:#1355a1 ;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+}
 .search-bar {
     width: 750px;
     height: 200px;

@@ -14,7 +14,7 @@
             $_SESSION['error'] = "รูปแบบอีเมลล์ไม่ถูกต้อง";
             header("location: login.php");
         } else if(empty($password)){
-            $_SESSION['error'] = "กรุณากรอกรัสผ่าน";
+            $_SESSION['error'] = "กรุณากรอกรหัสผ่าน";
             header("location: login.php");
         } else if(strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5){
             $_SESSION['error'] = "รหัสผ่านต้องมีความยาวระหว่าง 5 ถึง 20 ตัวอักษร";
@@ -36,7 +36,7 @@
                                 header("location: ../../CRUD/Admin/adminpage.php");
                             } else{
                                 $_SESSION['user_login'] = $row['user_id'];
-                                // ลิ้งค์หน้า homepage
+                                $_SESSION['hello_user'] = $row['email'];
                                 if (isset($_SESSION['redirect_url'])) {
                                     header('Location: ' . $_SESSION['redirect_url']);
                                     exit;

@@ -37,12 +37,8 @@ if (mysqli_num_rows($result_flight) > 0) {
 }
 session_start();
 ?>
+
 <!-- for go to browser -->
-
-<!-- http://localhost/I-Land-Airline/frontend/book2/book2.php -->
-
-
-
 
 <!DOCTYPE html>
 
@@ -159,7 +155,7 @@ session_start();
                 </div>
 
 
-            
+
                 <div class="contact-info">
                     <p>รายละเอียดการติดต่อ</p>
                     <div class="contact-info-box">
@@ -177,7 +173,6 @@ session_start();
                                         <option value="นางสาว">Miss</option>
                                     </select>
                                 </div>
-
                                 <div class="row1-info">
                                     <div class="firstname-info">
                                         <div class="text-firstname">
@@ -198,16 +193,16 @@ session_start();
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="phone-info">
                                     <div class="text-phone">
-                                            <p1>หมายเลขโทรศัพท์</p1>
+                                        <p1>หมายเลขโทรศัพท์</p1>
                                     </div>
                                     <div class="input-phone">
-                                            <input type="text" placeholder="กรอกหมายเลข">
+                                        <input type="text" placeholder="กรอกหมายเลข">
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="content-airplane">
@@ -278,26 +273,26 @@ session_start();
                     </div>
 
 
-                <form action="book2_db.php" method="post">
-                    <div class="content-friend-info">
-                        <!-- 1 -->
-                        <div class="bottom-content-1">
-                            <div class="for-bottom-content">
-                            </div>
-                            <div class="friend-info">
-                                <div class="header-friend1">
-                                    <p>ผู้โดยสาร 1</p>
+                    <form action="book2_db.php" method="post">
+                        <div class="content-friend-info">
+                            <!-- 1 -->
+                            <div class="bottom-content-1">
+                                <div class="for-bottom-content">
                                 </div>
-                                <div class="friend1-info">
-
-                                    <div class="xxxy">
-                                        <label for="title">คำนำหน้าชื่อ:</label>
-                                        <select id="title" name="passenger1_title">
-                                            <option value="Mr.">Mr.</option>
-                                            <option value="Mrs.">Mrs.</option>
-                                            <option value="Miss">Miss</option>
-                                        </select>
+                                <div class="friend-info">
+                                    <div class="header-friend1">
+                                        <p>ผู้โดยสาร 1</p>
                                     </div>
+                                    <div class="friend1-info">
+
+                                        <div class="xxxy">
+                                            <label for="title">คำนำหน้าชื่อ:</label>
+                                            <select class="selectxxxy" id="title" name="passenger1_title">
+                                                <option value="Mr.">Mr.</option>
+                                                <option value="Mrs.">Mrs.</option>
+                                                <option value="Miss">Miss</option>
+                                            </select>
+                                        </div>
 
                                     <div class="row1-info-friend">
                                         <div class="firstname-info-friend">
@@ -341,77 +336,80 @@ session_start();
                             </div>
                         </div>
 
-                        <!-- 2 -->
+                            <!-- 2 -->
 
                         <div class="bottom-content-2">
                             <div class="for-bottom-content">
                                 <div class="friend-info">
-                                    <div class="header-friend1">   
+                                    <div class="header-friend1">
                                         <p>ผู้โดยสาร 2</p>
                                     </div>
                                     <div class="friend1-info">
 
-                                    <div class="xxxy">
-                                        <label for="title">คำนำหน้าชื่อ:</label>
-                                        <select id="title" name="passenger2_title">
-                                            <option value="Mr.">Mr.</option>
-                                            <option value="Mrs.">Mrs.</option>
-                                            <option value="Miss">Miss</option>
-                                        </select>
-                                    </div>
+                                            <div class="xxxy">
+                                                <label for="title">คำนำหน้าชื่อ:</label>
+                                                <select class="selectxxxy" id="title" name="passenger2_title">
+                                                    <option value="Mr.">Mr.</option>
+                                                    <option value="Mrs.">Mrs.</option>
+                                                    <option value="Miss">Miss</option>
+                                                </select>
+                                            </div>
 
-                                        <div class="row1-info-friend">
-                                            <div class="firstname-info-friend">
-                                                <div class="text-firstname-friend">
-                                                    <p1>ชื่อจริงและชื่อกลาง (หากมี)</p1>
-                                                    <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
+                                            <div class="row1-info-friend">
+                                                <div class="firstname-info-friend">
+                                                    <div class="text-firstname-friend">
+                                                        <p1>ชื่อจริงและชื่อกลาง (หากมี)</p1>
+                                                        <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
+                                                    </div>
+                                                    <div class="input-firstname-friend">
+                                                        <input type="text" placeholder="กรอกข้อมูล"
+                                                            name="passenger2_firstname">
+                                                    </div>
                                                 </div>
-                                                <div class="input-firstname-friend">
-                                                    <input type="text" placeholder="กรอกข้อมูล" name="passenger2_firstname">
+                                                <div class="lastname-info-friend">
+                                                    <div class="text-lastname-friend">
+                                                        <p1>นามสกุล</p1>
+                                                        <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
+                                                    </div>
+                                                    <div class="input-lastname-friend">
+                                                        <input type="text" placeholder="กรอกข้อมูล"
+                                                            name="passenger2_lastname">
+                                                    </div>
+                                                </div>
+                                                <div class="birthday-info">
+                                                    <div class="text-birthday-friend">
+                                                        <p>วันเกิด</p>
+                                                    </div>
+                                                    <div class="input-birthday-friend">
+                                                        <input type="date" name="passenger2_dob">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="lastname-info-friend">
-                                                <div class="text-lastname-friend">
-                                                    <p1>นามสกุล</p1>
-                                                    <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
-                                                </div>
-                                                <div class="input-lastname-friend">
-                                                    <input type="text" placeholder="กรอกข้อมูล" name="passenger2_lastname">
-                                                </div>
-                                            </div>
-                                            <div class="birthday-info">
-                                                <div class="text-birthday-friend">
-                                                    <p>วันเกิด</p>
-                                                </div>
-                                                <div class="input-birthday-friend">
-                                                    <input type="date" name="passenger2_dob">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row2-info-friend">
-                                            <div class="phone-info-friend">
-                                                <div class="text-phone-friend">
-                                                    <p1>หมายเลขโทรศัพท์</p1>
-                                                </div>
-                                                <div class="input-phone-friend">
-                                                    <input type="text" placeholder="กรอกหมายเลข" name="passenger2_phone_number">
+                                            <div class="row2-info-friend">
+                                                <div class="phone-info-friend">
+                                                    <div class="text-phone-friend">
+                                                        <p1>หมายเลขโทรศัพท์</p1>
+                                                    </div>
+                                                    <div class="input-phone-friend">
+                                                        <input type="text" placeholder="กรอกหมายเลข"
+                                                            name="passenger2_phone_number">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- 3 -->
+                            <!-- 3 -->
 
-                        <div class="bottom-content-3">
-                            <div class="for-bottom-content">
-                                <div class="friend-info">
-                                    <div class="header-friend1">
-                                        <p>ผู้โดยสาร 3</p>
-                                    </div>
-                                    <div class="friend1-info">
+                            <div class="bottom-content-3">
+                                <div class="for-bottom-content">
+                                    <div class="friend-info">
+                                        <div class="header-friend1">
+                                            <p>ผู้โดยสาร 3</p>
+                                        </div>
+                                        <div class="friend1-info">
 
                                     <div class="xxxy">
                                         <label for="title">คำนำหน้าชื่อ:</label>
@@ -465,15 +463,15 @@ session_start();
                             </div>
                         </div>
 
-                        <!-- 4 -->
+                            <!-- 4 -->
 
-                        <div class="bottom-content-4">
-                            <div class="for-bottom-content">
-                                <div class="friend-info">
-                                    <div class="header-friend1">
-                                        <p>ผู้โดยสาร 4</p>
-                                    </div>
-                                    <div class="friend1-info">
+                            <div class="bottom-content-4">
+                                <div class="for-bottom-content">
+                                    <div class="friend-info">
+                                        <div class="header-friend1">
+                                            <p>ผู้โดยสาร 4</p>
+                                        </div>
+                                        <div class="friend1-info">
 
                                     <div class="xxxy">
                                         <label for="title">คำนำหน้าชื่อ:</label>
@@ -527,15 +525,15 @@ session_start();
                             </div>
                         </div>
 
-                        <!-- 5 -->
+                            <!-- 5 -->
 
-                        <div class="bottom-content-5">
-                            <div class="for-bottom-content">
-                                <div class="friend-info">
-                                    <div class="header-friend1">
-                                        <p>ผู้โดยสาร 5</p>
-                                    </div>
-                                    <div class="friend1-info">
+                            <div class="bottom-content-5">
+                                <div class="for-bottom-content">
+                                    <div class="friend-info">
+                                        <div class="header-friend1">
+                                            <p>ผู้โดยสาร 5</p>
+                                        </div>
+                                        <div class="friend1-info">
 
                                     <div class="xxxy">
                                         <label for="title">คำนำหน้าชื่อ:</label>
@@ -589,15 +587,15 @@ session_start();
                             </div>
                         </div>
 
-                        <!-- 6 -->
+                            <!-- 6 -->
 
-                        <div class="bottom-content-6">
-                            <div class="for-bottom-content">
-                                <div class="friend-info">
-                                    <div class="header-friend1">
-                                        <p>ผู้โดยสาร 6</p>
-                                    </div>
-                                    <div class="friend1-info">
+                            <div class="bottom-content-6">
+                                <div class="for-bottom-content">
+                                    <div class="friend-info">
+                                        <div class="header-friend1">
+                                            <p>ผู้โดยสาร 6</p>
+                                        </div>
+                                        <div class="friend1-info">
 
                                     <div class="xxxy">
                                         <label for="title">คำนำหน้าชื่อ:</label>
@@ -658,7 +656,7 @@ session_start();
                     </div>
                     </div>
                 </div>
-            </form>
+                </form>
             </div>
 
 
@@ -732,12 +730,12 @@ session_start();
 
             <script>
 
-            function toSeat() {
-                window.location.href = "../SEAT/aircraft1/aircraft1.php";
-            }
+                function toSeat() {
+                    window.location.href = "../SEAT/aircraft1/aircraft1.php";
+                }
 
-            buttonmama = document.getElementById("button-mama");
-            buttonmama.addEventListener("click", toSeat);
+                buttonmama = document.getElementById("button-mama");
+                buttonmama.addEventListener("click", toSeat);
 
             </script>
 

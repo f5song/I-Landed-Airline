@@ -1,23 +1,3 @@
-<?php
-session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "mydb";
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-$user_id = $_SESSION['user_login'];
-
-$sql = "SELECT `passenger_id`,`user_id`, `first_name`, `last_name`, `phone_number`, `title`, `dob` FROM `passengers` WHERE `user_id` = '$user_id'";
-$result = mysqli_query($conn, $sql);
-
-if (!$result) {
-    die("คำสั่ง SQL ผิดพลาด: " . mysqli_error($conn));
-}
-$row = mysqli_fetch_assoc($result); // ดึงข้อมูลผู้โดยสารและเก็บไว้ใน $row
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,533 +1,176 @@
-.real-sign-up-page-child,
-.real-sign-up-page-item {
-  position: absolute;
-  height: calc(100% - 356.16px);
-  top: 356.16px;
-  bottom: 0;
-  left: 0;
-  max-height: 100%;
-  width: 683.35px;
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family:"Noto Sans Thai";
 }
-.real-sign-up-page-item {
-  height: calc(100% - 460.76px);
-  top: 0;
-  bottom: 460.76px;
-  left: 11.76px;
-  width: 642.41px;
-}
-.div {
-  position: absolute;
-  top: 164.06px;
-  left: 124.13px;
-  font-size: 29.04px;
-  font-weight: 600;
-  color: #000;
+
+.backgroundlock{
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 292.55px;
-  height: 26.86px;
-  color: var(--color-darkslateblue-100);
-}
-.div1 {
-  top: 202.53px;
-  left: 128.49px;
-  color: #818181;
-  color: var(--color-darkslateblue-100);
 }
 
-.div1,
-.password,
-.usernameemail {
-  position: absolute;
-  font-weight: 600;
-}
-.usernameemail {
-  top: 100px;
-  left: 125.59px;
-}
-.password {
-  top: 362.96px;
-  left: 126.31px;
+.left{
+  display: flex;
+  width: 50%;
+  height: 100vh;
+  background-color: #e9f9ff;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.confirm-password {
-  position: absolute;
-  top: 466.05px;
-  left: 127.77px;
-  font-weight: 600;
+.left img{
+  width: 420px;
+  height: 420px;
 }
-.frame-div {
-  position: absolute;
-  top: 30px;
-  left: 670px;
-  border-radius: 29.04px;
+
+.right{
+  display: flex;
+  width: 50%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.img2{
+  transform: translate(-260px);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 500px;
   background-color: #fff;
-  width: 702.7px;
-  height: 743.35px;
-  overflow: hidden;
-}
-.div2 {
+  padding: 20px;
+  border-radius: 20px;
   position: relative;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.title {
+  font-size: 28px;
+  color: #003a6c;
   font-weight: 600;
-}
-.wrapper {
-  position: absolute;
-  top: 595px;
-  left: calc(50% + 151.5px);
-  border-radius: 19.39px;
-  background-color: var(--color-silver);
-  width: 111.18px;
-  height: 36.85px;
+  letter-spacing: -1px;
+  position: relative;
   display: flex;
-  flex-direction: row;
-  padding: 6.464226245880127px 12.928452491760254px;
-  box-sizing: border-box;
   align-items: center;
-  justify-content: center;
-  font-size: 16.16px;
-  color: var(--color-dimgray);
-  font-family: var(--font-montserrat);
-}
-.logo-3-icon {
-  position: absolute;
-  top: 185px;
-  left: 250px;
-  width: 351.65px;
-  height: 374.93px;
-  object-fit: cover;
-
-}
-.real-sign-up-page {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%); /* ให้ขยับมากลาง */
-  background-color: var(--blue);
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-size: 18.15px;
-  color: var(--color-darkslateblue);
-  font-family: var(--font-noto-sans-thai);
-}
-.form-group input[id="usernameEmail"]{
-  position: absolute;
-  top: 293.27px;
-  left: 124.86px;
-  border-radius: 14.52px;
-  background-color: var(--color-whitesmoke);
-  border: 0.7px solid var(--color-darkgray);
-  box-sizing: border-box;
-  width: 454.43px;
-  height: 53.72px;
-  padding-left: 20px; 
-  font-size: 16px;
-}
-.form-group input[id="password"]{
-  position: absolute;
-  top: 497.98px;
-  left: 124.13px;
-  border-radius: 14.52px;
-  background-color: var(--color-whitesmoke);
-  border: 0.7px solid var(--color-darkgray);
-  box-sizing: border-box;
-  width: 454.43px;
-  height: 53.72px;
-  padding-left: 20px;
-  font-size: 16px;
+  padding-left: 30px;
 }
 
-.form-group input[id="confirmPassword"]{
+.title::before,.title::after {
   position: absolute;
-  top: 395.63px;
-  left: 124.13px;
-  border-radius: 14.52px;
-  background-color: var(--color-whitesmoke);
-  border: 0.7px solid var(--color-darkgray);
-  box-sizing: border-box;
-  width: 454.43px;
-  height: 53.72px;
-  padding-left: 20px;
-  font-size: 16px;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: #003a6c;
 }
 
-.form-group label[for="usernameEmail"] {
-  position: absolute;
-  top: 259.88px;
-  left: 125.59px;
-}
-.form-group label[for="password"] {
-  position: absolute;
-  top: 362.96px;
-  left: 126.31px;
-}
-.form-group label[for="confirmPassword"] {
-  position: absolute;
-  top: 466.05px;
-  left: 127.77px;
+.title::before {
+  width: 18px;
+  height: 18px;
+  background-color: #003a6c;
 }
 
-.submit-form button[id="submitbutton"] {
-  position: absolute;
-  top: 595px;
-  left: calc(42%);
-  border: none;
-  border-radius: 19.39px;
-  width: 111.18px;
-  height: 36.85px;
-  display: flex;
-  flex-direction: row;
-  padding: 6.464226245880127px 12.928452491760254px;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
-  font-size: 16.16px;
-  color: var(--color-dimgray);
-  font-family: "Noto Sans Thai";
-  transition: background-color 0.3s, color 0.3s;
-  cursor: pointer;
-}
-.submit-form button[id="submitbutton"]:hover {
-  background-color: #1F97D4; 
-  color: #fff;
-  transform: scale(1);
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
 }
 
-/* animation button  */
-@keyframes revertScale {
-  0% {
-    transform: scale(1.1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1.0);
-  }
-}
-
-.submit-form button[id="submitbutton"]:active {
-  animation: revertScale 0.2s;
-}
-
-/* ///////////////////////////////////////////////// */
-
-.real-login-page-child,
-.real-login-page-item {
-  position: absolute;
-  height: calc(100% - 356.16px);
-  top: 356.16px;
-  bottom: 0;
-  left: 0;
-  max-height: 100%;
-  width: 683.35px;
-}
-.real-login-page-item {
-  height: calc(100% - 460.76px);
-  top: 0;
-  bottom: 460.76px;
-  left: 11.76px;
-  width: 642.41px;
-}
-.goto-sing-in {
-  position: absolute;
-  top: calc(50% - -60px);
-  left: calc(50% - -35px);
+.message, .signin {
+  color: rgba(88, 87, 87, 0.822);
   font-size: 14px;
-  color: #808080;
-}
-.group-child,
-.group-item {
-  position: absolute;
-  top: calc(50% + 1.76px);
-  left: calc(50% - 237.98px);
-  border-top: 0.7px solid var(--color-black);
-  box-sizing: border-box;
-  width: 146.08px;
-  height: 0.73px;
-}
-.group-item {
-  top: calc(50% - 0.06px);
-  left: calc(50% + 91.9px);
 }
 
-.button-google-child {
-  position: absolute;
-  top: calc(50% - 18.16px);
-  left: calc(50% - 125.7px);
-  border-radius: 5.81px;
-  background-color: #f5f4f4;
-  border: 0.7px solid #d4c5c5;
-  box-sizing: border-box;
-  width: 251.39px;
-  height: 36.33px;
+.signin {
+  text-align: center;
 }
-.google {
-  position: absolute;
-  top: calc(50% - 17.44px);
-  left: calc(50% - 69.02px);
-  font-weight: 600;
+
+.signin a {
+  color: #003a6c;
+}
+
+.signin a:hover {
+  text-decoration: underline #003a6c;
+}
+
+.flex {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 159.12px;
-  height: 34.15px;
+  width: 100%;
+  gap: 6px;
 }
-.image-3-icon {
+
+.form label {
+  position: relative;
+}
+
+.form label .input {
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+}
+
+.form label .input + span {
   position: absolute;
-  top: calc(50% - 12.35px);
-  left: calc(50% - 95.18px);
-  width: 26.16px;
-  height: 23.25px;
-  object-fit: cover;
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
 }
-.button-google {
-  position: absolute;
-  top: calc(50% + 220px);
-  left: calc(50% - 126.34px);
-  width: 251.39px;
-  height: 36.33px;
-  font-size: 14.53px;
-  color: #418dff;
+
+.form label .input:placeholder-shown + span {
+  top: 15px;
+  font-size: 0.9em;
 }
-.div77 {
-  top: 0;
-  left: 0;
-  font-size: 29.06px;
-  color: var(--color-black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 127.15px;
-  height: 26.88px;
-}
-.div77,
-.div78,
-.password {
-  position: absolute;
-  font-weight: 600;
-}
-.div78 {
-  top: 38.51px;
-  left: 4.36px;
-  color: var(--color-gray-200);
-}
-.password {
-  top: 199.08px;
-  left: 2.18px;
-}
-.group-inner {
-  position: absolute;
-  top: 231.78px;
-  left: 0.73px;
-  border-radius: 14.53px;
-  background-color: var(--color-whitesmoke-100);
-  border: 0.7px solid var(--color-darkgray-100);
-  box-sizing: border-box;
-  width: 454.83px;
-  height: 53.77px;
-}
-.usernameemail {
-  position: absolute;
-  top: 88.28px;
-  left: 2.68px;
-  font-size: 18.15px;
-  font-weight: 600;
-  cursor: pointer;
-}
-.group-child1 {
-  position: absolute;
-  top: 121.67px;
-  left: 1.95px;
-  border-radius: 14.52px;
-  background-color: var(--color-whitesmoke-100);
-  border: 0.7px solid var(--color-darkgray-100);
-  box-sizing: border-box;
-  width: 454.43px;
-  height: 53.72px;
-}
-.parent1 {
-  position: absolute;
-  top: 125px;
-  left: 123.31px;
-  width: 456.38px;
-  height: 285.54px;
-  color: var(--color-darkslateblue-100);
-}
-.group-parent {
-  position: absolute;
+
+.form label .input:focus + span,.form label .input:valid + span {
   top: 30px;
-  left: 670px;
-  border-radius: 29.04px;
-  background-color: #fff;
-  width: 702.7px;
-  height: 743.35px;
-  overflow: hidden;
-}
-.logo-2-icon1 {
-  position: absolute;
-  top: 179px;
-  left: 28px;
-  width: 364.98px;
-  height: 389.13px;
-  object-fit: cover;
-}
-.child {
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: 20.13px;
-  background-color: silver;
-  border: 0.7px solid #d7d7d7;
-  box-sizing: border-box;
-}
-.child,
-.div79,
-.div80 {
-  position: absolute;
-}
-.div80 {
-  height: 45.61%;
-  width: 38.5%;
-  top: 26.32%;
-  left: 30.97%;
+  font-size: 0.7em;
   font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.div79 {
-  top: 415px;
-  left: 690px;
-  width: 182.49px;
-  height: 38.24px;
-  font-size: 16.77px;
-  color: var(--color-dimgray);
-}
-.real-login-page {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%); /* ให้ขยับมากลาง */
-  background-color: var(--blue);
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-size: 18.15px;
-  color: var(--color-darkslateblue);
-  font-family: var(--font-noto-sans-thai);
 }
 
-
-.form-group1 input[id="usernameEmail"]{
-  position: absolute;
-  top: 260px;
-  left: 124.86px;
-  border-radius: 14.52px;
-  background-color: var(--color-whitesmoke);
-  border: 0.7px solid var(--color-darkgray);
-  box-sizing: border-box;
-  width: 454.43px;
-  height: 53.72px;
-  padding-left: 20px; 
-  font-size: 16px;
-}
-.form-group1 input[id="password"]{
-  position: absolute;
-  top: 370px;
-  left: 124.13px;
-  border-radius: 14.52px;
-  background-color: var(--color-whitesmoke);
-  border: 0.7px solid var(--color-darkgray);
-  box-sizing: border-box;
-  width: 454.43px;
-  height: 53.72px;
-  padding-left: 20px;
-  font-size: 16px;
+.form label .input:valid + span {
+  color: gray;
 }
 
-.form-group1 input[id="confirmPassword"]{
-  position: absolute;
-  top: 395.63px;
-  left: 124.13px;
-  border-radius: 14.52px;
-  background-color: var(--color-whitesmoke);
-  border: 0.7px solid var(--color-darkgray);
-  box-sizing: border-box;
-  width: 454.43px;
-  height: 53.72px;
-  padding-left: 20px;
-  font-size: 16px;
-}
-
-.form-group1 label[for="usernameEmail"] {
-  position: absolute;
-  top: 220px;
-  left: 125.59px;
-}
-.form-group1 label[for="password"] {
-  position: absolute;
-  top: 330px;
-  left: 126.31px;
-}
-.form-group1 label[for="confirmPassword"] {
-  position: absolute;
-  top: 466.05px;
-  left: 127.77px;
-}
-
-.submit-form1 button[id="submitbutton1"] {
-  position: absolute;
-  top: 490px;
-  left: calc(42%);
+.submit {
   border: none;
-  border-radius: 19.39px;
-  width: 111.18px;
-  height: 36.85px;
-  display: flex;
-  flex-direction: row;
-  padding: 6.464226245880127px 12.928452491760254px;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
-  font-size: 16.16px;
-  color: var(--color-dimgray);
-  font-family: "Noto Sans Thai";
-  transition: background-color 0.3s, color 0.3s;
-  cursor: pointer;
-}
-.submit-form1 button[id="submitbutton1"]:hover {
-  background-color: #1F97D4; 
+  outline: none;
+  background-color: #003a6c;
+  padding: 10px;
+  border-radius: 10px;
   color: #fff;
-  transform: scale(1);
+  font-size: 16px;
+  transform: .3s ease;
 }
 
-/* animation button  */
-@keyframes revertScale {
-  0% {
-    transform: scale(1.1);
+.submit:hover {
+  background-color: #005fb2;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
   }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1.0);
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
   }
 }
 
-.submit-form1 button[id="submitbutton1"]:active {
-  animation: revertScale 0.2s;
-}
-
-#login-form input[type="text"],
-#login-form input[type="password"] {
-  border: 1px solid #ccc; /* กำหนดเส้นขอบด้วยสีเทา */
-  padding: 5px; /* กำหนดระยะห่างของเนื้อหาภายในช่องที่กรอก */
-}
 
 .alert-danger {
   width: 55%;
@@ -561,6 +204,3 @@
   border-radius: 5px;
   text-align: left;
 }
-
-
-
