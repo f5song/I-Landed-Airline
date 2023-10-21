@@ -731,7 +731,7 @@ session_start();
             <script>
 
                 function toSeat() {
-                    window.location.href = "../SEAT/aircraft1/aircraft1.php";
+                    window.location.href = "../SEAT/aircraft2/aircraft2.php";
                 }
 
                 buttonmama = document.getElementById("button-mama");

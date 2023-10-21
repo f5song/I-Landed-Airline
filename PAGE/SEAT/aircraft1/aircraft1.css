@@ -456,3 +456,47 @@ ol {
   color: white;
   border-radius: 4px;
 }
+.seat-map {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  margin: 5px 0;
+}
+
+.seat {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #000;
+  margin: 0 5px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.booked {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.available {
+  background-color: #00ff00;
+}
+
+.passenger-list {
+  margin-left: 20px;
+}
+
+.passenger-item {
+  display: block;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.selected {
+  background-color: #ffff00;
+}
