@@ -683,7 +683,7 @@ session_start();
                 var bottomContent5 = document.querySelector(".bottom-content-5");
                 var bottomContent6 = document.querySelector(".bottom-content-6");
 
-                bottomContent1.style.display = "block";
+                bottomContent1.style.display = "none";
                 bottomContent2.style.display = "none";
                 bottomContent3.style.display = "none";
                 bottomContent4.style.display = "none";
