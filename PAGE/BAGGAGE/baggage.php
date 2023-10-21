@@ -182,11 +182,24 @@ if (isset($_GET['logout'])) {
           <p>(สำหรับทุกเที่ยวบินและทุกผู้โดยสาร)</p>
         </div>
         <div class="rightbottom">
-          <button>ดำเนินการต่อ</button>
+          <button id="gopaymentbutton">ดำเนินการต่อ</button>
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+
+    function toPayment() {
+        window.location.href = "../PAYMENT/book3.php";
+    }
+
+    gopaymentbutton = document.getElementById("gopaymentbutton");
+    gopaymentbutton.addEventListener("click", toPayment);
+
+  </script>
+
+
 </body>
 
 </html>

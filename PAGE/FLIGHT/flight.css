@@ -45,6 +45,7 @@ body {
     width: 110px;
     height: 30px;
     border-radius: 11px;
+    transition: background-color 0.3s;
   }  
 
 .button-search:hover{
@@ -238,4 +239,12 @@ body {
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 10px;
+}
+
+
+
+.button-search:hover {
+    cursor: pointer;
+    background-color: white; 
+    color: #1b75dc;
 }
