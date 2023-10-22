@@ -340,6 +340,7 @@ $user_id = $_SESSION['user_login'];
                   <input type="checkbox" name="selectedSeats[]" value="8F">
               </div>
     </div>
+    
 
     <!-- first -->
 
