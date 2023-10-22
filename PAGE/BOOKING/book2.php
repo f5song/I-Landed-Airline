@@ -1,4 +1,16 @@
 <?php
+session_start();
+if (!isset($_SESSION['user_login'])) {
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+}
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['username']);
+    header('location: ' . $_SESSION['redirect_url']);
+}
+
+?>
+<?php
 $servername = "localhost"; // เซิร์ฟเวอร์ MySQL
 $username = "root"; // ชื่อผู้ใช้ฐานข้อมูล
 $password = ""; // รหัสผ่านฐานข้อมูล
@@ -35,9 +47,44 @@ if (mysqli_num_rows($result_flight) > 0) {
 } else {
     echo "ไม่พบข้อมูลสำหรับ flight_id ที่ระบุ";
 }
-session_start();
-?>
 
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("การเชื่อมต่อล้มเหลว: " . $conn->connect_error);
+    }
+
+    $formNumber = 1;
+    while (isset($_POST["passenger{$formNumber}_firstname"])) {
+        $user_id = $_SESSION['user_login'];
+        $title = $_POST["passenger{$formNumber}_title"];
+        $firstname = $_POST["passenger{$formNumber}_firstname"];
+        $lastname = $_POST["passenger{$formNumber}_lastname"];
+        $phone_number = $_POST["passenger{$formNumber}_phone_number"];
+        $dob = $_POST["passenger{$formNumber}_dob"];
+
+        $sql = "INSERT INTO passengers (user_id, first_name, last_name, phone_number, title, dob) 
+                VALUES ('$user_id', '$firstname', '$lastname', '$phone_number', '$title', '$dob')";
+
+        if ($conn->query($sql) === TRUE) {
+            $_SESSION['success'] = "";
+            header("location: ../SEAT/aircraft1/aircraft1.php?flight_id=$flight_id");
+        } else {
+            echo "ข้อผิดพลาดในการบันทึกข้อมูล: " . $conn->error;
+        }
+
+        $formNumber++;
+    }
+
+    $conn->close();
+    
+}
+?>
+<?php echo $_SESSION['user_login']; ?>
 <!-- for go to browser -->
 
 <!DOCTYPE html>
@@ -157,7 +204,7 @@ session_start();
 
 
                 <div class="contact-info">
-                    <p>รายละเอียดการติดต่อ</p>
+                <p>รายละเอียดการติดต่อ</p>
                     <div class="contact-info-box">
                         <div class="content-contact">
                             <div class="header-content-contact">
@@ -205,6 +252,7 @@ session_start();
 
                             </div>
                         </div>
+>
                         <div class="content-airplane">
                             <div class="content-fromto">
                                 <img class="img1" src="./public/airplane.png" alt="">
@@ -260,7 +308,7 @@ session_start();
                         <div class="mix-button">
                             <p>โปรดเลือกจำนวนผู้โดยสาร: </p>
                             <select class="dropdown-menu" id="dropdown-menu">
-                                <option value="" disabled select>จำนวนผู้โดยสาร</option>
+                                <option value="" disabled selected>จำนวน</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -273,7 +321,7 @@ session_start();
                     </div>
 
 
-                    <form action="book2_db.php" method="post">
+                    <form method="post">
                         <div class="content-friend-info">
                             <!-- 1 -->
                             <div class="bottom-content-1">
@@ -659,8 +707,6 @@ session_start();
                 </form>
             </div>
 
-
-
             <script>
                 function toLogin() {
                     window.location.href = "../SIGNUPLOGIN/login.php";
@@ -727,18 +773,6 @@ session_start();
                 button.addEventListener("click", selectAmountPassenger);
 
             </script>
-
-            <script>
-
-                function toSeat() {
-                    window.location.href = "../SEAT/aircraft2/aircraft2.php";
-                }
-
-                buttonmama = document.getElementById("button-mama");
-                buttonmama.addEventListener("click", toSeat);
-
-            </script>
-
 
 
 </body>
