@@ -14,16 +14,16 @@ $username = "root"; // ชื่อผู้ใช้ฐานข้อมูล
 $password = ""; // รหัสผ่านฐานข้อมูล
 $dbname = "mydb"; // ชื่อฐานข้อมูล
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+
 $flight_id = $_GET['flight_id'];
 
-
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 $sql_flight = "SELECT 
             f.`flight_id`,
             f.`departure_airport`, 
             f.`arrival_airport`,
             f.`travel_date`, 
-            f.`aircraft_id`,
+            f.`aircraft_id`, 
             a1.`state` AS departure_airport_state, 
             a2.`state` AS arrival_airport_state, 
             DATE_FORMAT(f.`departure_time`, '%H:%i') AS formatted_departure_time, 
@@ -39,6 +39,7 @@ $sql_flight = "SELECT
             f.`flight_id` = '$flight_id'";
 $result_flight = mysqli_query($conn, $sql_flight);
 
+
 if (!$result_flight) {
     die("คำสั่ง SQL ผิดพลาด: " . mysqli_error($conn));
 }
@@ -48,29 +49,7 @@ if (mysqli_num_rows($result_flight) > 0) {
     echo "ไม่พบข้อมูลสำหรับ flight_id ที่ระบุ";
 }
 
-
-
-$conn_aircraft = mysqli_connect($servername, $username, $password, $dbname);
-
-
-$sql_aircraft = "SELECT aircraft_id
-        FROM 
-            flight
-        WHERE 
-            flight_id = '$flight_id'";
-$result_aircraft = mysqli_query($conn, $sql_aircraft);
-
-if (!$result_aircraft) {
-    die("คำสั่ง SQL ผิดพลาด: " . mysqli_error($conn));
-}
-if (mysqli_num_rows($result_aircraft) > 0) {
-    $row = mysqli_fetch_assoc($result_aircraft);
-} else {
-    echo "ไม่พบข้อมูลสำหรับ flight_id ที่ระบุ";
-}
-
-
-
+// ljlkllllklklklklklklklklklklklkklklkk
 
 
 
@@ -102,8 +81,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             elseif($row['aircraft_id'] == 2){
                 header("location: ../SEAT/aircraft2/aircraft2.php?flight_id=$flight_id");
             }
-
-                
         } else {
             echo "ข้อผิดพลาดในการบันทึกข้อมูล: " . $conn->error;
         }

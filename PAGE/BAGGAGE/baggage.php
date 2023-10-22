@@ -1,49 +1,76 @@
-<!-- http://localhost/ISAD-ILAL/PAGE/BAGGAGE/baggage.php -->
-
-
 <?php
 session_start();
+require_once '../../CRUD/config/db.php';
+
+// ตรวจสอบการล็อกอิน
 if (!isset($_SESSION['user_login'])) {
-  $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
-  header('location: ../SIGNUPLOGIN/login.php');
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+    header('location: ../SIGNUPLOGIN/login.php');
 }
+
+// ตรวจสอบการออกจากระบบ
 if (isset($_GET['logout'])) {
-  session_destroy();
-  unset($_SESSION['username']);
-  header('location: ' . $_SESSION['redirect_url']);
+    session_destroy();
+    unset($_SESSION['username']);
+    header('location: ' . $_SESSION['redirect_url']);
 }
 
+// เชื่อมต่อฐานข้อมูล
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mydb";
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-$servername = "localhost"; // เซิร์ฟเวอร์ MySQL
-$username = "root"; // ชื่อผู้ใช้ฐานข้อมูล
-$password = ""; // รหัสผ่านฐานข้อมูล
-$dbname = "mydb"; // ชื่อฐานข้อมูล
+// ตรวจสอบการเชื่อมต่อ
+if ($conn->connect_error) {
+    die("การเชื่อมต่อล้มเหลว: " . $conn->connect_error);
+}
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+// ดึงข้อมูลผู้โดยสาร
+$sql = "SELECT
+    r.reservation_id,
+    r.passenger_id,
+    r.flight_id,
+    r.baggage_weight,
+    r.total_price,
+    r.seat_number,
+    p.passenger_id,
+    p.title,
+    p.first_name,
+    p.last_name
+FROM reservations AS r
+JOIN passengers AS p ON r.passenger_id = p.passenger_id";
 
-$sql = "SELECT * FROM `baggage_pricing`";
 $result = mysqli_query($conn, $sql);
 
-$user_id = $_SESSION['user_id']; // แทนค่านี้ด้วยวิธีการเก็บข้อมูล user_id ของผู้ใช้ที่เข้าสู่ระบบ
+$passengers = array();
 
-
-if (!$result) {
-    die("คำสั่ง SQL ผิดพลาด: " . mysqli_error($conn));
+while ($row = mysqli_fetch_assoc($result)) {
+    $passenger = array(
+        'title' => $row['title'],
+        'first_name' => $row['first_name'],
+        'last_name' => $row['last_name'],
+        'baggage_weight' => $row['baggage_weight'],
+        'passenger_id' => $row['passenger_id']
+    );
+    $passengers[] = $passenger;
 }
-if (mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-} else {
-    echo "ไม่พบข้อมูลสำหรับ baggage price ที่ระบุ";
-}
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// ปิดการเชื่อมต่อกับฐานข้อมูล
+$sql_baggage = "SELECT * FROM baggage_pricing";
+$result_baggage = mysqli_query($conn, $sql_baggage);
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+$baggageOptions = array();
 
-    if ($conn->connect_error) {
-        die("การเชื่อมต่อล้มเหลว: " . $conn->connect_error);
+if ($result_baggage) {
+    while ($row = mysqli_fetch_assoc($result_baggage)) {
+        $option = array(
+            'baggage_weight' => $row['baggage_weight'],
+            'baggage_price' => $row['baggage_price']
+        );
+        $baggageOptions[] = $option;
     }
-    $conn->close();
 }
 ?>
 
@@ -52,178 +79,153 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-  <link rel="stylesheet" href="./global.css" />
-  <link rel="stylesheet" href="./baggage.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@500;600&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" />
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./baggage.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@500;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" />
 </head>
 
 <body>
-  <div class="bar">
-    <!-- circle -->
-    <div><img src="./img/logo_for_bar.png" alt=""></div>
-    <div class="circle1-2-3">
-      <div class="circ">
-        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
-          <circle cx="13" cy="13" r="13" fill="#1F97D4" />
-          <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="white" font-size="14">
-            1
-          </text>
-        </svg>
-      </div>
-      <p style="color: #696969;" class="txt123">การจอง</p>
-      <div class="between-line">
-        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="2" viewBox="0 0 29 2" fill="none">
-          <path d="M0 1H29" stroke="#7C7C7C" />
-        </svg>
-      </div>
-      <div class="circ">
-        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
-          <circle cx="13" cy="13" r="13" fill="#696969" />
-          <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="white" font-size="14">
-            2
-          </text>
-        </svg>
-      </div>
-      <p style="color: #696969;" class="txt123">ชำระเงิน</p>
-      <div class="between-line">
-        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="2" viewBox="0 0 29 2" fill="none">
-          <path d="M0 1H29" stroke="#7C7C7C" />
-        </svg>
-      </div>
-      <div class="circ">
-        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
-          <circle cx="13" cy="13" r="13" fill="#696969" />
-          <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="white" font-size="14">
-            3
-          </text>
-        </svg>
-      </div>
-      <p style="color: #696969;" class="txt123">รับตั๋ว</p>
+    <div class="bar">
+        <!-- circle -->
+        <div><img src="./img/logo_for_bar.png" alt=""></div>
+        <div class="circle1-2-3">
+            <!-- เนื่องจากไม่มีข้อมูลในตัวแปร $_SESSION['user_login'] ดังนั้นควรตรวจสอบการล็อกอินอื่น ๆ และรับข้อมูลผู้ใช้ที่จำเป็นตามความต้องการ -->
+        </div>
     </div>
-  </div>
-  <div class="backgroundlock">
-    <div class="boxlock">
-      <div class="toplock">
+    <div class="backgroundlock">
+        <div class="boxlock">
+    <div class="toplock">
         <div class="lefttop">
-          <div class="contentleft1">
-            <div class="img_baggage"><img src="./img/icon_baggage.png" alt=""></div>
-            <h1>สัมภาระ</h1>
-          </div>
-          <div class="contentleft2">
-            <h3>เลือกเที่ยวบินของคุณ</h3>
-            <p1>เลือกสัมภาระของคุณ</p1>
-          </div>
-          <div class="contentleft3">
-            <p>**from</p>
-            <p>ไป</p>
-            <p>**to</p>
-          </div>
+            <div class="contentleft1">
+                <div class="img_baggage"><img src="./img/icon_baggage.png" alt=""></div>
+                <h1>สัมภาระ</h1>
+            </div>
+            <div class="contentleft2">
+                <h3>เลือกเที่ยวบินของคุณ</h3>
+                <p1>เลือกสัมภาระของคุณ</p1>
+            </div>
         </div>
         <div class="righttop">
-          <div class="contentright1">
-            <div class="topright1">
-              <h1>**from</h1>
-              <h1>ไป</h1>
-              <h1>**to</h1>
-            </div>
-            <div class="bottomright1">
-              <img src="./img/logo_for_baggage.png" alt="">
-              <p>I Landed Airline</p>
-            </div>
-          </div>
-          <div class="content-box-right2">
-            <div class="box-white">
-              <?php
-      
-                  $user_id = $_SESSION['user_id']; 
-                  
-                  $sql = "SELECT
-                  f.flight_id,
-                  f.travel_date,
-                  dep.state AS departure_state,
-                  arr.state AS arrival_state,
-                  DATE_FORMAT(f.`departure_time`, '%H:%i') AS formatted_departure_time, 
-                  DATE_FORMAT(f.`arrival_time`, '%H:%i') AS formatted_arrival_time, 
-                  f.available_seats,
-                  f.flight_cost
-              FROM flight AS f
-              JOIN airport AS dep ON f.departure_airport = dep.airport_code
-              JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
-    
-                  $result = mysqli_query($conn, $sql);
-
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<div class="topbox">';
-                    echo '<div class="mix-text-name">';
-                    echo '<h2>' . $row['title'] . '</h2>';
-                    echo '<h2>' . $row['first_name'] . '</h2>';
-                    echo '<h2>' . $row['last_name'] . '</h2>';
-                    echo '</div>';
-                    echo '</div>';
-                  }
-                  ?>
-              <div class="bottombox">
-                <div class="radio-group">
-                  <?php
-                    echo '<input type="radio" id="radio' . $row['baggage_weight'] . '" name="radio-group" class="radio-input">';
-                    echo '<label for="radio' . $row['baggage_weight'] . '" class="radio-label">';
-                    echo '<div class="groupcircle-' . $row['baggage_weight'] . '">';
-                    echo '<span class="radio-inner-circle"></span>';
-                    echo '+ ' . $row['baggage_weight'] . ' กิโลกรัม';
-                    echo '</div>';
-                    echo '<p>' . $row['baggage_price'] . ' บาท</p>';
-                    echo '</label>';
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<input type="radio" id="radio' . $row['baggage_weight'] . '" name="radio-group" class="radio-input">';
-                    echo '<label for="radio' . $row['baggage_weight'] . '" class="radio-label">';
-                    echo '<div class="groupcircle-' . $row['baggage_weight'] . '">';
-                    echo '<span class="radio-inner-circle"></span>';
-                    echo '+ ' . $row['baggage_weight'] . ' กิโลกรัม';
-                    echo '</div>';
-                    echo '<p>' . $row['baggage_price'] . ' บาท</p>';
-                    echo '</label>';
-                  }
-                  ?>
+            <div class="contentright1">
+                <div class="bottomright1">
+                    <img src="./img/logo_for_baggage.png" alt="">
+                    <p>I Landed Airline</p>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="bottomlock">
-        <div class="leftbottom">
-          <div class="mix-text-price">
-            <h1>ราคาทั้งหมด</h1>
-            <div style="display: flex;">
-              <h1>THB</h1>
-              <h1>**1000</h1>
+            <div class="content-box-right2">
+            <body>
+    <div class="box-white">
+    <form method="post" action="process_baggage.php">
+    <?php foreach ($passengers as $passenger): ?>
+        <div class="topbox">
+            <div class="mix-text-name">
+                <h2><?= $passenger['title'] ?></h2>
+                <h2><?= $passenger['first_name'] ?></h2>
+                <h2><?= $passenger['last_name'] ?></h2>
             </div>
-          </div>
-          <p>(สำหรับทุกเที่ยวบินและทุกผู้โดยสาร)</p>
         </div>
-        <div class="rightbottom">
-          <button id="gopaymentbutton">ดำเนินการต่อ</button>
+        <div class="radio-group">
+            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_0" name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]" value="0.00" class="radio-input">
+            <label for="radio<?= $passenger['passenger_id'] ?>_0" class="radio-label">
+                <div class="groupcircle-2kg">
+                    <span class="radio-inner-circle"></span>
+                    0 กิโลกรัม
+                </div>
+                <p>ราคา 0 บาท</p>
+            </label>
         </div>
-      </div>
+        <div class="radio-group">
+            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_5" name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]" value="5.00" class="radio-input">
+            <label for="radio<?= $passenger['passenger_id'] ?>_5" class="radio-label">
+                <div class="groupcircle-2kg">
+                    <span class="radio-inner-circle"></span>
+                    5 กิโลกรัม
+                </div>
+                <p>ราคา 250 บาท</p>
+            </label>
+        </div>
+        <div class="radio-group">
+            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_10" name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]" value="10.00" class="radio-input">
+            <label for="radio<?= $passenger['passenger_id'] ?>_10" class="radio-label">
+                <div class="groupcircle-2kg">
+                    <span class="radio-inner-circle"></span>
+                    10 กิโลกรัม
+                </div>
+                <p>ราคา 320 บาท</p>
+            </label>
+        </div>
+        <div class="radio-group">
+            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_15" name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]" value="15.00" class="radio-input">
+            <label for="radio<?= $passenger['passenger_id'] ?>_15" class="radio-label">
+                <div class="groupcircle-2kg">
+                    <span class="radio-inner-circle"></span>
+                    15 กิโลกรัม
+                </div>
+                <p>ราคา 425 บาท</p>
+            </label>
+        </div>
+        <div class="radio-group">
+            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_20" name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]" value="20.00" class="radio-input">
+            <label for="radio<?= $passenger['passenger_id'] ?>_20" class="radio-label">
+                <div class="groupcircle-2kg">
+                    <span class="radio-inner-circle"></span>
+                    20 กิโลกรัม
+                </div>
+                <p>ราคา 455 บาท</p>
+            </label>
+        </div>
+        <!-- ... และ Radio buttons อื่น ๆ ... -->
+    <?php endforeach; ?>
+    <button type="submit">Submit</button>
+</form>
     </div>
-  </div>
-
-  <script>
-
-    function toPayment() {
-        window.location.href = "../PAYMENT/book3.php";
-    }
-
-    gopaymentbutton = document.getElementById("gopaymentbutton");
-    gopaymentbutton.addEventListener("click", toPayment);
-
-  </script>
-
-
 </body>
+    </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var submitButton = document.getElementById('submit_button');
+
+        submitButton.addEventListener('click', function () {
+            var formData = {};
+
+            // รวบรวมข้อมูลจากฟอร์ม
+            var formData = {};
+            var radioInputs = document.querySelectorAll('.radio-input');
+
+            radioInputs.forEach(function (input) {
+                var passengerId = input.name;
+                var baggageWeight = input.value;
+                formData[passengerId] = baggageWeight;
+            });
+
+            // ส่งข้อมูลไปยัง process_baggage.php
+            fetch('process_baggage.php', {
+                method: 'POST',
+                body: JSON.stringify(formData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.text()) // รับข้อมูลผลลัพธ์เป็นข้อความ
+            .then(data => {
+                // ทำสิ่งที่คุณต้องการกับข้อมูลผลลัพธ์ที่ได้รับ
+                alert(data); // แสดงข้อความเพื่อตรวจสอบเท่านั้น
+            })
+            .catch(error => {
+                console.error('เกิดข้อผิดพลาดในการส่งข้อมูล: ' + error);
+            });
+        });
+    });
+</script>
 
 </html>

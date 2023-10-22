@@ -40,6 +40,11 @@ if (count($seatNumbers) != count($passengerIDs))  {
             echo "เกิดข้อผิดพลาดในการจองที่นั่ง: " . $conn->error;
         }
     }
+
+    header('Location: ../../BAGGAGE/baggage.php');
+    exit;
+
+
 }
 
 // ปิดการเชื่อมต่อกับฐานข้อมูล
