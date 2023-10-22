@@ -17,11 +17,13 @@ $dbname = "mydb"; // ชื่อฐานข้อมูล
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 $flight_id = $_GET['flight_id'];
 
+
 $sql_flight = "SELECT 
             f.`flight_id`,
             f.`departure_airport`, 
             f.`arrival_airport`,
             f.`travel_date`, 
+            f.`aircraft_id`,
             a1.`state` AS departure_airport_state, 
             a2.`state` AS arrival_airport_state, 
             DATE_FORMAT(f.`departure_time`, '%H:%i') AS formatted_departure_time, 
@@ -48,6 +50,30 @@ if (mysqli_num_rows($result_flight) > 0) {
 
 
 
+$conn_aircraft = mysqli_connect($servername, $username, $password, $dbname);
+
+
+$sql_aircraft = "SELECT aircraft_id
+        FROM 
+            flight
+        WHERE 
+            flight_id = '$flight_id'";
+$result_aircraft = mysqli_query($conn, $sql_aircraft);
+
+if (!$result_aircraft) {
+    die("คำสั่ง SQL ผิดพลาด: " . mysqli_error($conn));
+}
+if (mysqli_num_rows($result_aircraft) > 0) {
+    $row = mysqli_fetch_assoc($result_aircraft);
+} else {
+    echo "ไม่พบข้อมูลสำหรับ flight_id ที่ระบุ";
+}
+
+
+
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -70,7 +96,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($conn->query($sql) === TRUE) {
             $_SESSION['success'] = "";
-            header("location: ../SEAT/aircraft1/aircraft1.php?flight_id=$flight_id");
+            if($row['aircraft_id'] == 1){
+                header("location: ../SEAT/aircraft1/aircraft1.php?flight_id=$flight_id");
+            }
+            elseif($row['aircraft_id'] == 2){
+                header("location: ../SEAT/aircraft2/aircraft2.php?flight_id=$flight_id");
+            }
+
+                
         } else {
             echo "ข้อผิดพลาดในการบันทึกข้อมูล: " . $conn->error;
         }
@@ -83,6 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <?php echo $_SESSION['user_login']; ?>
+<?php echo $row['aircraft_id'] ?>
 <!-- for go to browser -->
 
 <!DOCTYPE html>
