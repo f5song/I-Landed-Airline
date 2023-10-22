@@ -9,8 +9,6 @@ if (isset($_GET['logout'])) {
     header('location: ' . $_SESSION['redirect_url']);
 }
 
-?>
-<?php
 $servername = "localhost"; // เซิร์ฟเวอร์ MySQL
 $username = "root"; // ชื่อผู้ใช้ฐานข้อมูล
 $password = ""; // รหัสผ่านฐานข้อมูล

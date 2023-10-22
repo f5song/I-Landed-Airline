@@ -3,7 +3,6 @@
 
 <?php
 session_start();
-require_once '../../CRUD/config/db.php';
 if (!isset($_SESSION['user_login'])) {
   $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
   header('location: ../SIGNUPLOGIN/login.php');
@@ -14,7 +13,40 @@ if (isset($_GET['logout'])) {
   header('location: ' . $_SESSION['redirect_url']);
 }
 
+
+$servername = "localhost"; // เซิร์ฟเวอร์ MySQL
+$username = "root"; // ชื่อผู้ใช้ฐานข้อมูล
+$password = ""; // รหัสผ่านฐานข้อมูล
+$dbname = "mydb"; // ชื่อฐานข้อมูล
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+$sql = "SELECT * FROM `baggage_pricing`";
+$result = mysqli_query($conn, $sql);
+
+$user_id = $_SESSION['user_id']; // แทนค่านี้ด้วยวิธีการเก็บข้อมูล user_id ของผู้ใช้ที่เข้าสู่ระบบ
+
+
+if (!$result) {
+    die("คำสั่ง SQL ผิดพลาด: " . mysqli_error($conn));
+}
+if (mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+} else {
+    echo "ไม่พบข้อมูลสำหรับ baggage price ที่ระบุ";
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("การเชื่อมต่อล้มเหลว: " . $conn->connect_error);
+    }
+    $conn->close();
+}
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -105,65 +137,57 @@ if (isset($_GET['logout'])) {
           </div>
           <div class="content-box-right2">
             <div class="box-white">
-              <div class="topbox">
-                <div class="mix-text-name">
-                  <h2>นาย</h2>
-                  <h2>ปะราณี</h2>
-                  <h2>จักสีดู</h2>
-                </div>
-                <div class="mix-text-sampara">
-                  <p>สัมภาระทั้งหมด</p>
-                  <div>
-                    <p1>0 กิโลกรัม</p1>
-                  </div>
-                </div>
-              </div>
+              <?php
+      
+                  $user_id = $_SESSION['user_id']; 
+                  
+                  $sql = "SELECT
+                  f.flight_id,
+                  f.travel_date,
+                  dep.state AS departure_state,
+                  arr.state AS arrival_state,
+                  DATE_FORMAT(f.`departure_time`, '%H:%i') AS formatted_departure_time, 
+                  DATE_FORMAT(f.`arrival_time`, '%H:%i') AS formatted_arrival_time, 
+                  f.available_seats,
+                  f.flight_cost
+              FROM flight AS f
+              JOIN airport AS dep ON f.departure_airport = dep.airport_code
+              JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
+    
+                  $result = mysqli_query($conn, $sql);
+
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo '<div class="topbox">';
+                    echo '<div class="mix-text-name">';
+                    echo '<h2>' . $row['title'] . '</h2>';
+                    echo '<h2>' . $row['first_name'] . '</h2>';
+                    echo '<h2>' . $row['last_name'] . '</h2>';
+                    echo '</div>';
+                    echo '</div>';
+                  }
+                  ?>
               <div class="bottombox">
                 <div class="radio-group">
-                  <input type="radio" id="radio1" name="radio-group" class="radio-input" checked>
-                  <label for="radio1" class="radio-label">
-                    <div class="groupcircle-0kg">
-                      <span class="radio-inner-circle"></span>
-                      ไม่มีสัมภาระ
-                    </div>
-                    <p>0 บาท</p>
-                  </label>
-
-                  <input type="radio" id="radio2" name="radio-group" class="radio-input">
-                  <label for="radio2" class="radio-label">
-                    <div class="groupcircle-5kg">
-                      <span class="radio-inner-circle"></span>
-                      +5 กิโลกรัม
-                    </div>
-                    <p>250 บาท</p>
-                  </label>
-
-                  <input type="radio" id="radio3" name="radio-group" class="radio-input">
-                  <label for="radio3" class="radio-label">
-                    <div class="groupcircle-10kg">
-                      <span class="radio-inner-circle"></span>
-                      +10 กิโลกรัม
-                    </div>
-                    <p>320 บาท</p>
-                  </label>
-
-                  <input type="radio" id="radio4" name="radio-group" class="radio-input">
-                  <label for="radio4" class="radio-label">
-                    <div class="groupcircle-15kg">
-                      <span class="radio-inner-circle"></span>
-                      +15 กิโลกรัม
-                    </div>
-                    <p>425 บาท</p>
-                  </label>
-
-                  <input type="radio" id="radio5" name="radio-group" class="radio-input">
-                  <label for="radio5" class="radio-label">
-                    <div class="groupcircle-20kg">
-                      <span class="radio-inner-circle"></span>
-                      +20 กิโลกรัม
-                    </div>
-                    <p>455 บาท</p>
-                  </label>
+                  <?php
+                    echo '<input type="radio" id="radio' . $row['baggage_weight'] . '" name="radio-group" class="radio-input">';
+                    echo '<label for="radio' . $row['baggage_weight'] . '" class="radio-label">';
+                    echo '<div class="groupcircle-' . $row['baggage_weight'] . '">';
+                    echo '<span class="radio-inner-circle"></span>';
+                    echo '+ ' . $row['baggage_weight'] . ' กิโลกรัม';
+                    echo '</div>';
+                    echo '<p>' . $row['baggage_price'] . ' บาท</p>';
+                    echo '</label>';
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo '<input type="radio" id="radio' . $row['baggage_weight'] . '" name="radio-group" class="radio-input">';
+                    echo '<label for="radio' . $row['baggage_weight'] . '" class="radio-label">';
+                    echo '<div class="groupcircle-' . $row['baggage_weight'] . '">';
+                    echo '<span class="radio-inner-circle"></span>';
+                    echo '+ ' . $row['baggage_weight'] . ' กิโลกรัม';
+                    echo '</div>';
+                    echo '<p>' . $row['baggage_price'] . ' บาท</p>';
+                    echo '</label>';
+                  }
+                  ?>
                 </div>
               </div>
             </div>
