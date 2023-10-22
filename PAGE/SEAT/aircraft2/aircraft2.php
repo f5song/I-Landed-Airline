@@ -1,332 +1,351 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_login'])) {
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+}
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['username']);
+    header('location: ' . $_SESSION['redirect_url']);
+}
+
+?>
+<?php echo $_SESSION['user_login']; ?>
+<?php
+// เชื่อมต่อกับฐานข้อมูล MySQL
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mydb";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// ตรวจสอบการเชื่อมต่อ
+// ตรวจสอบการเชื่อมต่อ
+if ($conn->connect_error) {
+    die("การเชื่อมต่อล้มเหลว: " . $conn->connect_error);
+}
+$flight_id = $_GET["flight_id"];
+$user_id = $_SESSION['user_login'];
+
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="aircraft2.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@600&display=swap">
+    <link rel="stylesheet" href="aircraft2.css">
 </head>
-
 <body>
 
-  <div class="row--customer">
-    <div class="header-seat">
-      <h1>Seat Selection</h1>
+<h1>เลือกที่นั่งบนเครื่องบิน</h1>
+
+ <!-- ส่วน bar -->
+
+
+<form action="process_reservation.php?flight_id=<?php echo $flight_id; ?>" method="post">
+
+  <div id="passengerList">
+      <h2>ผู้โดยสาร</h2>
+          <ul>
+              <?php
+                $conn = new mysqli("localhost", "root", "", "mydb");
+
+                if ($conn->connect_error) {
+                  die("เชื่อมต่อฐานข้อมูลไม่สำเร็จ: " . $conn->connect_error);
+                }
+                $sql = "SELECT * FROM passengers
+                WHERE user_id = $user_id";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
+                    echo '<li>
+                        <label>
+                          <input type="checkbox" name="selectedPassengers[]" value="' . $row["passenger_id"] . '">
+                          ' . $row["first_name"] . ' ' . $row["last_name"] . '
+                        </label>
+                          </li>';
+                  }
+                }
+                $conn->close();
+              ?>
+          </ul>
+
+          
+            
     </div>
-    <div class="frame">
-      <div class="customer-info">
-        <p>ID: 12345</p>
-        <p>Name: John Doe</p>
-        <p>Last Name: Smith</p>
-        <p>Tickets: 3</p>
-        <input type="number" id="ticketQuantity" min="1" max="6">
-      </div>
+          
+    <div id="seatContainer">
+              <h2>เลือกที่นั่ง</h2>
+              <div class="seat" data-seat="1A" id="economy">
+                  <span class="seat-name">1A</span>
+                  <input type="checkbox" name="selectedSeats[]" value="1A">
+              </div>
+              <div class="seat" data-seat="1B" id="economy">
+                  <span class="seat-name">1B</span>
+                  <input type="checkbox" name="selectedSeats[]" value="2B">
+              </div>
+              <div class="seat" data-seat="1C" id="economy">
+                  <span class="seat-name">1C</span>
+                  <input type="checkbox" name="selectedSeats[]" value="1C">
+              </div>
+              <div class="seat" data-seat="1D" id="economy">
+                  <span class="seat-name">1D</span>
+                  <input type="checkbox" name="selectedSeats[]" value="1D">
+              </div>
+              <div class="seat" data-seat="1E" id="economy">
+                  <span class="seat-name">1E</span>
+                  <input type="checkbox" name="selectedSeats[]" value="1E">
+              </div>
+              <div class="seat" data-seat="1F" id="economy">
+                  <span class="seat-name">1F</span>
+                  <input type="checkbox" name="selectedSeats[]" value="1F">
+              </div>
     </div>
-  </div>
 
-  <div class="aircraft">
-    <div class="plane">
-      <div class="cockpit">
-        <h1>I LANDED AIRLINE</h1>
-      </div>
-      <div class="exit exit--front fuselage">
-
-      </div>
-      <ol class="cabin fuselage">
-        <li class="row row--1">
-          <ol class="seats" type="A">
-            <li class="seat">
-              <input type="checkbox" id="1A" onchange="seatChanged(this)" class="seat-group1" />
-              <label for="1A">1A</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="1B" onchange="seatChanged(this)" class="seat-group1" />
-              <label for="1B">1B</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="1C" onchange="seatChanged(this)" class="seat-group1" />
-              <label for="1C">1C</label>
-            </li>
-            <!-- <li class="seat">
-              <input type="checkbox" disabled id="1D" onchange="seatChanged(this)" class="seat-group1" />
-              <label for="1D">Occupied</label>
-            </li> -->
-            <li class="seat">
-              <input type="checkbox" id="1D" onchange="seatChanged(this)" class="seat-group1" />
-              <label for="1D">1D</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="1E" onchange="seatChanged(this)" class="seat-group1" />
-              <label for="1E">1E</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="1F" onchange="seatChanged(this)" class="seat-group1" />
-              <label for="1F">1F</label>
-            </li>
-          </ol>
-        </li>
-        <li class="row row--2">
-          <ol class="seats" type="A">
-            <li class="seat">
-              <input type="checkbox" id="2A" onchange="seatChanged(this)" class="seat-group2" />
-              <label for="2A">2A</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="2B" onchange="seatChanged(this)" class="seat-group2" />
-              <label for="2B">2B</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="2C" onchange="seatChanged(this)" class="seat-group2" />
-              <label for="2C">2C</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="2D" onchange="seatChanged(this)" class="seat-group2" />
-              <label for="2D">2D</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="2E" onchange="seatChanged(this)" class="seat-group2" />
-              <label for="2E">2E</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="2F" onchange="seatChanged(this)" class="seat-group2" />
-              <label for="2F">2F</label>
-            </li>
-          </ol>
-        </li>
-        <li class="row row--3">
-          <ol class="seats" type="A">
-            <li class="seat">
-              <input type="checkbox" id="3A" onchange="seatChanged(this)" class="seat-group3" />
-              <label for="3A">3A</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="3B" onchange="seatChanged(this)" class="seat-group3" />
-              <label for="3B">3B</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="3C" onchange="seatChanged(this)" class="seat-group3" />
-              <label for="3C">3C</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="3D" onchange="seatChanged(this)" class="seat-group3" />
-              <label for="3D">3D</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="3E" onchange="seatChanged(this)" class="seat-group3" />
-              <label for="3E">3E</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="3F" onchange="seatChanged(this)" class="seat-group3" />
-              <label for="3F">3F</label>
-            </li>
-          </ol>
-        </li>
-        <li class="row row--4">
-          <ol class="seats" type="A">
-            <li class="seat">
-              <input type="checkbox" id="4A" onchange="seatChanged(this)" class="seat-group4" />
-              <label for="4A">4A</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="4B" onchange="seatChanged(this)" class="seat-group4" />
-              <label for="4B">4B</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="4C" onchange="seatChanged(this)" class="seat-group4" />
-              <label for="4C">4C</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="4D" onchange="seatChanged(this)" class="seat-group4" />
-              <label for="4D">4D</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="4E" onchange="seatChanged(this)" class="seat-group4" />
-              <label for="4E">4E</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="4F" onchange="seatChanged(this)" class="seat-group4" />
-              <label for="4F">4F</label>
-            </li>
-          </ol>
-        </li>
-        <li class="row row--5">
-          <ol class="seats" type="A">
-            <li class="seat">
-              <input type="checkbox" id="5A" onchange="seatChanged(this)" class="seat-group5" />
-              <label for="5A">5A</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="5B" onchange="seatChanged(this)" class="seat-group5" />
-              <label for="5B">5B</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="5C" onchange="seatChanged(this)" class="seat-group5" />
-              <label for="5C">5C</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="5D" onchange="seatChanged(this)" class="seat-group5" />
-              <label for="5D">5D</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="5E" onchange="seatChanged(this)" class="seat-group5" />
-              <label for="5E">5E</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="5F" onchange="seatChanged(this)" class="seat-group5" />
-              <label for="5F">5F</label>
-            </li>
-          </ol>
-        </li>
-        <li class="row row--6">
-          <ol class="seats" type="A">
-            <li class="seat">
-              <input type="checkbox" id="6A" onchange="seatChanged(this)" class="seat-group6" />
-              <label for="6A">6A</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="6B" onchange="seatChanged(this)" class="seat-group6" />
-              <label for="6B">6B</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="6C" onchange="seatChanged(this)" class="seat-group6" />
-              <label for="6C">6C</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="6D" onchange="seatChanged(this)" class="seat-group6" />
-              <label for="6D">6D</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="6E" onchange="seatChanged(this)" class="seat-group6" />
-              <label for="6E">6E</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="6F" onchange="seatChanged(this)" class="seat-group6" />
-              <label for="6F">6F</label>
-            </li>
-          </ol>
-        </li>
-        <li class="row row--7">
-          <ol class="seats" type="A">
-            <li class="seat">
-              <input type="checkbox" id="7A" onchange="seatChanged(this)" class="seat-group7" />
-              <label for="7A">7A</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="7B" onchange="seatChanged(this)" class="seat-group7" />
-              <label for="7B">7B</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="7C" onchange="seatChanged(this)" class="seat-group7" />
-              <label for="7C">7C</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="7D" onchange="seatChanged(this)" class="seat-group7" />
-              <label for="7D">7D</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="7E" onchange="seatChanged(this)" class="seat-group7" />
-              <label for="7E">7E</label>
-            </li>
-            <li class="seat">
-              <input type="checkbox" id="7F" onchange="seatChanged(this)" class="seat-group7"/>
-              <label for="7F">7F</label>
-            </li>
-          </ol>
-        
-      <div class="exit exit--back fuselage">
-
-      </div>
+    <div id="seatContainer">
+              <div class="seat" data-seat="2A" id="economy">
+                  <span class="seat-name">2A</span>
+                  <input type="checkbox" name="selectedSeats[]" value="2A">
+              </div>
+              <div class="seat" data-seat="2B" id="economy">
+                  <span class="seat-name">2B</span>
+                  <input type="checkbox" name="selectedSeats[]" value="2B">
+              </div>
+              <div class="seat" data-seat="2C" id="economy">
+                  <span class="seat-name">2C</span>
+                  <input type="checkbox" name="selectedSeats[]" value="2C">
+              </div>
+              <div class="seat" data-seat="2D" id="economy">
+                  <span class="seat-name">2D</span>
+                  <input type="checkbox" name="selectedSeats[]" value="2D">
+              </div>
+              <div class="seat" data-seat="2E" id="economy">
+                  <span class="seat-name">2E</span>
+                  <input type="checkbox" name="selectedSeats[]" value="2E">
+              </div>
+              <div class="seat" data-seat="2F" id="economy">
+                  <span class="seat-name">2F</span>
+                  <input type="checkbox" name="selectedSeats[]" value="F">
+              </div>
     </div>
-  </div>
-  <div class="price">
-    <div class="cartlock">
-      <div class="header-cart">
-        <h1>รายการที่เลือก</h1>
-      </div>
-      <div class="ticketlock">
-        <div id="selected-seats-list">
-        </div>
-      </div>
-      <div class="sum-price">
-        <div class="text-price">
-          <span>Total:</span>
-          <span>฿1000.00</span>
-        </div>
-      </div>
-      <div class="button-checkout">
-        <button id="selectSeatsButton">Checkout</button>
-      </div>
+
+    <div id="seatContainer">
+              <div class="seat" data-seat="3A" id="business">
+                  <span class="seat-name">3A</span>
+                  <input type="checkbox" name="selectedSeats[]" value="3A">
+              </div>
+              <div class="seat" data-seat="3B" id="business">
+                  <span class="seat-name">3B</span>
+                  <input type="checkbox" name="selectedSeats[]" value="3B">
+              </div>
+              <div class="seat" data-seat="3C" id="business">
+                  <span class="seat-name">3C</span>
+                  <input type="checkbox" name="selectedSeats[]" value="3C">
+              </div>
+              <div class="seat" data-seat="3D" id="business">
+                  <span class="seat-name">3D</span>
+                  <input type="checkbox" name="selectedSeats[]" value="3D">
+              </div>
+              <div class="seat" data-seat="3E" id="business">
+                  <span class="seat-name">3E</span>
+                  <input type="checkbox" name="selectedSeats[]" value="3E">
+              </div>
+              <div class="seat" data-seat="3F" id="business">
+                  <span class="seat-name">3F</span>
+                  <input type="checkbox" name="selectedSeats[]" value="3F">
+              </div>
     </div>
-    <div class="detail-color-class">
-      <div class="detail-first-class">
-        <img src="../public/circle-firstclass.png" alt="">
-        <div class="text-first-class">
-          <span>First Class</span>
-          <span>(฿50)</span>
-        </div>
-      </div>
-      <div class="detail-business-class">
-        <img src="../public/circle-businessclass.png" alt="">
-        <div class="text-business-class">
-          <span>Business Class</span>
-          <span>(฿30)</span>
-        </div>
-      </div>
-      <div class="detail-economy-class">
-        <img src="../public/circle-economyclass.png" alt="">
-        <div class="text-economy-class">
-          <span>Economy Class</span>
-          <span>(฿10)</span>
-        </div>
-      </div>
+
+    <div id="seatContainer">
+              <div class="seat" data-seat="4A" id="business">
+                  <span class="seat-name">4A</span>
+                  <input type="checkbox" name="selectedSeats[]" value="4A">
+              </div>
+              <div class="seat" data-seat="4B" id="business">
+                  <span class="seat-name">4B</span>
+                  <input type="checkbox" name="selectedSeats[]" value="4B">
+              </div>
+              <div class="seat" data-seat="4C" id="business">
+                  <span class="seat-name">4C</span>
+                  <input type="checkbox" name="selectedSeats[]" value="4C">
+              </div>
+              <div class="seat" data-seat="4D" id="business">
+                  <span class="seat-name">4D</span>
+                  <input type="checkbox" name="selectedSeats[]" value="4D">
+              </div>
+              <div class="seat" data-seat="4E" id="business">
+                  <span class="seat-name">4E</span>
+                  <input type="checkbox" name="selectedSeats[]" value="4E">
+              </div>
+              <div class="seat" data-seat="4F" id="business">
+                  <span class="seat-name">4F</span>
+                  <input type="checkbox" name="selectedSeats[]" value="4F">
+              </div>
     </div>
-  </div>
 
-  <script>
-    let selectedSeatsCount = 0; // สร้างตัวแปรเพื่อเก็บจำนวนที่ถูกเลือก
+    <!-- business -->
 
-    function seatChanged(checkbox) {
-      const seatId = checkbox.id;
-      const label = checkbox.nextElementSibling.textContent;
-      const selectedSeatsList = document.getElementById("selected-seats-list");
+    <div id="seatContainer">
+              <div class="seat" data-seat="5A" id="business">
+                  <span class="seat-name">5A</span>
+                  <input type="checkbox" name="selectedSeats[]" value="5A">
+              </div>
+              <div class="seat" data-seat="5B" id="business">
+                  <span class="seat-name">5B</span>
+                  <input type="checkbox" name="selectedSeats[]" value="5B">
+              </div>
+              <div class="seat" data-seat="5C" id="business">
+                  <span class="seat-name">5C</span>
+                  <input type="checkbox" name="selectedSeats[]" value="5C">
+              </div>
+              <div class="seat" data-seat="5D" id="business">
+                  <span class="seat-name">5D</span>
+                  <input type="checkbox" name="selectedSeats[]" value="5D">
+              </div>
+              <div class="seat" data-seat="5E" id="business">
+                  <span class="seat-name">5E</span>
+                  <input type="checkbox" name="selectedSeats[]" value="5E">
+              </div>
+              <div class="seat" data-seat="5F" id="business">
+                  <span class="seat-name">5F</span>
+                  <input type="checkbox" name="selectedSeats[]" value="5F">
+              </div>
+    </div>
 
-      if (checkbox.checked) {
-        const listItem = document.createElement("li");
-        listItem.textContent = label;
-        listItem.setAttribute("data-seat-id", seatId);
-        selectedSeatsList.appendChild(listItem);
+    <div id="seatContainer">
+              <div class="seat" data-seat="6A" id="first">
+                  <span class="seat-name">6A</span>
+                  <input type="checkbox" name="selectedSeats[]" value="6A">
+              </div>
+              <div class="seat" data-seat="6B" id="first">
+                  <span class="seat-name">6B</span>
+                  <input type="checkbox" name="selectedSeats[]" value="6B">
+              </div>
+              <div class="seat" data-seat="6C" id="first">
+                  <span class="seat-name">6C</span>
+                  <input type="checkbox" name="selectedSeats[]" value="6C">
+              </div>
+              <div class="seat" data-seat="6D" id="first">
+                  <span class="seat-name">6D</span>
+                  <input type="checkbox" name="selectedSeats[]" value="6D">
+              </div>
+              <div class="seat" data-seat="6E" id="first">
+                  <span class="seat-name">6E</span>
+                  <input type="checkbox" name="selectedSeats[]" value="6E">
+              </div>
+              <div class="seat" data-seat="6F" id="first">
+                  <span class="seat-name">6F</span>
+                  <input type="checkbox" name="selectedSeats[]" value="6F">
+              </div>
+    </div>
 
-        selectedSeatsCount++; // เพิ่มจำนวนที่ถูกเลือกเมื่อ checkbox ถูกตรวจสอบ
+    <div id="seatContainer">
+              <div class="seat" data-seat="7A" id="first">
+                  <span class="seat-name">7A</span>
+                  <input type="checkbox" name="selectedSeats[]" value="7A">
+              </div>
+              <div class="seat" data-seat="7B" id="first">
+                  <span class="seat-name">7B</span>
+                  <input type="checkbox" name="selectedSeats[]" value="7B">
+              </div>
+              <div class="seat" data-seat="7C" id="first">
+                  <span class="seat-name">7C</span>
+                  <input type="checkbox" name="selectedSeats[]" value="7C">
+              </div>
+              <div class="seat" data-seat="7D" id="first">
+                  <span class="seat-name">7D</span>
+                  <input type="checkbox" name="selectedSeats[]" value="7D">
+              </div>
+              <div class="seat" data-seat="7E" id="first">
+                  <span class="seat-name">7E</span>
+                  <input type="checkbox" name="selectedSeats[]" value="7E">
+              </div>
+              <div class="seat" data-seat="7F" id="first">
+                  <span class="seat-name">7F</span>
+                  <input type="checkbox" name="selectedSeats[]" value="7F">
+              </div>
+    </div>
+          
+        <p>ที่นั่งที่เลือก: <span id="selectedSeat"></span></p>
+        <p>ผู้โดยสารที่เลือก: <span id="selectedPassenger"></span></p>
 
-        // ตรวจสอบจำนวนที่ถูกเลือกและกำหนดสีตามจำนวน
-        if (seatId >= "1A" && seatId <= "2F") {
-          listItem.classList.add("blue-bg"); // เพิ่ม CSS class "blue-bg" เพื่อกำหนดสีพื้นหลังเป็นสีฟ้า
-        } else if (seatId >= "3A" && seatId <= "5F") {
-          listItem.classList.add("orange-bg"); // เพิ่ม CSS class "orange-bg" เพื่อกำหนดสีพื้นหลังเป็นสีส้ม
-        } else{
-          listItem.classList.add("blue1-bg"); // เพิ่ม CSS class "blue-bg" เพื่อกำหนดสีพื้นหลังเป็นสีฟ้า
+
+    <button id="reserveButton" type="submit">จองที่นั่ง</button>
+
+</form>  
+
+
+
+
+    <script>
+        var selectedSeats = [];
+        var selectedPassengers = [];
+        var reservedSeats = []; // เก็บที่นั่งที่ถูกจองโดยผู้โดยสาร
+        var seatpluspass = [];
+
+        function toggleSeat(seat) {
+            var seatId = seat.getAttribute("data-seat");
+            var isChecked = seat.querySelector('input[type="checkbox"]').checked;
+            if (isChecked) {
+               
+                selectedSeats.push(seatId);
+            } else {
+                var index = selectedSeats.indexOf(seatId);
+                if (index > -1) {
+                    selectedSeats.splice(index, 1);
+                }
+            }
+
+            document.getElementById("selectedSeat").textContent = selectedSeats.join(", ");
         }
-      } else {
-        const listItemToRemove = selectedSeatsList.querySelector(`[data-seat-id="${seatId}"]`);
-        if (listItemToRemove) {
-          selectedSeatsList.removeChild(listItemToRemove);
-          selectedSeatsCount--; // ลดจำนวนที่ถูกเลือกเมื่อ checkbox ถูกยกเลิก
+
+        function selectPassenger(passenger) {
+            var passengerName = passenger.querySelector('input[type="checkbox"]').value;
+            var isChecked = passenger.querySelector('input[type="checkbox"]').checked;
+            if (isChecked) {
+
+                
+                selectedPassengers.push(passengerName);
+            } else {
+                var index = selectedPassengers.indexOf(passengerName);
+                if (index > -1) {
+                    selectedPassengers.splice(index, 1);
+                }
+            }
+
+            document.getElementById("selectedPassenger").textContent = selectedPassengers.join(", ");
         }
+
+        var seats = document.querySelectorAll(".seat");
+        seats.forEach(function(seat) {
+            seat.querySelector('input[type="checkbox"]').addEventListener("change", function() {
+                toggleSeat(seat);
+            });
+        });
+
+        var passengers = document.querySelectorAll("#passengerList li");
+        passengers.forEach(function(passenger) {
+            passenger.querySelector('input[type="checkbox"]').addEventListener("change", function() {
+                selectPassenger(passenger);
+            });
+        });
+    </script>
+
+    <script>
+      document.getElementById("reserveButton").addEventListener("click", function(event) {
+    // ตรวจสอบการเลือกที่นั่งและผู้โดยสาร
+      if (selectedSeats.length === 0 || selectedPassengers.length === 0) {
+          // แจ้งเตือนผู้ใช้ให้เลือกที่นั่งและผู้โดยสาร
+          alert("โปรดเลือกที่นั่งและผู้โดยสาร");
+          event.preventDefault(); // ยกเลิกการส่งแบบฟอร์ม
       }
-    }
+    });
 
-      document.getElementById("selectSeatsButton").addEventListener("click", function () {
-        const ticketQuantity = parseInt(document.getElementById("ticketQuantity").value);
-        if (selectedSeatsCount > ticketQuantity) {
-          alert("คุณเลือกเกินจำนวนตั๋วที่ระบุ");
-          // ครั้งที่คลิกปุ่ม "เลือกที่นั่ง" เราไม่จำเป็นต้องเปลี่ยนค่า checkbox
-          // แต่สามารถให้ผู้ใช้เลือกใหม่หรือลดจำนวนตั๋วเพิ่มเอง
-        }
-      });
-  </script>
+    </script>
 
+
+      
 </body>
-
 </html>

@@ -1,56 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
-  <style>.seat {
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-    background-color: #ccc;
-    border: 2px solid #000;
-    display: inline-block;
-    cursor: pointer;
-    position: relative;
-}
-
-#economy {
-    background: radial-gradient(circle at center, transparent, #4CAF50); 
-  }
-
-  #business {
-    background: radial-gradient(circle at center, transparent, #007BFF); 
-  }
-
-  #first {
-    background: radial-gradient(circle at center, transparent, #FFA500); 
-  }
-
-
-.seat-name {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.selected {
-    background-color: #f00; /* สีแสดงที่นั่งที่ถูกเลือก */
-}
-
-.reserved {
-    background-color: #999; /* สีแสดงที่นั่งที่ถูกจอง */
-}
-
-#seatContainer {
-    text-align: center;
-    
-}
-
-</style>
-
-
-
 <?php
 session_start();
 if (!isset($_SESSION['user_login'])) {
@@ -84,7 +31,14 @@ $user_id = $_SESSION['user_login'];
 
 ?>
 
-<h1>เลือกที่นั่งบนรถไฟ</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="aircraft1.css">
+</head>
+<body>
+
+<h1>เลือกที่นั่งบนเครื่องบิน</h1>
 
  <!-- ส่วน bar -->
 
@@ -340,7 +294,7 @@ $user_id = $_SESSION['user_login'];
                   <input type="checkbox" name="selectedSeats[]" value="8F">
               </div>
     </div>
-    
+
 
     <!-- first -->
 
@@ -404,6 +358,7 @@ $user_id = $_SESSION['user_login'];
 
 
     <button id="reserveButton" type="submit">จองที่นั่ง</button>
+    <button id="test" type="test">จองทีละคน</button>
 
 </form>  
 
@@ -413,12 +368,14 @@ $user_id = $_SESSION['user_login'];
     <script>
         var selectedSeats = [];
         var selectedPassengers = [];
-        var reservedSeats = {}; // เก็บที่นั่งที่ถูกจองโดยผู้โดยสาร
+        var reservedSeats = []; // เก็บที่นั่งที่ถูกจองโดยผู้โดยสาร
+        var seatpluspass = [];
 
         function toggleSeat(seat) {
             var seatId = seat.getAttribute("data-seat");
             var isChecked = seat.querySelector('input[type="checkbox"]').checked;
             if (isChecked) {
+               
                 selectedSeats.push(seatId);
             } else {
                 var index = selectedSeats.indexOf(seatId);
@@ -434,6 +391,8 @@ $user_id = $_SESSION['user_login'];
             var passengerName = passenger.querySelector('input[type="checkbox"]').value;
             var isChecked = passenger.querySelector('input[type="checkbox"]').checked;
             if (isChecked) {
+
+                
                 selectedPassengers.push(passengerName);
             } else {
                 var index = selectedPassengers.indexOf(passengerName);
@@ -468,7 +427,7 @@ $user_id = $_SESSION['user_login'];
           alert("โปรดเลือกที่นั่งและผู้โดยสาร");
           event.preventDefault(); // ยกเลิกการส่งแบบฟอร์ม
       }
-});
+    });
 
     </script>
 
