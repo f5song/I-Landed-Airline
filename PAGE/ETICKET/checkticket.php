@@ -223,44 +223,56 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </div>
 
                 
-    
                 <table-box>
                     <div class="text-ticket-info-box">
                         <table-head> ข้อมูล </table-head>
                     </div>
-    
-                    <table>
-                        <tr>
-                            <th>รหัสผู้โดยสาร</th>
-                            <th>ชื่อผู้โดยสาร</th>
-                            <th>ที่นั่ง</th>
-                            <th>กระเป๋า</th>                         
-                        </tr>
-                        <?php
+                    <div class="for-space">
+                        <table>
+                            <tr>
+                                <th>รหัสผู้โดยสาร</th>
+                                <th>ชื่อผู้โดยสาร</th>
+                                <th>ที่นั่ง</th>
+                                <th>กระเป๋า</th>                         
+                            </tr>
+                            <?php
 
-                        $result = mysqli_query($conn, $sql);
+                            $result = mysqli_query($conn, $sql);
 
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<tr>";
-                                echo "<td data-label='Departure State'>" . $row["passenger_id"] . "</td>";
-                                echo "<td data-label='Arrival Time'>" . $row['first_name'] . ' ' . $row['last_name'] . "</td>";
-                                echo "<td data-label='Arrival State'>" . $row["seat_number"] . "</td>";
-                                echo "<td data-label='Departure Time'>" . $row['baggage_weight'] . "</td>";
-                                echo "</tr>";
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<tr>";
+                                    echo "<td data-label='Departure State'>" . $row["passenger_id"] . "</td>";
+                                    echo "<td data-label='Arrival Time'>" . $row['first_name'] . ' ' . $row['last_name'] . "</td>";
+                                    echo "<td data-label='Arrival State'>" . $row["seat_number"] . "</td>";
+                                    echo "<td data-label='Departure Time'>" . $row['baggage_weight'] . "</td>";
+                                    echo "</tr>";
+                                }
                             }
-                        }
-                        mysqli_close($conn);
+                            mysqli_close($conn);
+                            
+                            ?>      
+                        </table>
                         
-                        ?>
-                    </table>
+                    </div>
+
+                    <p class="total-price">ราคารวม: <?php echo $passenger['travel_date']; ?></p>
+
+
                 </table-box>
+
+                <div class="backtohomeframe" id="backtohome">
+                    <p class="backtohome" id="backtohome"> กลับหน้าหลัก</p>
+                </div>
+                
+                
             </div>  
+
         </div>
 
 
         <div class="right-box">
-            <div class="contact-info-box">
+            <div cslass="contact-info-box">
                 <div class="content-airplane">
                     
                     <div class="booking-number">
@@ -304,15 +316,6 @@ while ($row = mysqli_fetch_assoc($result)) {
         
 
     </div>
-
-    <div class="bottom-frame">
-        <div class="backtohomeframe" id="backtohome">
-            <p class="backtohome" id="backtohome"> กลับหน้าหลัก</p>
-        </div>
-    </div>
-
-
-
 
     <script>
     var backtohome = document.getElementById("backtohome");

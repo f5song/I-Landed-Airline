@@ -17,6 +17,7 @@ text-e-ticket{
     color: #197B9D;
     padding: 10px;
     align-self: center;
+    width: auto;
 }
 .blue-blox{
     display: flex;
@@ -29,7 +30,7 @@ text-e-ticket{
     background-color: #f4f4f4;
     width: 750px;
     height: 300px;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
 }
 .white-box{
     display: flex;
@@ -114,6 +115,7 @@ tr:nth-child(even) {
 }
 .left-box{
     width: 50%;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -178,13 +180,6 @@ pname{
     gap: 10px;
 }
 
-
-.bottom-frame{
-    padding-top: 220px;
-    padding-left: 790px;
-    padding-bottom: 400px;
-}
-
 .backtohomeframe{
     display: flex;
     width: 182px;
@@ -200,4 +195,15 @@ pname{
 
 #backtohome:hover{
     cursor: pointer;
+}
+
+.for-space{
+    height: 300px;
+    background-color: #f4f4f4;
+}
+
+.total-price{
+    font-size: medium;
+    background-color: #f4f4f4;
+    text-align: right;
 }

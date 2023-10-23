@@ -191,6 +191,7 @@ if ($result_baggage) {
     </div>
 </body>
 
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var submitButton = document.getElementById('submit_button');
