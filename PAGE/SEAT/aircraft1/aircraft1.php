@@ -28,6 +28,7 @@ $flight_id = $_GET["flight_id"];
 $user_id = $_SESSION['user_login'];
 
 
+
 ?>
 
 <!DOCTYPE html>
