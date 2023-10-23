@@ -1,38 +1,64 @@
 <!-- http://localhost/ISAD-ilal/PAGE/PAYMENT/book3.php -->
 
 <?php
-    session_start();
-    require_once '../../CRUD/config/db.php';
+session_start();
+require_once '../../CRUD/config/db.php';
 
-    if (!isset($_SESSION['user_login'])) {
-      header('location: ../signup_login/login.php');
-  }
+// ตรวจสอบการล็อกอิน
+if (!isset($_SESSION['user_login'])) {
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+    header('location: ../SIGNUPLOGIN/login.php');
+}
+
+// ตรวจสอบการออกจากระบบ
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['username']);
+    header('location: ' . $_SESSION['redirect_url']);
+}
+
+// เชื่อมต่อฐานข้อมูล
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mydb";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// ตรวจสอบการเชื่อมต่อ
+if ($conn->connect_error) {
+    die("การเชื่อมต่อล้มเหลว: " . $conn->connect_error);
+}
+
+// ดึงข้อมูลผู้โดยสาร
+$sql = "SELECT
+    r.reservation_id,
+    r.passenger_id,
+    r.flight_id,
+    r.baggage_weight,
+    r.total_price,
+    r.seat_number,
+    p.passenger_id,
+    p.title,
+    p.first_name,
+    p.last_name
+FROM reservations AS r
+JOIN passengers AS p ON r.passenger_id = p.passenger_id";
+
+$result = mysqli_query($conn, $sql);
+
+$passengers = array();
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $passenger = array(
+        'title' => $row['title'],
+        'first_name' => $row['first_name'],
+        'last_name' => $row['last_name'],
+        'baggage_weight' => $row['baggage_weight'],
+        'passenger_id' => $row['passenger_id']
+    );
+    $passengers[] = $passenger;
+}
 ?>
-
-<?php
-    $servername = "localhost"; // เซิร์ฟเวอร์ MySQL
-    $username = "root"; // ชื่อผู้ใช้ฐานข้อมูล
-    $password = ""; // รหัสผ่านฐานข้อมูล
-    $dbname = "mydb"; // ชื่อฐานข้อมูล
-
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
-      
-    if (!$conn) {
-        die("การเชื่อมต่อฐานข้อมูลล้มเหลว: " . mysqli_connect_error());
-    }
-    if(isset($_GET["user_id"])){
-        $mm = $_GET["user_id"];
-    
-        $sql = "SELECT * FROM payment
-                WHERE user_id = '$mm'";   
-        $result = mysqli_query($conn, $sql);
-        $rt = mysqli_fetch_array($result);
-
-        $user_id = $rt['user_id'];
-        $booking_id = $rt['booking_id'];
-    }
-?>
-
 
 <!DOCTYPE html>
 <html>
@@ -60,6 +86,7 @@
           <div class="frame-fill-email">
             <div class="info-paid">boomboom@gmail.com</div>
           </div>
+          
           <div class="text-name">
             <span class="text-name-txt-container">
               <p class="p">ชื่อ-นามสกุล</p>
@@ -94,10 +121,15 @@
             <div class="text-flight">เที่ยวบิน</div>
           </div>
         </div>
+        <?php foreach ($passengers as $passenger): ?>
         <div class="name-passenger">
           <div class="text-paeesnger-name">รายชื่อผู้โดยสาร</div>
-          <div class="text-name1">Panalee Chuckseeda</div>
+          <div class="text-name1">
+            <h2><?= $passenger['title'] ?></h2>
+                <h2><?= $passenger['first_name'] ?></h2>
+                <h2><?= $passenger['last_name'] ?></h2></div>
         </div>
+        <?php endforeach; ?>
         <img
           class="separate-line-icon"
           alt=""
