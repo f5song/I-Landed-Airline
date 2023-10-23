@@ -1,4 +1,4 @@
-<?php
++<?php
 session_start();
 require_once '../../CRUD/config/db.php';
 
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Redirect ไปยังหน้าอื่น ยกตัวอย่างเช่น:
                 header('Location: ../PAYMENT/book3.php');
-                exit;
+                
             } else {
                 echo "ผิดพลาดในการบันทึกข้อมูลสำหรรับผู้โดยสาร ID: " . $passengerId . ", ข้อความผิดพลาด: " . $conn->error;
             }

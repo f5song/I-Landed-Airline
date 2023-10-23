@@ -685,17 +685,6 @@ $user_id = $_SESSION['user_login'];
             }
         });
 
-
-
-=======
-      document.getElementById("reserveButton").addEventListener("click", function(event) {
-
-      if (selectedSeats.length === 0 || selectedPassengers.length === 0) {
-          alert("โปรดเลือกที่นั่งและผู้โดยสาร");
-          event.preventDefault(); 
-      }
-});
->>>>>>> Stashed changes
     </script>
 
 

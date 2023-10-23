@@ -1,6 +1,85 @@
 
 <!-- http://localhost/ISAD-ilal/PAGE/ETICKET/checkticket.php -->
+<?php
+session_start();
+require_once '../../CRUD/config/db.php';
 
+// ตรวจสอบการล็อกอิน
+if (!isset($_SESSION['user_login'])) {
+  $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+  header('location: ../SIGNUPLOGIN/login.php');
+}
+
+// ตรวจสอบการออกจากระบบ
+if (isset($_GET['logout'])) {
+  session_destroy();
+  unset($_SESSION['username']);
+  header('location: ' . $_SESSION['redirect_url']);
+}
+
+// เชื่อมต่อฐานข้อมูล
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mydb";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// ตรวจสอบการเชื่อมต่อ
+if ($conn->connect_error) {
+  die("การเชื่อมต่อล้มเหลว: " . $conn->connect_error);
+}
+$user_id = $_SESSION['user_login'];
+
+// ดึงข้อมูลผู้โดยสาร
+$sql = "SELECT
+    r.reservation_id,
+    r.passenger_id,
+    r.flight_id,
+    r.baggage_weight,
+    r.total_price,
+    r.seat_number,
+    p.passenger_id,
+    p.title,
+    p.first_name,
+    p.last_name,
+    f.flight_id,
+    f.travel_date,
+    dep.state AS departure_state,
+    arr.state AS arrival_state,
+    DATE_FORMAT(f.`departure_time`, '%H:%i') AS formatted_departure_time, 
+    DATE_FORMAT(f.`arrival_time`, '%H:%i') AS formatted_arrival_time, 
+    f.available_seats,
+    f.aircraft_id,
+    f.flight_cost
+FROM reservations AS r
+JOIN passengers AS p ON r.passenger_id = p.passenger_id
+JOIN flight AS f ON r.flight_id = f.flight_id
+JOIN airport AS dep ON f.departure_airport = dep.airport_code
+JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
+
+
+$result = mysqli_query($conn, $sql);
+
+$passengers = array();
+
+while ($row = mysqli_fetch_assoc($result)) {
+  $passenger = array(
+    'title' => $row['title'],
+    'first_name' => $row['first_name'],
+    'last_name' => $row['last_name'],
+    'passenger_id' => $row['passenger_id'],
+    'reservation_id' => $row['reservation_id'],
+    'flight_id' => $row['flight_id'],
+    'travel_date' => $row['travel_date'],
+    'departure_state' => $row['departure_state'],
+    'arrival_state' => $row['arrival_state'],
+    'formatted_departure_time' => $row['formatted_departure_time'],
+    'formatted_arrival_time' => $row['formatted_arrival_time'],
+    'aircraft_id' => $row['aircraft_id'],
+  );
+  $passengers[] = $passenger;
+}
+?>
 <!DOCTYPE html>
 
 <html>
@@ -83,7 +162,7 @@
                                 รหัสการจอง
                             </p>
                             <p class="reserv-info"> 
-                                **ใส่ด้วย** 
+                            <?php echo $passenger['reservation_id']; ?>
                             </p>
                         </div>
                 </div>
@@ -99,7 +178,7 @@
                                 i landed airline 
                             </p>
                             <p style="font-size: large;">
-                                **aircraft-id**
+                                <p> aircraft id : <?php echo $passenger['aircraft_id']; ?></p> 
                             </p>
                         </div>
                     </div>
@@ -107,10 +186,10 @@
                     <div class="dpt-arv">     
                         <div class="dpt-box">
                             <p class="dpt-time"> 
-                                **00:00** 
+                                <?php echo $passenger['departure_state']; ?> 
                             </p>
                             <p class="dpt-airport"> 
-                                **BKK** 
+                                <?php echo $passenger['formatted_departure_time']; ?>
                             </p>
                         </div>
                         <div class="dpt-arv-line">
@@ -129,19 +208,21 @@
     
                         <div class="arv-box">
                             <p class="arv-time">
-                                **11:11** 
+                                <?php echo $passenger['arrival_state']; ?>  
                             </p>
                             <p class="arv-airport">
-                                **CNX**
+                                <?php echo $passenger['formatted_arrival_time']; ?> 
                             </p>
                         </div>
                     </div>
     
                     <div class="top-right" style="padding-bottom: 20px;">   
                         <p  style="font-size: large;"> วันที่ออกเดินทาง </p>
-                        <p  style="font-size: small;"> **datetime** </p>
+                        <p  style="font-size: small;"> <?php echo $passenger['travel_date']; ?>  </p>
                     </div> 
                 </div>
+
+                
     
                 <table-box>
                     <div class="text-ticket-info-box">
@@ -150,47 +231,28 @@
     
                     <table>
                         <tr>
-                            <th>ชื่อผู้โดยสาร?</th>
-                            <th>ที่นั่ง?</th>
-                            <th>กระเป๋า?</th>
-                            <th>บลาๆๆ</th>
+                            <th>รหัสผู้โดยสาร</th>
+                            <th>ชื่อผู้โดยสาร</th>
+                            <th>ที่นั่ง</th>
+                            <th>กระเป๋า</th>                         
                         </tr>
-                        <tr>
-                            <td>Alfreds Futterkiste</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                            <th>บลาๆๆ</th>
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                            <td>Francisco Chang</td>
-                            <td>Mexico</td>
-                            <th>บลาๆๆ</th>
-                        </tr>
-                        <tr>
-                            <td>Ernst Handel</td>
-                            <td>Roland Mendel</td>
-                            <td>Austria</td>
-                            <th>บลาๆๆ</th>
-                        </tr>
-                        <tr>
-                            <td>Island Trading</td>
-                            <td>Helen Bennett</td>
-                            <td>UK</td>
-                            <th>บลาๆๆ</th>
-                        </tr>
-                        <tr>
-                            <td>Laughing Bacchus Winecellars</td>
-                            <td>Yoshi Tannamuri</td>
-                            <td>Canada</td>
-                            <th>บลาๆๆ</th>
-                        </tr>
-                        <tr>
-                            <td>Magazzini Alimentari Riuniti</td>
-                            <td>Giovanni Rovelli</td>
-                            <td>Italy</td>
-                            <th>บลาๆๆ</th>
-                        </tr>
+                        <?php
+
+                        $result = mysqli_query($conn, $sql);
+
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td data-label='Departure State'>" . $row["passenger_id"] . "</td>";
+                                echo "<td data-label='Arrival Time'>" . $row['first_name'] . ' ' . $row['last_name'] . "</td>";
+                                echo "<td data-label='Arrival State'>" . $row["seat_number"] . "</td>";
+                                echo "<td data-label='Departure Time'>" . $row['baggage_weight'] . "</td>";
+                                echo "</tr>";
+                            }
+                        }
+                        mysqli_close($conn);
+                        
+                        ?>
                     </table>
                 </table-box>
             </div>  
@@ -203,7 +265,7 @@
                     
                     <div class="booking-number">
                         <pgrey>หมายเลขการจอง</pgrey>
-                        <pblack>**ควยหีแตดใส่ด้วยควยๆๆๆ**</pblack>
+                        <pblack><?php echo $passenger['reservation_id']; ?> </pblack>
                     </div>
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="439" height="2" viewBox="0 0 439 2" fill="none">
@@ -215,14 +277,14 @@
 
                             <div class="flight-in-travelinfo">
                                 <pblack>เที่ยวบิน</pblack>
-                                <pgrey style="font-size: 15px;">**22 กย 17800**</pgrey>
+                                <pgrey style="font-size: 15px;"><?php echo $passenger['flight_id']; ?></pgrey>
                             </div>
 
                         <div class="fromto">
                             <pblack>จาก</pblack>
-                            <pgrey >กรุงเทพ(bkk)</pgrey>
+                            <pgrey ><?php echo $passenger['departure_state']; ?>  </pgrey>
                             <pblack>ไปถึง</pblack>
-                            <pgrey>เชียงใหม่(cnx)</pgrey>
+                            <pgrey><?php echo $passenger['arrival_state']; ?>  </pgrey>
                         </div>
 
                     </div>
@@ -233,7 +295,7 @@
                 
                     <div class="passenger">
                         <pgrey>ชื่อผู้จอง</pgrey>
-                        <pname>**ควยหีแตดใส่ด้วยควยๆๆๆ**</pname>
+                        <pname><?php echo $passenger['first_name'] . ' '. $passenger['last_name']; ?></pname>
                     </div>
                 </div>
             </div>

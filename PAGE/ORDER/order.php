@@ -1,16 +1,63 @@
 <?php
 session_start();
 require_once '../../CRUD/config/db.php';
+
+// ตรวจสอบการล็อกอิน
 if (!isset($_SESSION['user_login'])) {
-    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
-    $_SESSION['notify'] = "กรุณาเข้าสู่ระบบก่อนใช้งาน";
-    header('location: ../SIGNUPLOGIN/login.php');
+  $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+  header('location: ../SIGNUPLOGIN/login.php');
 }
+
+// ตรวจสอบการออกจากระบบ
 if (isset($_GET['logout'])) {
-    session_destroy();
-    unset($_SESSION['username']);
-    header('location: ' . $_SESSION['redirect_url']);
+  session_destroy();
+  unset($_SESSION['username']);
+  header('location: ' . $_SESSION['redirect_url']);
 }
+
+// เชื่อมต่อฐานข้อมูล
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mydb";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// ตรวจสอบการเชื่อมต่อ
+if ($conn->connect_error) {
+  die("การเชื่อมต่อล้มเหลว: " . $conn->connect_error);
+}
+$user_id = $_SESSION['user_login'];
+
+// ดึงข้อมูลผู้โดยสาร
+$sql = "SELECT DISTINCT
+    r.reservation_id,
+    r.passenger_id,
+    r.flight_id,
+    r.baggage_weight,
+    r.total_price,
+    r.seat_number,
+    p.passenger_id,
+    p.title,
+    p.first_name,
+    p.last_name,
+    f.flight_id,
+    f.travel_date,
+    dep.state AS departure_state,
+    arr.state AS arrival_state,
+    DATE_FORMAT(f.`departure_time`, '%H:%i') AS formatted_departure_time, 
+    DATE_FORMAT(f.`arrival_time`, '%H:%i') AS formatted_arrival_time, 
+    f.available_seats,
+    f.aircraft_id,
+    f.flight_cost,
+    s.class
+FROM reservations AS r
+JOIN passengers AS p ON r.passenger_id = p.passenger_id
+JOIN flight AS f ON r.flight_id = f.flight_id
+JOIN seats AS s ON r.seat_number = s.seat_number
+JOIN airport AS dep ON f.departure_airport = dep.airport_code
+JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
+
+
 ?>
 
 <!DOCTYPE html>
@@ -124,38 +171,48 @@ if (isset($_GET['logout'])) {
                 <div class="header-myorder">
                     <h1>คำสั่งซื้อทั้งหมด</h1>
                 </div>
-                <div class="content-myorder">
-                    <div class="list1-order">
-                        <div class="listbarblue">
-                            <p1>หมายเลขการจอง</p1>
-                            <p3>108256480</p3>
-                        </div>
-                        <div class="listcontent">
-                            <div class="listname">
-                                <img src="./img/user.png" alt="">
-                                <span>นาย</span>
-                                <span>พ่อมึงดิ</span>
-                                <span>แม่มึงอะ</span>
-                            </div>
-                            <div class="listwhere">
-                                <img src="./img/logo_airline.png" alt="">
-                                <span>กรุงเทพ(BKK)</span>
-                                <span>ไป</span>
-                                <span>เชียงใหม่(CNX)</span>
-                            </div>
-                            <div class="listclass">
-                                <div class="allin-listclass">
-                                    <img src="./img/seat.png" alt="">
-                                    <p>ชั้นธุรกิจ(Businees Class)</p>
-                                </div>
-                                <div class="button-seeticket">
-                                    <button>ดูตั๋วอิเล็กทรอนิกส์</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    
+                    <?php
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo '<div class="content-myorder">';
+                            echo '<div class="list1-order">';
+                            echo '<div class="listbarblue">';
+                            echo '<p1>หมายเลขการจอง</p1>';
+                            echo '<p3>' . $row['reservation_id'] . '</p3>';
+                            echo '</div>';
+                            echo '<div class="listcontent">';
+                            echo '<div class="listname">';
+                            echo '<img src="./img/user.png" alt="">';
+                            echo '<span>' . $row['title'] . ' ' . $row['first_name'] . ' ' . $row['last_name'] . '</span>';
+                            echo '</div>';
+                            echo '<div class="listwhere">';
+                            echo '<img src="./img/logo_airline.png" alt="">';
+                            echo '<span>' . $row['departure_state'] . '</span>';
+                            echo '<span>ไป</span>';
+                            echo '<span>' . $row['arrival_state'] . '</span>';
+                            echo '</div>';
+                            echo '<div class="listclass">';
+                            echo '<div class="allin-listclass">';
+                            echo '<img src="./img/seat.png" alt="">';
+                            echo '<p>' . $row['class'] . '</p>';
+                            echo '</div>';
+                            echo '<div class="button-seeticket">';
+                            echo '<button>ดูตั๋วอิเล็กทรอนิกส์</button>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    }
+                    mysqli_close($conn);
+
+                    ?>
             </div>
+
             <div class="show-hide-listbook" id="listbook-content"></div>
             <div class="show-hide-myacc" id="myacc-content">
                 <div class="myacclock">

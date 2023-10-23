@@ -36,6 +36,7 @@ $user_id = $_SESSION['user_login'];
 
 <head>
     <link rel="stylesheet" href="aircraft2.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@600&display=swap">
 </head>
 
 <body>
@@ -74,213 +75,381 @@ $user_id = $_SESSION['user_login'];
             </div>
         </div>
 
-        <div class="seat_plane">
-            <div id="seatContainer">
-                <h2>เลือกที่นั่ง</h2>
-                <div class="seat" data-seat="1A" id="economy">
-                    <span class="seat-name">1A</span>
-                    <input type="checkbox" name="selectedSeats[]" value="1A">
+        <div class="aircraft">
+            <div class="plane">
+                <div class="cockpit">
+                    <h1>I LANDED AIRLINE</h1>
                 </div>
-                <!-- <div class="checkbox-wrapper-16" data-seat="1A" id="economy">
-                    <label class="checkbox-wrapper">
-                        <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="1A">
-                        <span class="checkbox-tile">
-                            <span class="checkbox-label">1A</span>
-                        </span>
-                    </label>
-                </div> -->
+                <div class="exit exit--front fuselage"></div>
+                <div class="cabin fuselage">
+                    <div class="row row-1 seat">
+                        <div class="checkbox-wrapper-1 seat" data-seat="1A" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="1A">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">1A</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-1 seat" data-seat="1B" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="1B">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">1B</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-1 seat" data-seat="1C" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="1C">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">1C</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-1 seat" data-seat="1D" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="1D">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">1D</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-1 seat" data-seat="1E" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="1E">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">1E</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-1 seat" data-seat="1F" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="1F">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">1F</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="row row-2 seat">
+                        <div class="checkbox-wrapper-1 seat" data-seat="2A" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="2A">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">2A</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-1 seat" data-seat="2B" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="2B">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">2B</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-1 seat" data-seat="2C" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="2C">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">2C</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-1 seat" data-seat="2D" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="2D">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">2D</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-1 seat" data-seat="2E" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="2E">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">2E</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-1 seat" data-seat="2F" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="2F">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">2F</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
 
-                <div class="seat" data-seat="1B" id="economy">
-                    <span class="seat-name">1B</span>
-                    <input type="checkbox" name="selectedSeats[]" value="1B">
-                </div>
-                <div class="seat" data-seat="1C" id="economy">
-                    <span class="seat-name">1C</span>
-                    <input type="checkbox" name="selectedSeats[]" value="1C">
-                </div>
-                <div class="seat" data-seat="1D" id="economy">
-                    <span class="seat-name">1D</span>
-                    <input type="checkbox" name="selectedSeats[]" value="1D">
-                </div>
-                <div class="seat" data-seat="1E" id="economy">
-                    <span class="seat-name">1E</span>
-                    <input type="checkbox" name="selectedSeats[]" value="1E">
-                </div>
-                <div class="seat" data-seat="1F" id="economy">
-                    <span class="seat-name">1F</span>
-                    <input type="checkbox" name="selectedSeats[]" value="1F">
-                </div>
-            </div>
+                   
+                    <div class="row row-5 seat">
+                        <div class="checkbox-wrapper-2 seat" data-seat="3A" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="3A">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">3A</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="3B" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="3B">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">3B</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="3C" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="3C">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">3C</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="3D" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="3D">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">3D</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="3E" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="3E">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">3E</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="3F" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="3F">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">3F</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
 
-            <div id="seatContainer">
-                <div class="seat" data-seat="2A" id="economy">
-                    <span class="seat-name">2A</span>
-                    <input type="checkbox" name="selectedSeats[]" value="2A">
-                </div>
-                <div class="seat" data-seat="2B" id="economy">
-                    <span class="seat-name">2B</span>
-                    <input type="checkbox" name="selectedSeats[]" value="2B">
-                </div>
-                <div class="seat" data-seat="2C" id="economy">
-                    <span class="seat-name">2C</span>
-                    <input type="checkbox" name="selectedSeats[]" value="2C">
-                </div>
-                <div class="seat" data-seat="2D" id="economy">
-                    <span class="seat-name">2D</span>
-                    <input type="checkbox" name="selectedSeats[]" value="2D">
-                </div>
-                <div class="seat" data-seat="2E" id="economy">
-                    <span class="seat-name">2E</span>
-                    <input type="checkbox" name="selectedSeats[]" value="2E">
-                </div>
-                <div class="seat" data-seat="2F" id="economy">
-                    <span class="seat-name">2F</span>
-                    <input type="checkbox" name="selectedSeats[]" value="F">
-                </div>
-            </div>
+                    <div class="row row-6 seat">
+                        <div class="checkbox-wrapper-2 seat" data-seat="4A" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="4A">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">4A</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="4B" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="4B">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">4B</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="4C" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="4C">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">4C</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="4D" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="4D">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">4D</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="4E" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="4E">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">4E</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="4F" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="4F">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">4F</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
 
-            <div id="seatContainer">
-                <div class="seat" data-seat="3A" id="business">
-                    <span class="seat-name">3A</span>
-                    <input type="checkbox" name="selectedSeats[]" value="3A">
-                </div>
-                <div class="seat" data-seat="3B" id="business">
-                    <span class="seat-name">3B</span>
-                    <input type="checkbox" name="selectedSeats[]" value="3B">
-                </div>
-                <div class="seat" data-seat="3C" id="business">
-                    <span class="seat-name">3C</span>
-                    <input type="checkbox" name="selectedSeats[]" value="3C">
-                </div>
-                <div class="seat" data-seat="3D" id="business">
-                    <span class="seat-name">3D</span>
-                    <input type="checkbox" name="selectedSeats[]" value="3D">
-                </div>
-                <div class="seat" data-seat="3E" id="business">
-                    <span class="seat-name">3E</span>
-                    <input type="checkbox" name="selectedSeats[]" value="3E">
-                </div>
-                <div class="seat" data-seat="3F" id="business">
-                    <span class="seat-name">3F</span>
-                    <input type="checkbox" name="selectedSeats[]" value="3F">
-                </div>
-            </div>
+                    <div class="row row-7 seat">
+                        <div class="checkbox-wrapper-2 seat" data-seat="5A" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="5A">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">5A</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="5B" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="5B">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">5B</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="5C" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="5C">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">5C</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="5D" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="5D">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">5D</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="5E" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="5E">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">5E</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-2 seat" data-seat="5F" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="5F">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">5F</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
 
-            <div id="seatContainer">
-                <div class="seat" data-seat="4A" id="business">
-                    <span class="seat-name">4A</span>
-                    <input type="checkbox" name="selectedSeats[]" value="4A">
-                </div>
-                <div class="seat" data-seat="4B" id="business">
-                    <span class="seat-name">4B</span>
-                    <input type="checkbox" name="selectedSeats[]" value="4B">
-                </div>
-                <div class="seat" data-seat="4C" id="business">
-                    <span class="seat-name">4C</span>
-                    <input type="checkbox" name="selectedSeats[]" value="4C">
-                </div>
-                <div class="seat" data-seat="4D" id="business">
-                    <span class="seat-name">4D</span>
-                    <input type="checkbox" name="selectedSeats[]" value="4D">
-                </div>
-                <div class="seat" data-seat="4E" id="business">
-                    <span class="seat-name">4E</span>
-                    <input type="checkbox" name="selectedSeats[]" value="4E">
-                </div>
-                <div class="seat" data-seat="4F" id="business">
-                    <span class="seat-name">4F</span>
-                    <input type="checkbox" name="selectedSeats[]" value="4F">
-                </div>
-            </div>
+                
 
-            <!-- business -->
+                    <div class="row row-9 seat">
+                        <div class="checkbox-wrapper-3 seat" data-seat="6A" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="6A">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">6A</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-3 seat" data-seat="6B" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="6B">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">6B</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-3 seat" data-seat="6C" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="6C">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">6C</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-3 seat" data-seat="6D" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="6D">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">6D</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-3 seat" data-seat="6E" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="6E">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">6E</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-3 seat" data-seat="6F" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="6F">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">6F</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
 
-            <div id="seatContainer">
-                <div class="seat" data-seat="5A" id="business">
-                    <span class="seat-name">5A</span>
-                    <input type="checkbox" name="selectedSeats[]" value="5A">
-                </div>
-                <div class="seat" data-seat="5B" id="business">
-                    <span class="seat-name">5B</span>
-                    <input type="checkbox" name="selectedSeats[]" value="5B">
-                </div>
-                <div class="seat" data-seat="5C" id="business">
-                    <span class="seat-name">5C</span>
-                    <input type="checkbox" name="selectedSeats[]" value="5C">
-                </div>
-                <div class="seat" data-seat="5D" id="business">
-                    <span class="seat-name">5D</span>
-                    <input type="checkbox" name="selectedSeats[]" value="5D">
-                </div>
-                <div class="seat" data-seat="5E" id="business">
-                    <span class="seat-name">5E</span>
-                    <input type="checkbox" name="selectedSeats[]" value="5E">
-                </div>
-                <div class="seat" data-seat="5F" id="business">
-                    <span class="seat-name">5F</span>
-                    <input type="checkbox" name="selectedSeats[]" value="5F">
-                </div>
-            </div>
+                    <div class="row row-10 seat">
+                        <div class="checkbox-wrapper-3 seat" data-seat="7A" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="7A">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">7A</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-3 seat" data-seat="7B" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="7B">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">7B</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-3 seat" data-seat="7C" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="7C">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">7C</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-3 seat" data-seat="7D" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="7D">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">7D</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-3 seat" data-seat="7E" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="7E">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">7E</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper-3 seat" data-seat="7F" id="economy">
+                            <label class="checkbox-wrapper">
+                                <input class="checkbox-input" type="checkbox" name="selectedSeats[]" value="7F">
+                                <span class="checkbox-tile">
+                                    <span class="checkbox-label seat-name">7F</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
 
-            <div id="seatContainer">
-                <div class="seat" data-seat="6A" id="first">
-                    <span class="seat-name">6A</span>
-                    <input type="checkbox" name="selectedSeats[]" value="6A">
                 </div>
-                <div class="seat" data-seat="6B" id="first">
-                    <span class="seat-name">6B</span>
-                    <input type="checkbox" name="selectedSeats[]" value="6B">
-                </div>
-                <div class="seat" data-seat="6C" id="first">
-                    <span class="seat-name">6C</span>
-                    <input type="checkbox" name="selectedSeats[]" value="6C">
-                </div>
-                <div class="seat" data-seat="6D" id="first">
-                    <span class="seat-name">6D</span>
-                    <input type="checkbox" name="selectedSeats[]" value="6D">
-                </div>
-                <div class="seat" data-seat="6E" id="first">
-                    <span class="seat-name">6E</span>
-                    <input type="checkbox" name="selectedSeats[]" value="6E">
-                </div>
-                <div class="seat" data-seat="6F" id="first">
-                    <span class="seat-name">6F</span>
-                    <input type="checkbox" name="selectedSeats[]" value="6F">
-                </div>
-            </div>
-
-            <div id="seatContainer">
-                <div class="seat" data-seat="7A" id="first">
-                    <span class="seat-name">7A</span>
-                    <input type="checkbox" name="selectedSeats[]" value="7A">
-                </div>
-                <div class="seat" data-seat="7B" id="first">
-                    <span class="seat-name">7B</span>
-                    <input type="checkbox" name="selectedSeats[]" value="7B">
-                </div>
-                <div class="seat" data-seat="7C" id="first">
-                    <span class="seat-name">7C</span>
-                    <input type="checkbox" name="selectedSeats[]" value="7C">
-                </div>
-                <div class="seat" data-seat="7D" id="first">
-                    <span class="seat-name">7D</span>
-                    <input type="checkbox" name="selectedSeats[]" value="7D">
-                </div>
-                <div class="seat" data-seat="7E" id="first">
-                    <span class="seat-name">7E</span>
-                    <input type="checkbox" name="selectedSeats[]" value="7E">
-                </div>
-                <div class="seat" data-seat="7F" id="first">
-                    <span class="seat-name">7F</span>
-                    <input type="checkbox" name="selectedSeats[]" value="7F">
-                </div>
+                <div class="exit exit--back fuselage"></div>
             </div>
         </div>
-
         <div class="seat_contentright">
             <div class="box_duo">
                 <div class="header-seatpair">
-                    <p>จับคู่ที่นั่ง & ผู้โดยสาร</p>
+                    <h2>จับคู่ที่นั่ง & ผู้โดยสาร</h2>
                 </div>
                 <div class="header2-seatpair">
                     <p>ที่นั่งที่เลือก:<span id="selectedSeat"></span></p>
@@ -291,7 +460,6 @@ $user_id = $_SESSION['user_login'];
                 <button id="reserveButton" type="submit">ยืนยันการจองที่นั่ง</button>
             </div>
         </div>
-
     </form>
 
 
@@ -361,15 +529,12 @@ $user_id = $_SESSION['user_login'];
 
     <script>
         document.getElementById("reserveButton").addEventListener("click", function (event) {
-            // ตรวจสอบการเลือกที่นั่งและผู้โดยสาร
+
             if (selectedSeats.length === 0 || selectedPassengers.length === 0) {
-                // แจ้งเตือนผู้ใช้ให้เลือกที่นั่งและผู้โดยสาร
                 alert("โปรดเลือกที่นั่งและผู้โดยสาร");
-                event.preventDefault(); // ยกเลิกการส่งแบบฟอร์ม
+                event.preventDefault();
             }
         });
-
-
 
     </script>
 
