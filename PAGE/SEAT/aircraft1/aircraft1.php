@@ -364,7 +364,7 @@ $user_id = $_SESSION['user_login'];
         <div class="seat_contentright">
             <div class="box_duo">
                 <div class="header-seatpair">
-                    <p>จับคู่ที่นั่ง & ผู้โดยสาร</p>
+                    <h2>จับคู่ที่นั่ง & ผู้โดยสาร</h2>
                 </div>
                 <div class="header2-seatpair">
                     <p>ที่นั่งที่เลือก:<span id="selectedSeat"></span></p>
