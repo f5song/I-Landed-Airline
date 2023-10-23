@@ -125,9 +125,10 @@ while ($row = mysqli_fetch_assoc($result)) {
         <div class="name-passenger">
           <div class="text-paeesnger-name">รายชื่อผู้โดยสาร</div>
           <div class="text-name1">
-            <h2><?= $passenger['title'] ?></h2>
-                <h2><?= $passenger['first_name'] ?></h2>
-                <h2><?= $passenger['last_name'] ?></h2></div>
+            <span><?= $passenger['title'] ?></span>
+                <span><?= $passenger['first_name'] ?></span>
+                <span><?= $passenger['last_name'] ?></span>
+          </div>
         </div>
         <?php endforeach; ?>
         <img

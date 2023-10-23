@@ -11,16 +11,7 @@
     href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@600&display=swap"
     />
 
-    <link 
-    rel="stylesheet" 
-    href="checkticket.css"
-    />
-
-    <link 
-    rel="stylesheet" 
-    href="../BOOKING/b_insert_info.css"
-    />
-
+    <link rel="stylesheet" href="checkticket.css"/>
     <link rel="stylesheet" href="../ALLNAVBAR/navbar.css" />
 
 </head>
