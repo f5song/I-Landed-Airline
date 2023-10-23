@@ -10,11 +10,10 @@
   border-color: gray;
   border-width: 1px;
   width: 900px;
-  height: 700px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }.backgroundlock{
   width: 100%;
   display: flex;
@@ -39,9 +38,14 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }.righttop{
   width: 70%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #ebecf0;
 }.img_baggage img{
   width: 50px;
@@ -85,9 +89,9 @@
   display: flex;
 }.content-box-right2{
   width: 100%;
-  height: 500px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }.box-white{
   background-color: white;
   width: 80%;

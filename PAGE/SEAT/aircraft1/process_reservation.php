@@ -41,9 +41,15 @@ if (count($seatNumbers) != count($passengerIDs))  {
         }
     }
 
+<<<<<<< Updated upstream
     header('Location: ../../BAGGAGE/baggage.php');
     exit;
 
+=======
+    // เปลี่ยนหน้าไปยัง "baggage.php"
+    header("Location: ../../BAGGAGE/baggage.php");
+    exit; // อย่าลืมใช้ exit เพื่อหยุดการดำเนินการของสคริปต์
+>>>>>>> Stashed changes
 
 }
 

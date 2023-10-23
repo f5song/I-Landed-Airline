@@ -108,9 +108,25 @@ if ($result_baggage) {
                 <h3>เลือกเที่ยวบินของคุณ</h3>
                 <p1>เลือกสัมภาระของคุณ</p1>
             </div>
+<<<<<<< Updated upstream
         </div>
         <div class="righttop">
             <div class="contentright1">
+=======
+            <div class="contentleft3">
+                <p>**from</p>
+                <p>ไป</p>
+                <p>**to</p>
+            </div>
+        </div>
+        <div class="righttop">
+            <div class="contentright1">
+                <div class="topright1">
+                    <h1>**from</h1>
+                    <h1>ไป</h1>
+                    <h1>**to</h1>
+                </div>
+>>>>>>> Stashed changes
                 <div class="bottomright1">
                     <img src="./img/logo_for_baggage.png" alt="">
                     <p>I Landed Airline</p>
