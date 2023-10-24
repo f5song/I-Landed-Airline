@@ -211,12 +211,17 @@
   top: calc(50% + 68.5px);
 }
 .detail-number-order {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: calc(50% - 596.5px);
   left: calc(50% + 147px);
   width: 439px;
   height: 392px;
   color: var(--color-gray-100);
+  background-color: white;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
 }
 .frame-for-payment-way {
   position: absolute;
@@ -1749,4 +1754,19 @@
 .info-paid{
   font-family: var(--font-noto-sans-thai);
   color: #000;
+}
+
+.text-booking,.text-passenger,.text-travel{
+  padding-left: 5%;
+  display: flex;
+  flex-direction: column;
+}
+.text-booking{
+  width: 100%;
+  height: 50px;
+}
+.text-booking span1,.travelfromto span1,.text-passenger span1,.text-travel span1{
+  font-size: 17px;
+  padding-top: 2%;
+  font-weight: bolder;
 }

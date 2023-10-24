@@ -83,7 +83,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 
   <link rel="stylesheet" href="./global3.css" />
   <link rel="stylesheet" href="./book3.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@400;500;600;700&display=swap" />
 </head>
 
 <body>
@@ -94,46 +95,34 @@ while ($row = mysqli_fetch_assoc($result)) {
       <div class="descrip-customer">
         <div class="text-descrip-customer">รายละเอียดผู้สั่งซื้อ</div>
         <div class="frame-fill-email">
-          <div class="info-paid"><?php echo $_SESSION['hello_user']; ?></div>
+          <div class="info-paid">
+            <?php echo $_SESSION['hello_user']; ?>
+          </div>
         </div>
         <div class="text-email">ที่อยู่อีเมล์</div>
       </div>
     </div>
     <div class="detail-number-order">
-      <div class="frame-for-all-detail-num-order"></div>
-      <div class="book-id">
-        <div class="text-book-id">หมายเลขการจอง</div>
-        <div class="text-fake-id"><?php echo $passenger['reservation_id']; ?></div>
-      </div>
-      <div class="your-travel">
-          <div class="text-depart-to-arri">
-            <div class="text-depart">
-              <ul class="bkk">
-                Hua Hin
-              </ul>
-            </div>
-            <div class="text-arri">Chiangmai</div>
-            <img
-              class="icon-arrow-right"
-              alt=""
-              src="./public/-icon-arrowright.svg"
-            />
-          </div>
-          <div class="text-your-travel">การเดินทางของคุณ</div>
-          <div class="text-date">2023-10-02</div>
-          <div class="fligh">
-            <div class="text-flight">เที่ยวบิน</div>
+        <div class="text-booking">
+          <span1>หมายเลขการจอง</span1>
+          <span>99999999</span>
+        </div>
+        <img src="./img/separate-line.svg" alt="">
+        <div class="text-travel">
+          <span1>การเดินทางของคุณ</span1>
+          <span1>เที่ยวบิน</span1>
+          <span>2023-08-21</span>
+          <div class="travelfromto">
+            <span1>Hue</span1>
+            <span1>to</span1>
+            <span1>hell</span1>
           </div>
         </div>
-
-        <div class="name-passenger">
-          <div class="text-paeesnger-name">รายชื่อผู้โดยสาร</div>
-          <div class="text-name1"> อิอิ</div>
+        <img src="./img/separate-line.svg" alt="">
+        <div class="text-passenger">
+          <span1>รายชื่อผู้โดยสาร</span1>
+          <span>นาย ง่วงนอน จุงเบย</span>
         </div>
-
-      <img class="separate-line-icon" alt="" src="./public/separate-line.svg" />
-
-      <img class="separate-line-icon1" alt="" src="./public/separate-line.svg" />
     </div>
     <div class="frame-for-paying">
       <div class="top-frame">
@@ -400,13 +389,13 @@ while ($row = mysqli_fetch_assoc($result)) {
   var buttonContinueOrder2 = document.getElementById("buttonContinueOrder2");
   var buttonContinueOrder3 = document.getElementById("buttonContinueOrder3");
   if (buttonContinueOrder1 || buttonContinueOrder2 || buttonContinueOrder3) {
-    buttonContinueOrder1.addEventListener("click", function(e) {
+    buttonContinueOrder1.addEventListener("click", function (e) {
       window.location.href = "../ETICKET/checkticket.php";
     });
-    buttonContinueOrder2.addEventListener("click", function(e) {
+    buttonContinueOrder2.addEventListener("click", function (e) {
       window.location.href = "../ETICKET/checkticket.php";
     });
-    buttonContinueOrder3.addEventListener("click", function(e) {
+    buttonContinueOrder3.addEventListener("click", function (e) {
       window.location.href = "../ETICKET/checkticket.php";
     });
   }
