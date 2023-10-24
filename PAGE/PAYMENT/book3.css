@@ -26,13 +26,12 @@
   position: absolute;
   top: calc(50% - 1px);
   left: calc(50% - 68px);
-  border: 1px solid var(--dark-gray-low-blue);
   box-sizing: border-box;
   width: 278px;
   height: 31px;
 }
 .frame-fill-email {
-  top: calc(50% + 46px);
+  top: calc(50% + 50px);
 }
 .p {
   margin: 0;
