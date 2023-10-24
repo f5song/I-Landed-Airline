@@ -161,13 +161,12 @@ $conn->close();
         </div>
         <img src="./img/separate-line.svg" alt="">
         <div class="text-travel">
-          <span1>การเดินทางของคุณ</span1>
           <span1>เที่ยวบิน</span1>
           <span><?php echo $passenger['travel_date']; ?></span>
           <div class="travelfromto">
-            <span1><?php echo $passenger['departure_state']; ?></span1>
-            <span1>to</span1>
-            <span1><?php echo $passenger['arrival_state']; ?></span1>
+            <span><?php echo $passenger['departure_state']; ?></span>
+            <span>to</span>
+            <span><?php echo $passenger['arrival_state']; ?></span>
           </div>
         </div>
         <img src="./img/separate-line.svg" alt="">
