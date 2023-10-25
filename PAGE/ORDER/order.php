@@ -132,14 +132,6 @@ JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
                         <p>คำสั่งซื้อของฉัน</p>
                     </div>
                 </div>
-                <div class="listbook">
-                    <div class="img-order">
-                        <img src="./img/listbook.png" alt="">
-                    </div>
-                    <div class="text-listbook" id="listbookforbutton">
-                        <p>รายการจองทั้งหมด</p>
-                    </div>
-                </div>
                 <div class="myacc">
                     <div class="img-order">
                         <img src="./img/myacc.png" alt="">
@@ -371,7 +363,6 @@ JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
 
         document.getElementById("myorderforbutton").addEventListener("click", function () {
             var myorder = document.getElementById("myorder-content");
-            var listbook = document.getElementById("listbook-content");
             var myacc = document.getElementById("myacc-content");
             var editacc = document.getElementById("editacc-content");
             var deleteacc = document.getElementById("deleteacc-content");
@@ -380,7 +371,6 @@ JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
             if (myorder.style.display === "none") {
                 // ถ้าซ่อนอยู่ให้โชว์ "My Order" และซ่อน "List of Books"
                 myorder.style.display = "flex";
-                listbook.style.display = "none";
                 myacc.style.display = "none";
                 editacc.style.display = "none";
                 deleteacc.style.display = "none";
@@ -389,31 +379,9 @@ JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
                 myorder.style.display = "none";
             }
         });
-
-        document.getElementById("listbookforbutton").addEventListener("click", function () {
-            var myorder = document.getElementById("myorder-content");
-            var listbook = document.getElementById("listbook-content");
-            var myacc = document.getElementById("myacc-content");
-            var editacc = document.getElementById("editacc-content");
-            var deleteacc = document.getElementById("deleteacc-content");
-
-            // ตรวจสอบสถานะการแสดงของ div
-            if (listbook.style.display === "none") {
-                // ถ้าซ่อนอยู่ให้โชว์ "List of Books" และซ่อน "My Order"
-                myorder.style.display = "none";
-                listbook.style.display = "block";
-                myacc.style.display = "none";
-                editacc.style.display = "none";
-                deleteacc.style.display = "none";
-            } else {
-                // ถ้าแสดงอยู่ให้ซ่อน "List of Books"
-                listbook.style.display = "none";
-            }
-        });
-
+        
         document.getElementById("myaccforbutton").addEventListener("click", function () {
             var myorder = document.getElementById("myorder-content");
-            var listbook = document.getElementById("listbook-content");
             var myacc = document.getElementById("myacc-content");
             var editacc = document.getElementById("editacc-content");
             var deleteacc = document.getElementById("deleteacc-content");
@@ -423,7 +391,6 @@ JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
             if (myacc.style.display === "none") {
                 // ถ้าซ่อนอยู่ให้โชว์ "List of Books" และซ่อน "My Order"
                 myorder.style.display = "none";
-                listbook.style.display = "none";
                 myacc.style.display = "block";
                 editacc.style.display = "none";
                 deleteacc.style.display = "none";
@@ -435,7 +402,6 @@ JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
 
         document.getElementById("editaccforbutton").addEventListener("click", function () {
             var myorder = document.getElementById("myorder-content");
-            var listbook = document.getElementById("listbook-content");
             var myacc = document.getElementById("myacc-content");
             var editacc = document.getElementById("editacc-content");
             var deleteacc = document.getElementById("deleteacc-content");
@@ -445,7 +411,6 @@ JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
             if (editacc.style.display === "none") {
                 // ถ้าซ่อนอยู่ให้โชว์ "List of Books" และซ่อน "My Order"
                 myorder.style.display = "none";
-                listbook.style.display = "none";
                 myacc.style.display = "none";
                 editacc.style.display = "block";
                 deleteacc.style.display = "none";
@@ -457,7 +422,6 @@ JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
 
         document.getElementById("deleteaccforbutton").addEventListener("click", function () {
             var myorder = document.getElementById("myorder-content");
-            var listbook = document.getElementById("listbook-content");
             var myacc = document.getElementById("myacc-content");
             var editacc = document.getElementById("editacc-content");
             var deleteacc = document.getElementById("deleteacc-content");
@@ -467,7 +431,6 @@ JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
             if (deleteacc.style.display === "none") {
                 // ถ้าซ่อนอยู่ให้โชว์ "List of Books" และซ่อน "My Order"
                 myorder.style.display = "none";
-                listbook.style.display = "none";
                 myacc.style.display = "none";
                 editacc.style.display = "none";
                 deleteacc.style.display = "block";
