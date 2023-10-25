@@ -155,9 +155,11 @@ $conn->close();
     <div class="detail-number-order">
         <div class="text-booking">
           <span1>หมายเลขการจอง</span1>
+
             <?php foreach ($passengers as $passenger): ?>
                   <div class="text-fake-id"><?php echo $passenger['reservation_id']; ?></div>
             <?php endforeach; ?>
+
         </div>
         <img src="./img/separate-line.svg" alt="">
         <div class="text-travel">
@@ -174,7 +176,7 @@ $conn->close();
         <div class="text-passenger">
           <span1>รายชื่อผู้โดยสาร</span1>
             <?php foreach ($passengers as $passenger): ?>
-              <div class="text-name1"><?php echo $passenger['title']; ?><?php echo $passenger['first_name']; ?> <?php echo $passenger['last_name']; ?></div>
+              <div class="text-name77"><?php echo $passenger['title']; ?><?php echo $passenger['first_name']; ?> <?php echo $passenger['last_name']; ?></div>
             <?php endforeach; ?>
         </div>
     </div>
@@ -360,7 +362,7 @@ $conn->close();
     <div class="div8" style="display: none;" id="1.1">
       <div class="frame-for-all-descrip-price2"></div>
       <div class="paid-by-credit" id="buttonContinueOrder1">
-        <div class="text-paid-by1">ชำระโดย บัตรเครดิต/เดบิต</div>
+        <button type="submit" name="credit_card" id="buttonContinueOrder1" class="text-paid-by1">ชำระโดย บัตรเครดิต/เดบิต</button>
       </div>
       <div class="text-click-to">
         เมื่อคลิกปุ่มด้านล่าง จะถือว่าเสร็จสิ้นการชำระเงินโดยทันที

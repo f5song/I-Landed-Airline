@@ -95,19 +95,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "UPDATE users SET title='$title1', first_name='$first_name1', last_name='$last_name1', phone_number='$phone_number1' WHERE user_id='$user_id'";
 
     if ($conn->query($sql) === TRUE) {
-        echo "อัปเดตข้อมูลสำเร็จ";
     } else {
         echo "ผิดพลาดในการอัปเดตข้อมูล: " . $conn->error;
     }
 
 
     $conn->close();
-    
-    echo "phone_number: " . $phone_number;
 }
 ?>
-<?php echo $_SESSION['user_login']; ?>
-<?php echo $row['aircraft_id'] ?>
 <!-- for go to browser -->
 
 <!DOCTYPE html>
@@ -338,7 +333,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
-                                <option value="6">6</option>
+
                             </select>
                             <div class="button-add" id="addfriend">ยืนยัน</div>
                         </div>

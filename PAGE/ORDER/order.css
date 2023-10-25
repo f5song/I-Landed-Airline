@@ -406,7 +406,7 @@ body{
     display: flex;
 }.myaccpassword{
     width: 50%;
-    height: 150px;
+    height: 200px;
     background-color: white;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 11px;
@@ -462,7 +462,7 @@ body{
     width: 100%;
     height: 100%;
 }button{
-    width: 150px;
+    width: 170px;
     height: 40px;
     margin-top: 20px;
     border-radius: 5px;
@@ -470,4 +470,9 @@ body{
     background-color: rgb(12, 144, 39);
     color: white;
     font-size: 20px;
+}
+.submitform2{
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
 }

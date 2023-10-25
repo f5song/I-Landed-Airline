@@ -30,8 +30,6 @@ $user_id = $_SESSION['user_login'];
 
 
 ?>
-s
-
 
 <!DOCTYPE html>
 <html>
@@ -40,6 +38,44 @@ s
     <link rel="stylesheet" href="aircraft1.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@600&display=swap">
 </head>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const flightID = urlParams.get('flight_id');
+
+            $.get("seat_status.php?flight_id=" + flightID, function (data) {
+                const reservedSeats = JSON.parse(data);
+
+                checkSeatStatus(reservedSeats);
+
+                $('input[type="checkbox"]').on("change", function () {
+                    checkSeatStatus(reservedSeats);
+                });
+            });
+
+            function checkSeatStatus(reservedSeats) {
+            $('input[type="checkbox"]').each(function () {
+                const seatNumber = $(this).val();
+                const seatElement = $(this).closest(".seat");
+                if (reservedSeats.includes(seatNumber)) {
+                    seatElement.addClass("reserved");
+                    $(this).prop("disabled", true);
+                    $(this).prop("checked", false);
+                    seatElement.css("cursor", "not-allowed"); // เพิ่มบรรทัดนี้
+                } else {
+                    seatElement.removeClass("reserved");
+                    $(this).prop("disabled", false);
+                    seatElement.css("cursor", "pointer"); // กำหนดเป็น "pointer" สำหรับที่นั่งที่ยังไม่ถูกจอง
+                }
+            });
+        }
+        });
+
+        
+    </script>
 
 <body>
     <form class="one-for-all" action="process_reservation.php?flight_id=<?php echo $flight_id; ?>" method="post">
@@ -597,6 +633,10 @@ s
                 <div class="exit exit--back fuselage"></div>
             </div>
         </div>
+
+
+
+        <!-- ------------------------------------ -->
         <div class="seat_contentright">
             <div class="box_duo">
                 <div class="header-seatpair">
@@ -613,19 +653,17 @@ s
         </div>
     </form>
 
-
-
-
+    
     <script>
     var selectedSeats = [];
     var selectedPassengers = [];
     var reservedSeats = []; // เก็บที่นั่งที่ถูกจองโดยผู้โดยสาร
     var seatpluspass = [];
 
-    function toggleSeat(seat) {
+        function toggleSeat(seat) {
         var seatId = seat.getAttribute("data-seat");
         var isChecked = seat.querySelector('input[type="checkbox"]').checked;
-        
+
         // ตรวจสอบว่าที่นั่งนี้ถูกจองหรือยัง
         if (reservedSeats.includes(seatId)) {
             alert("ที่นั่งนี้ถูกจองแล้ว");

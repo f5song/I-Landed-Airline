@@ -17,16 +17,41 @@
   transform: translate(-50%, -50%);
 }
 
-.selected {
-  background-color: #f00; /* สีแสดงที่นั่งที่ถูกเลือก */
+.checkbox-wrapper-1 .checkbox-tile .reserved {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  min-height: 45px;
+  border-radius: 0.5rem;
+  border: 2px solid #0e2c50;
+  background-color: #b0b19f;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.15s ease;
+  cursor: pointer;
+  position: relative;
 }
 
 .reserved {
-  background-color: #999; /* สีแสดงที่นั่งที่ถูกจอง */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  min-height: 45px;
+  border-radius: 0.5rem;
+  border: 1px solid #ff0d59;
+  background-color: #c83342;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.15s ease;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
 }
 
 #seatContainer {
-  text-align: center;
+  text-align: centerrgb(255, 0, 0)
   
 }.one-for-all{
   width: 100%;
