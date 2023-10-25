@@ -95,8 +95,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 }
 ?>
-<?php echo $_SESSION['user_login']; ?>
-<?php echo $row['aircraft_id'] ?>
 <!-- for go to browser -->
 
 <!DOCTYPE html>
