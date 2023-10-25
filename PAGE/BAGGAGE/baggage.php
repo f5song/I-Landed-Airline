@@ -98,96 +98,115 @@ if ($result_baggage) {
     </div>
     <div class="backgroundlock">
         <div class="boxlock">
-    <div class="toplock">
-        <div class="lefttop">
-            <div class="contentleft1">
-                <div class="img_baggage"><img src="./img/icon_baggage.png" alt=""></div>
-                <h1>สัมภาระ</h1>
-            </div>
-            <div class="contentleft2">
-                <h3>เลือกเที่ยวบินของคุณ</h3>
-                <p1>เลือกสัมภาระของคุณ</p1>
-            </div>
-        </div>
-        <div class="righttop">
-            <div class="contentright1">
-                <div class="bottomright1">
-                    <img src="./img/logo_for_baggage.png" alt="">
-                    <p>I Landed Airline</p>
+            <div class="toplock">
+                <div class="lefttop">
+                    <div class="contentleft1">
+                        <div class="img_baggage"><img src="./img/icon_baggage.png" alt=""></div>
+                        <h1>สัมภาระ</h1>
+                    </div>
+                    <div class="contentleft2">
+                        <h3>เลือกเที่ยวบินของคุณ</h3>
+                        <p1>เลือกสัมภาระของคุณ</p1>
+                    </div>
+                </div>
+                <div class="righttop">
+                    <div class="contentright1">
+                        <div class="bottomright1">
+                            <img src="./img/logo_for_baggage.png" alt="">
+                            <p>I Landed Airline</p>
+                        </div>
+                    </div>
+                    <div class="content-box-right2">
+
+                        <body>
+                            <div class="box-white">
+                                <form method="post" action="process_baggage.php">
+                                    <?php foreach ($passengers as $passenger): ?>
+                                        <div class="topbox">
+                                            <div class="mix-text-name">
+                                                <h2>
+                                                    <?= $passenger['title'] ?>
+                                                </h2>
+                                                <h2>
+                                                    <?= $passenger['first_name'] ?>
+                                                </h2>
+                                                <h2>
+                                                    <?= $passenger['last_name'] ?>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_0"
+                                                name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]"
+                                                value="0.00" class="radio-input">
+                                            <label for="radio<?= $passenger['passenger_id'] ?>_0" class="radio-label">
+                                                <div class="groupcircle-2kg">
+                                                    <span class="radio-inner-circle"></span>
+                                                    0 กิโลกรัม
+                                                </div>
+                                                <p>ราคา 0 บาท</p>
+                                            </label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_5"
+                                                name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]"
+                                                value="5.00" class="radio-input">
+                                            <label for="radio<?= $passenger['passenger_id'] ?>_5" class="radio-label">
+                                                <div class="groupcircle-2kg">
+                                                    <span class="radio-inner-circle"></span>
+                                                    5 กิโลกรัม
+                                                </div>
+                                                <p>ราคา 250 บาท</p>
+                                            </label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_10"
+                                                name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]"
+                                                value="10.00" class="radio-input">
+                                            <label for="radio<?= $passenger['passenger_id'] ?>_10" class="radio-label">
+                                                <div class="groupcircle-2kg">
+                                                    <span class="radio-inner-circle"></span>
+                                                    10 กิโลกรัม
+                                                </div>
+                                                <p>ราคา 320 บาท</p>
+                                            </label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_15"
+                                                name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]"
+                                                value="15.00" class="radio-input">
+                                            <label for="radio<?= $passenger['passenger_id'] ?>_15" class="radio-label">
+                                                <div class="groupcircle-2kg">
+                                                    <span class="radio-inner-circle"></span>
+                                                    15 กิโลกรัม
+                                                </div>
+                                                <p>ราคา 425 บาท</p>
+                                            </label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_20"
+                                                name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]"
+                                                value="20.00" class="radio-input">
+                                            <label for="radio<?= $passenger['passenger_id'] ?>_20" class="radio-label">
+                                                <div class="groupcircle-2kg">
+                                                    <span class="radio-inner-circle"></span>
+                                                    20 กิโลกรัม
+                                                </div>
+                                                <p>ราคา 455 บาท</p>
+                                            </label>
+                                        </div>
+                                        <!-- ... และ Radio buttons อื่น ๆ ... -->
+                                    <?php endforeach; ?>
+                                </form>
+                            </div>
+                        </body>
+                    </div>
                 </div>
             </div>
-            <div class="content-box-right2">
-            <body>
-    <div class="box-white">
-    <form method="post" action="process_baggage.php">
-    <?php foreach ($passengers as $passenger): ?>
-        <div class="topbox">
-            <div class="mix-text-name">
-                <h2><?= $passenger['title'] ?></h2>
-                <h2><?= $passenger['first_name'] ?></h2>
-                <h2><?= $passenger['last_name'] ?></h2>
+        </div>
+        <div class="for-button">
+                <button type="submit">Submit</button>
             </div>
-        </div>
-        <div class="radio-group">
-            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_0" name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]" value="0.00" class="radio-input">
-            <label for="radio<?= $passenger['passenger_id'] ?>_0" class="radio-label">
-                <div class="groupcircle-2kg">
-                    <span class="radio-inner-circle"></span>
-                    0 กิโลกรัม
-                </div>
-                <p>ราคา 0 บาท</p>
-            </label>
-        </div>
-        <div class="radio-group">
-            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_5" name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]" value="5.00" class="radio-input">
-            <label for="radio<?= $passenger['passenger_id'] ?>_5" class="radio-label">
-                <div class="groupcircle-2kg">
-                    <span class="radio-inner-circle"></span>
-                    5 กิโลกรัม
-                </div>
-                <p>ราคา 250 บาท</p>
-            </label>
-        </div>
-        <div class="radio-group">
-            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_10" name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]" value="10.00" class="radio-input">
-            <label for="radio<?= $passenger['passenger_id'] ?>_10" class="radio-label">
-                <div class="groupcircle-2kg">
-                    <span class="radio-inner-circle"></span>
-                    10 กิโลกรัม
-                </div>
-                <p>ราคา 320 บาท</p>
-            </label>
-        </div>
-        <div class="radio-group">
-            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_15" name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]" value="15.00" class="radio-input">
-            <label for="radio<?= $passenger['passenger_id'] ?>_15" class="radio-label">
-                <div class="groupcircle-2kg">
-                    <span class="radio-inner-circle"></span>
-                    15 กิโลกรัม
-                </div>
-                <p>ราคา 425 บาท</p>
-            </label>
-        </div>
-        <div class="radio-group">
-            <input type="radio" id="radio<?= $passenger['passenger_id'] ?>_20" name="passengers[<?= $passenger['passenger_id'] ?>][baggage_weight]" value="20.00" class="radio-input">
-            <label for="radio<?= $passenger['passenger_id'] ?>_20" class="radio-label">
-                <div class="groupcircle-2kg">
-                    <span class="radio-inner-circle"></span>
-                    20 กิโลกรัม
-                </div>
-                <p>ราคา 455 บาท</p>
-            </label>
-        </div>
-        <!-- ... และ Radio buttons อื่น ๆ ... -->
-    <?php endforeach; ?>
-    <button type="submit">Submit</button>
-</form>
-    </div>
-</body>
-    </div>
-        </div>
-    </div>
-        </div>
     </div>
 </body>
 
@@ -217,14 +236,14 @@ if ($result_baggage) {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => response.text()) // รับข้อมูลผลลัพธ์เป็นข้อความ
-            .then(data => {
-                // ทำสิ่งที่คุณต้องการกับข้อมูลผลลัพธ์ที่ได้รับ
-                alert(data); // แสดงข้อความเพื่อตรวจสอบเท่านั้น
-            })
-            .catch(error => {
-                console.error('เกิดข้อผิดพลาดในการส่งข้อมูล: ' + error);
-            });
+                .then(response => response.text()) // รับข้อมูลผลลัพธ์เป็นข้อความ
+                .then(data => {
+                    // ทำสิ่งที่คุณต้องการกับข้อมูลผลลัพธ์ที่ได้รับ
+                    alert(data); // แสดงข้อความเพื่อตรวจสอบเท่านั้น
+                })
+                .catch(error => {
+                    console.error('เกิดข้อผิดพลาดในการส่งข้อมูล: ' + error);
+                });
         });
     });
 </script>
