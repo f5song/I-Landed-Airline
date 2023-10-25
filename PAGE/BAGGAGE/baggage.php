@@ -197,6 +197,9 @@ if ($result_baggage) {
                                         </div>
                                         <!-- ... และ Radio buttons อื่น ๆ ... -->
                                     <?php endforeach; ?>
+                                    <div class="for-button">
+                                        <button type="submit">Submit</button>
+                                    </div>
                                 </form>
                             </div>
                         </body>
@@ -204,9 +207,6 @@ if ($result_baggage) {
                 </div>
             </div>
         </div>
-        <div class="for-button">
-                <button type="submit">Submit</button>
-            </div>
     </div>
 </body>
 
