@@ -4,14 +4,16 @@
     include '../../config/db.php';
     try {
         $seats = array();
-        $stmt = $conn->prepare("SELECT * FROM seat where flight_id = ?");
+        $stmt = $conn->prepare("SELECT * FROM seats WHERE flight_id = ?");
         $stmt->execute([$_GET['id']]);
         foreach ($stmt as $row) {
             array_push($seats, array(
-                'seat_id' => $row['seat_id'],
+                'seat_number' => $row['seat_number'],
                 'flight_id' => $row['flight_id'],
                 'seat_status' => $row['seat_status'],
-                'seat_class' => $row['seat_class']
+                'class' => $row['class'],
+                'aircraft_id' => $row['aircraft_id'],
+                'seat_price' => $row['seat_price'],
             ));
         }
         echo json_encode($seats);

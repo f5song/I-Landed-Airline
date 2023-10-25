@@ -10,11 +10,12 @@
     }
 
     try {
-        $stmt = $conn->prepare("UPDATE seat SET flight_id=?, seat_status=?, seat_class=? WHERE seat_id=?");
-        $stmt->bindParam(1, $data->flight_id);
-        $stmt->bindParam(2, $data->seat_status);
-        $stmt->bindParam(3, $data->seat_class);
-        $stmt->bindParam(4, $data->seat_id);
+        $stmt = $conn->prepare("UPDATE seats SET seat_status=?, class=?, seat_price=? WHERE seat_number=? AND flight_id=?");
+        $stmt->bindValue(1, $data->seat_status);
+        $stmt->bindValue(2, $data->class);
+        $stmt->bindValue(3, $data->seat_price);
+        $stmt->bindValue(4, $data->seat_number);
+        $stmt->bindValue(5, $data->flight_id);
 
         if($stmt->execute()){
             echo json_encode(array("status" => "complete"));

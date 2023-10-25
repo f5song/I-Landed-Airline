@@ -17,10 +17,6 @@
                 <h1 class="mt-5">Add flight details</h1>
             </div>
             <div class="mb-3">
-                <label class="form-label">flight ID *</label>
-                <input type="text" class="form-control" id="flight_id" required>
-            </div>
-            <div class="mb-3">
                 <label class="form-label">Departure airport *</label>
                 <select class="form-control" name="item-name" id="departure_airport" required="">
                     <option value="">---</option>
@@ -57,35 +53,27 @@
                 </div>
                 <div class="col">
                     <label class="form-label">Departure time *</label>
-                    <input type="time" class="form-control" id="departure_time" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label class="form-label">Arrival date *</label>
-                    <input type="date" class="form-control" id="arrival_date" required>
+                    <input type="datetime-local" class="form-control" id="departure_time" required>
                 </div>
                 <div class="col">
                     <label class="form-label">Arrival time *</label>
-                    <input type="time" class="form-control" id="arrival_time" required>
+                    <input type="datetime-local" class="form-control" id="arrival_time" required>
                 </div>
             </div>
             <div class="row">
+            </div>
+            <div class="row">
                 <div class="col">
-                    <label class="form-label">Economy class seat price</label>
-                    <input type="text" class="form-control" id="economy_class_price" required>
+                    <label class="form-label">aircraft_id</label>
+                    <input type="text" class="form-control" id="aircraft_id">
                 </div>
                 <div class="col">
-                    <label class="form-label">Business class seat price</label>
-                    <input type="text" class="form-control" id="business_class_price" required>
-                </div>
-                <div class="col">
-                    <label class="form-label">First class seat price</label>
-                    <input type="text" class="form-control" id="first_class_price" required>
+                    <label class="form-label">flight_cost</label>
+                    <input type="text" class="form-control" id="flight_cost">
                 </div>
             </div>
             <div class="mt-4">
-                <button type="button" onclick="flight_create()" class="btn btn-primary">Submit</button>
+                <button type="button" onclick="flight_create()" class="btn btn-primary" id="btn1">Submit</button>
                 <a class="btn btn-light" onclick="history.back()" role="button">Back</a>
             </div>
         </form>
@@ -100,22 +88,20 @@ var flight_create = function(){
     var arrivalAirport = document.getElementById('arrival_airport').value;
     var travelDate = new Date(document.getElementById('travel_date').value);
     var departureTime = document.getElementById('departure_time').value;
-    var arrivalDate = new Date(document.getElementById('arrival_date').value);
     var arrivalTime = document.getElementById('arrival_time').value;
+    var aircraftId = document.getElementById('aircraft_id').value;
+    var flightCost = document.getElementById('flight_cost').value;
     var currentTime = new Date();
 
     travelDate.setHours(departureTime.split(':')[0]);
     travelDate.setMinutes(departureTime.split(':')[1]);
-
-    arrivalDate.setHours(arrivalTime.split(':')[0]);
-    arrivalDate.setMinutes(arrivalTime.split(':')[1]);
 
     if (departureAirport === arrivalAirport) {
         alert('Error: Departure airport and Arrival airport cannot be the same.');
         return;
     }
 
-    if (travelDate < currentTime || arrivalDate < currentTime) {
+    if (travelDate < currentTime) {
         alert('Error: Dates and times cannot be in the past.');
         return;
     }
@@ -124,16 +110,13 @@ var flight_create = function(){
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-        "flight_id": document.getElementById('flight_id').value,
         "departure_airport": departureAirport,
         "arrival_airport": arrivalAirport,
         "travel_date": document.getElementById('travel_date').value,
         "departure_time": departureTime,
-        "arrival_date": document.getElementById('arrival_date').value,
         "arrival_time": arrivalTime,
-        "economy_class_price": document.getElementById('economy_class_price').value,
-        "business_class_price": document.getElementById('business_class_price').value,
-        "first_class_price": document.getElementById('first_class_price').value
+        "flight_cost": flightCost,
+        "aircraft_id": aircraftId,
     });
 
     var requestOptions = {
@@ -149,13 +132,25 @@ var flight_create = function(){
         if (result.status === 'complete'){
             alert('Add completed');
             history.back();
-        } else if (result.message === 'Flight ID already exists.') {
-            alert('Error: Flight ID already exists. Please choose another.');
         } else {
             alert('Error: Something went wrong.');
         }
     })
     .catch(error => console.log('error', error));
+
+    if (departureAirport === arrivalAirport) {
+        alert('Add completed');
+        return;
+    }
 }
 
+</script>
+
+<script>
+    var buttonContinueOrder1 = document.getElementById("btn1");
+    if (buttonContinueOrder1) {
+        buttonContinueOrder1.addEventListener("click", function (e) {
+            alert("Add Flight Complete!");
+        });
+    }
 </script>

@@ -18,8 +18,8 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <label class="form-label">Seat ID</label>
-                    <input type="text" class="form-control" id="seat_id">
+                    <label class="form-label">Seat number</label>
+                    <input type="text" class="form-control" id="seat_number">
                 </div>
                 <div class="col">
                     <label class="form-label">Flight ID</label>
@@ -32,18 +32,21 @@
                     <select class="form-control" name="item-name" id="seat_status" required="">
                         <option value="" selected disabled>---</option>
                         <option value="Available">Available</option>
-                        <option value="Reserved">Reserved</option>
-                        <option value="No activate">No activate</option>
+                        <option value="Unavailable">Unavailable</option>
                     </select>
                 </div>
                 <div class="col">
                     <label class="form-label">Seat class</label>
-                    <select class="form-control" name="item-name" id="seat_class" required="">
+                    <select class="form-control" name="item-name" id="class" required="">
                         <option value="" selected disabled>---</option>
-                        <option value="Economy">Economy</option>
-                        <option value="Business">Business</option>
-                        <option value="First Class">First Class</option>
+                        <option value="economy">economy</option>
+                        <option value="business">business</option>
+                        <option value="first">first</option>
                     </select>
+                </div>
+                <div class="col">
+                    <label class="form-label">Seat price</label>
+                    <input type="text" class="form-control" id="seat_price">
                 </div>
             </div>
             <div class="mt-4">
@@ -74,10 +77,11 @@
 }
 
     var seat_create = function(){
-    var seatID = document.getElementById('seat_id').value.trim();
+    var seatID = document.getElementById('seat_number').value.trim();
     var flightID = document.getElementById('flight_id').value;
     var seatStatus = document.getElementById('seat_status').value;
-    var seatClass = document.getElementById('seat_class').value;
+    var seatClass = document.getElementById('class').value;
+    var seatPrice = document.getElementById('seat_price').value;
 
     if(!seatID) {
         alert('Please enter a valid Seat ID.');
@@ -93,10 +97,11 @@
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-        "seat_id": seatID,
+        "seat_number": seatID,
         "flight_id": flightID,
         "seat_status": seatStatus,
-        "seat_class": seatClass,
+        "class": seatClass,
+        "seat_price": seatPrice,
     });
 
     var requestOptions = {

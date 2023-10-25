@@ -10,8 +10,8 @@
     }
 
     try {
-        $checkSeatStmt = $conn->prepare("SELECT COUNT(*) FROM seat WHERE seat_id = ?");
-        $checkSeatStmt->execute([$data->seat_id]);
+        $checkSeatStmt = $conn->prepare("SELECT COUNT(*) FROM seats WHERE seat_number = ?");
+        $checkSeatStmt->execute([$data->seat_number]);
         $seatExists = $checkSeatStmt->fetchColumn();
 
         if($seatExists) {
@@ -28,11 +28,11 @@
             die();
         }
 
-        $stmt = $conn->prepare("INSERT INTO seat (seat_id, flight_id, seat_status, seat_class) VALUES (?, ?, ?, ?)");
-        $stmt->bindParam(1, $data->seat_id);
+        $stmt = $conn->prepare("INSERT INTO seats (seat_number, flight_id, seat_status, class) VALUES (?, ?, ?, ?)");
+        $stmt->bindParam(1, $data->seat_number);
         $stmt->bindParam(2, $data->flight_id);
         $stmt->bindParam(3, $data->seat_status);
-        $stmt->bindParam(4, $data->seat_class);
+        $stmt->bindParam(4, $data->class);
 
         if($stmt->execute()){
             echo json_encode(array("status" => "complete"));

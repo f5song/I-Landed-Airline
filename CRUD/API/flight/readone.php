@@ -13,11 +13,10 @@
                 'arrival_airport' => $row['arrival_airport'],
                 'travel_date' => $row['travel_date'],
                 'departure_time' => $row['departure_time'],
-                'arrival_date' => $row['arrival_date'],
                 'arrival_time' => $row['arrival_time'],
-                'economy_class_price' => $row['economy_class_price'],
-                'business_class_price' => $row['business_class_price'],
-                'first_class_price' => $row['first_class_price']
+                'flight_cost' => $row['flight_cost'],
+                'aircraft_id' => $row['aircraft_id'],
+                'available_seats' => $row['available_seats'],
             );
             echo json_encode($flights);
             break;

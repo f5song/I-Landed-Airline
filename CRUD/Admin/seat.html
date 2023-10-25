@@ -27,16 +27,15 @@
                     <label>Filter by Seat Class: </label>
                     <select id="seatClassFilter" onchange="seat_readonly()">
                         <option value="">All</option>
-                        <option value="Economy">Economy</option>
-                        <option value="Business">Business</option>
-                        <option value="First Class">First Class</option>
+                        <option value="economy">Economy</option>
+                        <option value="business">Business</option>
+                        <option value="first">First Class</option>
                     </select>
                     <label style="margin-left: 20px;">Filter by Seat Status: </label>
                     <select id="seatStatusFilter" onchange="seat_readonly()">
                         <option value="">All</option>
                         <option value="Available">Available</option>
-                        <option value="Reserved">Reserved</option>
-                        <option value="No activate">No activate</option>
+                        <option value="Unavailable">Unavailable</option>
                     </select>
                 </div>
             </div>
@@ -44,9 +43,10 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">Seat id</th>
+                        <th scope="col">Seat number</th>
                         <th scope="col">Seat class</th>
                         <th scope="col">Seat status</th>
+                        <th scope="col">Seat cost</th>
                         <th scope="col">Manage</th>
                       </tr>
                     </thead>
@@ -80,15 +80,16 @@ var seat_readonly = function(){
             var jsonObj = JSON.parse(result);
             document.getElementById('flight_id').textContent = id;
             for(let seat of jsonObj){
-                if ((seatClassFilter === "" || seat.seat_class === seatClassFilter) &&
+                if ((seatClassFilter === "" || seat.class === seatClassFilter) &&
                     (seatStatusFilter === "" || seat.seat_status === seatStatusFilter)) {
                     var row = `
                             <tr>
-                                <th scope="row">${seat.seat_id}</th>
-                                <td>${seat.seat_class}</td>
+                                <th scope="row">${seat.seat_number}</th>
+                                <td>${seat.class}</td>
                                 <td>${seat.seat_status}</td>
-                                <td><a class="btn btn-outline-warning" href="seatedit.html?id=${seat.seat_id}">Edit</a> 
-                                    ${seat.seat_status !== 'Reserved' ? `<a class="btn btn-outline-danger" onclick="seat_delete('${seat.seat_id}')">Delete</a>` : '<span>cannot delete</span>'}</td>
+                                <td>${seat.seat_price}</td>
+                                <td><a class="btn btn-outline-warning" href="seatedit.html?id=${seat.seat_number}">Edit</a> 
+                                    ${seat.seat_status !== 'Unavailable' ? `<a class="btn btn-outline-danger" onclick="seat_delete('${seat.seat_number}')">Delete</a>` : '<span>cannot delete</span>'}</td>
                             </tr>
                         `;
                     seat_table.insertAdjacentHTML('beforeend', row)

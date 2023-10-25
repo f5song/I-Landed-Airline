@@ -10,7 +10,7 @@
     }
 
     try {
-        $stmt = $conn->prepare("DELETE FROM seat WHERE seat_id=?");
+        $stmt = $conn->prepare("DELETE FROM seats WHERE seat_number=?");
         $stmt->bindParam(1, $data->seat_id);
 
         if($stmt->execute()){
