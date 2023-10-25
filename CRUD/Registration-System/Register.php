@@ -46,14 +46,6 @@
 
             <?php } ?>
         <div class="mb-3">
-            <label for="firstname" class="form-label">First name</label>
-            <input type="text" class="form-control" name="firstname" aria-describedby="firstname">
-        </div>
-        <div class="mb-3">
-            <label for="lastname" class="form-label">Last name</label>
-            <input type="text" class="form-control" name="lastname" aria-describedby="lastname">
-        </div>
-        <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" name="email" aria-describedby="email">
         </div>

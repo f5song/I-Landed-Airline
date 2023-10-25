@@ -55,31 +55,21 @@
                 </div>
                 <div class="col">
                     <label class="form-label">Departure time</label>
-                    <input type="time" class="form-control" id="departure_time">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label class="form-label">Arrival date</label>
-                    <input type="date" class="form-control" id="arrival_date">
+                    <input type="datetime" class="form-control" id="departure_time">
                 </div>
                 <div class="col">
                     <label class="form-label">Arrival time</label>
-                    <input type="time" class="form-control" id="arrival_time">
+                    <input type="datetime" class="form-control" id="arrival_time">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <label class="form-label">Economy class seat price</label>
-                    <input type="text" class="form-control" id="economy_class_price">
+                    <label class="form-label">aircraft_id</label>
+                    <input type="text" class="form-control" id="aircraft_id">
                 </div>
                 <div class="col">
-                    <label class="form-label">Business class seat price</label>
-                    <input type="text" class="form-control" id="business_class_price">
-                </div>
-                <div class="col">
-                    <label class="form-label">First class seat price</label>
-                    <input type="text" class="form-control" id="first_class_price">
+                    <label class="form-label">flight_cost</label>
+                    <input type="text" class="form-control" id="flight_cost">
                 </div>
             </div>
             <div class="mt-4">
@@ -110,32 +100,23 @@ var flight_readone = function(){
             document.getElementById('arrival_airport').value = jsonObj.arrival_airport;
             document.getElementById('travel_date').value = jsonObj.travel_date;
             document.getElementById('departure_time').value = jsonObj.departure_time;
-            document.getElementById('arrival_date').value = jsonObj.arrival_date;
             document.getElementById('arrival_time').value = jsonObj.arrival_time;
-            document.getElementById('economy_class_price').value = jsonObj.economy_class_price;
-            document.getElementById('business_class_price').value = jsonObj.business_class_price;
-            document.getElementById('first_class_price').value = jsonObj.first_class_price;
+            document.getElementById('flight_cost').value = jsonObj.flight_cost;
+            document.getElementById('aircraft_id').value = jsonObj.aircraft_id;
         })
         .catch(error => console.log('error', error));
 }
 
+
+
 var flight_update = function(){
     var travelDate = new Date(document.getElementById('travel_date').value);
     var departureTime = document.getElementById('departure_time').value;
-    var arrivalDate = new Date(document.getElementById('arrival_date').value);
     var arrivalTime = document.getElementById('arrival_time').value;
     var currentTime = new Date();
 
     travelDate.setHours(departureTime.split(':')[0]);
     travelDate.setMinutes(departureTime.split(':')[1]);
-
-    arrivalDate.setHours(arrivalTime.split(':')[0]);
-    arrivalDate.setMinutes(arrivalTime.split(':')[1]);
-
-    if (travelDate < currentTime || arrivalDate < currentTime) {
-        alert('Error: Dates and times cannot be in the past.');
-        return;
-    }
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -146,11 +127,9 @@ var flight_update = function(){
         "arrival_airport": document.getElementById('arrival_airport').value,
         "travel_date": document.getElementById('travel_date').value,
         "departure_time": document.getElementById('departure_time').value,
-        "arrival_date": document.getElementById('arrival_date').value,
         "arrival_time": document.getElementById('arrival_time').value,
-        "economy_class_price": document.getElementById('economy_class_price').value,
-        "business_class_price": document.getElementById('business_class_price').value,
-        "first_class_price": document.getElementById('first_class_price').value
+        "flight_cost": document.getElementById('flight_cost').value,
+        "aircraft_id": document.getElementById('aircraft_id').value,
     });
 
     var requestOptions = {

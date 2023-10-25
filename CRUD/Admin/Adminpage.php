@@ -68,8 +68,11 @@
                         <th scope="col">Destination</th>
                         <th scope="col">travel date</th>
                         <th scope="col">Departure time</th>
-                        <th scope="col">Landing date</th>
                         <th scope="col">Arrival time</th>
+                        <th scope="col">Flight Cost</th>
+                        <th scope="col">aircraft_id</th>
+                        <th scope="col">available_seats</th>
+                        
                         <!-- <th scope="col">Economy Price</th>
                         <th scope="col">Business Price</th>
                         <th scope="col">First Class Price</th> -->
@@ -112,8 +115,10 @@ var flight_read = function(){
                                 <td>${flight.arrival_airport}</td>
                                 <td>${flight.travel_date}</td>
                                 <td>${flight.departure_time}</td>
-                                <td>${flight.arrival_date}</td>
                                 <td>${flight.arrival_time}</td>
+                                <td>${flight.flight_cost}</td>
+                                <td>${flight.aircraft_id}</td>
+                                <td>${flight.available_seats}</td>
                                 <td>
                                     <a class="btn btn-outline-success" href="seat.html?id=${flight.flight_id}">Seat</a>
                                     <a class="btn btn-outline-warning" href="flightedit.html?id=${flight.flight_id}">Edit</a> 

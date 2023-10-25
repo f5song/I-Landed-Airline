@@ -13,9 +13,8 @@ $servername = "localhost"; // เซิร์ฟเวอร์ MySQL
 $username = "root"; // ชื่อผู้ใช้ฐานข้อมูล
 $password = ""; // รหัสผ่านฐานข้อมูล
 $dbname = "mydb"; // ชื่อฐานข้อมูล
-
-
 $flight_id = $_GET['flight_id'];
+
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 $sql_flight = "SELECT 
@@ -49,17 +48,18 @@ if (mysqli_num_rows($result_flight) > 0) {
     echo "ไม่พบข้อมูลสำหรับ flight_id ที่ระบุ";
 }
 
-// ljlkllllklklklklklklklklklklklkklklkk
-
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $title1 = $_POST['title'];
+    $first_name1 = $_POST['first_name'];
+    $last_name1 = $_POST['last_name'];
+    $phone_number1 = $_POST['phone_number'];
+    $user_id = $_SESSION['user_login'];
+
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    if ($conn->connect_error) {
-        die("การเชื่อมต่อล้มเหลว: " . $conn->connect_error);
-    }
+
 
     $formNumber = 1;
     while (isset($_POST["passenger{$formNumber}_firstname"])) {
@@ -91,8 +91,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $formNumber++;
     }
 
+
+    $sql = "UPDATE users SET title='$title1', first_name='$first_name1', last_name='$last_name1', phone_number='$phone_number1' WHERE user_id='$user_id'";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "อัปเดตข้อมูลสำเร็จ";
+    } else {
+        echo "ผิดพลาดในการอัปเดตข้อมูล: " . $conn->error;
+    }
+
+
     $conn->close();
     
+    echo "phone_number: " . $phone_number;
 }
 ?>
 <?php echo $_SESSION['user_login']; ?>
@@ -155,6 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php } ?>
 
 
+    <form method="post">
     <div class="box-for-fill-info">
         <div class="box-of-item">
             <!-- blank -->
@@ -227,9 +239,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="xxxy">
                                     <label for="title">คำนำหน้าชื่อ:</label>
                                     <select id="title" name="title">
-                                        <option value="นาย">Mr.</option>
-                                        <option value="นาง">Mrs.</option>
-                                        <option value="นางสาว">Miss</option>
+                                        <option value="Mr.">Mr.</option>
+                                        <option value="Mrs.">Mrs.</option>
+                                        <option value="Miss">Miss</option>
                                     </select>
                                 </div>
                                 <div class="row1-info">
@@ -239,7 +251,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                         </div>
                                         <div class="input-firstname">
-                                            <input type="text" placeholder="กรอกข้อมูล">
+                                            <input type="text"  name="first_name" placeholder="กรอกข้อมูล">
                                         </div>
                                     </div>
                                     <div class="lastname-info">
@@ -248,7 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <p2>*(กรุณากรอกA-Zเท่านั้น)</p2>
                                         </div>
                                         <div class="input-lastname">
-                                            <input type="text" placeholder="กรอกข้อมูล">
+                                            <input type="text"  name="last_name" placeholder="กรอกข้อมูล">
                                         </div>
                                     </div>
                                 </div>
@@ -258,7 +270,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <p1>หมายเลขโทรศัพท์</p1>
                                     </div>
                                     <div class="input-phone">
-                                        <input type="text" placeholder="กรอกหมายเลข">
+                                        <input type="text" name="phone_number" placeholder="กรอกหมายเลข">
                                     </div>
                                 </div>
 
@@ -328,12 +340,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <option value="5">5</option>
                                 <option value="6">6</option>
                             </select>
-                            <button class="button-add" id="addfriend">ยืนยัน</button>
+                            <div class="button-add" id="addfriend">ยืนยัน</div>
                         </div>
                     </div>
 
 
-                    <form method="post">
                         <div class="content-friend-info">
                             <!-- 1 -->
                             <div class="bottom-content-1">
@@ -788,7 +799,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         bottomContent4.style.display = "block";
                     }
                     if (selectedValue >= "5") {
-                        bottomContent5.style.display = "block";
+                        bottomContent5.style.display = "block";ห
                     }
                     if (selectedValue === "6") {
                         bottomContent6.style.display = "block";

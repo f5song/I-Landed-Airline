@@ -21,7 +21,7 @@
             header("location: signin.php");
         } else {
             try{
-                $check_data = $conn->prepare("SELECT * FROM users WHERE email = :email");
+                $check_data = $conn->prepare("SELECT * FROM admin WHERE email = :email");
                 $check_data->bindParam(":email", $email);
                 $check_data->execute();
                 $row = $check_data->fetch(PDO::FETCH_ASSOC);
@@ -29,13 +29,10 @@
                 if ($check_data->rowCount() > 0){
 
                     if($email == $row['email']){
-                        if(password_verify($password, $row['password'])){
+                        if($password == $row['password']){
                             if($row['userrole']=='admin'){
-                                $_SESSION['admin_login'] = $row['id'];
-                                header("location: ../Admin/adminpage.php");
-                            } else{
-                                $_SESSION['user_login'] = $row['id'];
-                                header("location: user.php");
+                                $_SESSION['admin_login'] = $row['admin_id'];
+                                header("location: ../Admin/Adminpage.php");
                             }
                         } else {
                             $_SESSION['error'] = 'รหัสผ่านผิด';

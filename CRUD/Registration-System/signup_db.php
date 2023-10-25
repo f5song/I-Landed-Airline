@@ -4,20 +4,12 @@
     require_once '../config/db.php';
 
     if(isset($_POST['signup'])){
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
         $email = $_POST['email'];
         $password = $_POST['password'];
         $c_password = $_POST['c_password'];
-        $userrole = 'user';
+        $userrole = 'admin';
 
-        if(empty($firstname)){
-            $_SESSION['error'] = "กรุณากรอกชื่อ";
-            header("location: Register.php");
-        } else if(empty($lastname)){
-            $_SESSION['error'] = "กรุณากรอกนามสกุล";
-            header("location: Register.php");
-        } else if(empty($email)){
+        if(empty($email)){
             $_SESSION['error'] = "กรุณากรอกอีเมลล์";
             header("location: Register.php");
         } else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -34,7 +26,7 @@
             header("location: Register.php");
         } else {
             try{
-                $check_email = $conn->prepare("SELECT email FROM users WHERE email = :email");
+                $check_email = $conn->prepare("SELECT email FROM admin WHERE email = :email");
                 $check_email->bindParam(":email", $email);
                 $check_email->execute();
                 $row = $check_email->fetch(PDO::FETCH_ASSOC);
@@ -43,13 +35,10 @@
                     $_SESSION['warning'] = "มีอีเมลนี้อยู่ในระบบแล้ว <a href='signin.php'>คลิ๊กที่นี่</a> เพื่อเข้าสู่ระบบ";
                     header("location: Register.php");
                 } else if (!isset($_SESSION['error'])){
-                    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                    $stmt = $conn->prepare("INSERT INTO users (firstname, lastname, email, password, userrole) 
-                    VALUES (:firstname, :lastname, :email, :password, :userrole)");
-                    $stmt->bindParam(":firstname", $firstname);
-                    $stmt->bindParam(":lastname", $lastname);
+                    $stmt = $conn->prepare("INSERT INTO admin (email, password, userrole) 
+                    VALUES (:email, :password, :userrole)");
                     $stmt->bindParam(":email", $email);
-                    $stmt->bindParam(":password", $passwordHash);
+                    $stmt->bindParam(":password", $password);
                     $stmt->bindParam(":userrole", $userrole);
                     $stmt->execute();
                     $_SESSION['success'] = "สมัครสมาชิกเรียบร้อยแล้ว <a href='signin.php' class='alert-link'>คลิ๊กที่นี่</a>เพื่อเข้าสู่ระบบ";

@@ -4,12 +4,14 @@
     include '../../config/db.php';
     try {
         $seats = array();
-        foreach($conn->query('SELECT * FROM seat') as $row){
+        foreach($conn->query('SELECT * FROM seats') as $row){
             array_push($seats, array(
-                'seat_id' => $row['seat_id'],
+                'seat_number' => $row['seat_number'],
                 'flight_id' => $row['flight_id'],
                 'seat_status' => $row['seat_status'],
-                'seat_class' => $row['seat_class']
+                'class' => $row['class'],
+                'aircraft_id' => $row['aircraft_id'],
+                'seat_price' => $row['seat_price'],
             ));
         }
         echo json_encode($seats);

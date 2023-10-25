@@ -31,7 +31,7 @@ if ($conn->connect_error) {
 $user_id = $_SESSION['user_login'];
 
 // ดึงข้อมูลผู้โดยสาร
-$sql = "SELECT
+$sql = "SELECT DISTINCT
     r.reservation_id,
     r.passenger_id,
     r.flight_id,
@@ -50,13 +50,18 @@ $sql = "SELECT
     DATE_FORMAT(f.`arrival_time`, '%H:%i') AS formatted_arrival_time, 
     f.available_seats,
     f.aircraft_id,
-    f.flight_cost
+    f.flight_cost,
+    s.class,
+    a.aircraft_code,
+    a.aircraft_name
 FROM reservations AS r
 JOIN passengers AS p ON r.passenger_id = p.passenger_id
 JOIN flight AS f ON r.flight_id = f.flight_id
+JOIN aircraft AS a ON f.aircraft_id = a.aircraft_id
+JOIN seats AS s ON r.seat_number = s.seat_number
 JOIN airport AS dep ON f.departure_airport = dep.airport_code
-JOIN airport AS arr ON f.arrival_airport = arr.airport_code";
-
+JOIN airport AS arr ON f.arrival_airport = arr.airport_code
+GROUP BY p.passenger_id;";
 
 $result = mysqli_query($conn, $sql);
 
@@ -76,6 +81,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     'formatted_departure_time' => $row['formatted_departure_time'],
     'formatted_arrival_time' => $row['formatted_arrival_time'],
     'aircraft_id' => $row['aircraft_id'],
+    'class' => $row['class'],
+    'aircraft_code' => $row['aircraft_code'],
+    'aircraft_name' => $row['aircraft_name']
   );
   $passengers[] = $passenger;
 }
@@ -178,7 +186,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 i landed airline 
                             </p>
                             <p style="font-size: large;">
-                                <p> aircraft id : <?php echo $passenger['aircraft_id']; ?></p> 
+                                <p><?php echo $passenger['aircraft_code']; ?> <?php echo $passenger['aircraft_name']; ?></p> 
                             </p>
                         </div>
                     </div>
@@ -228,34 +236,81 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <div class="text-ticket-info-box">
                         <table-head> ข้อมูล </table-head>
                     </div>
-    
-                    <table>
-                        <tr>
-                            <th>รหัสผู้โดยสาร</th>
-                            <th>ชื่อผู้โดยสาร</th>
-                            <th>ที่นั่ง</th>
-                            <th>กระเป๋า</th>                         
-                        </tr>
-                        <?php
+                    <div class="for-space">
+                        <table>
+                            <tr>
+                                <th>รหัสผู้โดยสาร</th>
+                                <th>ชื่อผู้โดยสาร</th>
+                                <th>ที่นั่ง</th>
+                                <th>คลาส</th>
+                                <th>กระเป๋า</th>                         
+                            </tr>
+                            <?php
 
-                        $result = mysqli_query($conn, $sql);
+                            $result = mysqli_query($conn, $sql);
 
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<tr>";
-                                echo "<td data-label='Departure State'>" . $row["passenger_id"] . "</td>";
-                                echo "<td data-label='Arrival Time'>" . $row['first_name'] . ' ' . $row['last_name'] . "</td>";
-                                echo "<td data-label='Arrival State'>" . $row["seat_number"] . "</td>";
-                                echo "<td data-label='Departure Time'>" . $row['baggage_weight'] . "</td>";
-                                echo "</tr>";
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<tr>";
+                                    echo "<td data-label='Departure State'>" . $row["passenger_id"] . "</td>";
+                                    echo "<td data-label='Arrival Time'>" . $row['first_name'] . ' ' . $row['last_name'] . "</td>";
+                                    echo "<td data-label='Arrival State'>" . $row["seat_number"] . "</td>";
+                                    echo "<td data-label='Departure Time'>" . $row['class'] . "</td>";
+                                    echo "<td data-label='Departure Time'>" . $row['baggage_weight'] . "</td>";
+                                    echo "</tr>";
+                                }
                             }
-                        }
-                        mysqli_close($conn);
+                            mysqli_close($conn);
+                            
+                            ?>      
+                        </table>
                         
-                        ?>
-                    </table>
+                    </div>
+
+                    <?php
+                    // ตั้งค่าการเชื่อมต่อฐานข้อมูล
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $dbname = "mydb";
+
+                    // ทำการเชื่อมต่อ
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                    // ตรวจสอบการเชื่อมต่อ
+                    if ($conn->connect_error) {
+                        die("การเชื่อมต่อล้มเหลว: " . $conn->connect_error);
+                    }
+
+                    // สร้างสอบงสำหรับการค้นหาราคาของ reservation_id โดยรวมกันตาม user_id
+                    $sql = "SELECT user_id, SUM(total_price) AS total_price FROM reservations GROUP BY user_id";
+
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        // วนลูปผลลัพธ์และแสดงผล
+                        while($row = $result->fetch_assoc()) {
+                            $userId = $row["user_id"];
+                            $totalPrice = $row["total_price"];
+                        }
+                    }
+
+                    // ปิดการเชื่อมต่อฐานข้อมูล
+                    $conn->close();
+                    ?>
+
+                    <p class="total-price">ราคารวม: <?php echo "$totalPrice"; ?> THB</p>
+
+
                 </table-box>
+
+                <div class="backtohomeframe" id="backtohome">
+                    <p class="backtohome" id="backtohome"> กลับหน้าหลัก</p>
+                </div>
+                
+                
             </div>  
+
         </div>
 
 
@@ -265,7 +320,10 @@ while ($row = mysqli_fetch_assoc($result)) {
                     
                     <div class="booking-number">
                         <pgrey>หมายเลขการจอง</pgrey>
-                        <pblack><?php echo $passenger['reservation_id']; ?> </pblack>
+                        <?php foreach ($passengers as $passenger): ?>
+                            <pblack><?php echo $passenger['reservation_id']; ?>  </pblack>
+                        <?php endforeach; ?>
+                        
                     </div>
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="439" height="2" viewBox="0 0 439 2" fill="none">
@@ -303,12 +361,6 @@ while ($row = mysqli_fetch_assoc($result)) {
         </div>
         
 
-    </div>
-
-    <div class="bottom-frame">
-        <div class="backtohomeframe" id="backtohome">
-            <p class="backtohome" id="backtohome"> กลับหน้าหลัก</p>
-        </div>
     </div>
 
 

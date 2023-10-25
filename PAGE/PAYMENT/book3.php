@@ -1,5 +1,3 @@
-<!-- http://localhost/ISAD-ilal/PAGE/PAYMENT/book3.php -->
-
 <?php
 session_start();
 require_once '../../CRUD/config/db.php';
@@ -28,6 +26,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("การเชื่อมต่อล้มเหลว: " . $conn->connect_error);
 }
+$user_id = $_SESSION['user_login'];
 
 // ดึงข้อมูลผู้โดยสาร
 $sql = "SELECT
@@ -48,6 +47,7 @@ $sql = "SELECT
     DATE_FORMAT(f.`departure_time`, '%H:%i') AS formatted_departure_time, 
     DATE_FORMAT(f.`arrival_time`, '%H:%i') AS formatted_arrival_time, 
     f.available_seats,
+    f.aircraft_id,
     f.flight_cost
 FROM reservations AS r
 JOIN passengers AS p ON r.passenger_id = p.passenger_id
@@ -69,11 +69,61 @@ while ($row = mysqli_fetch_assoc($result)) {
     'reservation_id' => $row['reservation_id'],
     'flight_id' => $row['flight_id'],
     'travel_date' => $row['travel_date'],
+    'departure_state' => $row['departure_state'],
+    'arrival_state' => $row['arrival_state'],
+    'formatted_departure_time' => $row['formatted_departure_time'],
+    'formatted_arrival_time' => $row['formatted_arrival_time'],
+    'aircraft_id' => $row['aircraft_id'],
+    'total_price' => $row['total_price'],
   );
   $passengers[] = $passenger;
 }
-?>
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $payment_method = "";
+
+  if (isset($_POST['credit_card'])) {
+    $payment_method = "credit_card";
+  } elseif (isset($_POST['promtpay'])) {
+    $payment_method = "promtpay";
+  } elseif (isset($_POST['counter'])) {
+    $payment_method = "counter";
+  }
+
+  if (!empty($payment_method)) {
+    // Fetch reservations for the logged-in user
+    $user_id = $_SESSION['user_login']; // แก้ไขเป็น 'user_login' จาก 'user_id'
+
+    $sql_2 = "SELECT r.reservation_id
+            FROM reservations AS r
+            JOIN passengers AS p ON r.passenger_id = p.passenger_id
+            WHERE p.user_id = $user_id"; // แน่ใจว่า 'user_id' เป็นคอลัมน์ที่ถูกต้องในฐานข้อมูลของคุณ
+
+    $result_2 = $conn->query($sql_2);
+
+    $reservation_ids = array();
+    while ($row = $result_2->fetch_assoc()) {
+      $reservation_ids[] = $row['reservation_id'];
+    }
+
+    // Add payment records for all relevant reservation_ids
+    foreach ($reservation_ids as $reservation_id) {
+      $sql_3 = "INSERT INTO payment (payment_method, reservation_id) VALUES ('$payment_method', '$reservation_id')";
+
+      if ($conn->query($sql_3) === TRUE) {
+        header('location: ../ETICKET/checkticket.php');
+        
+      } else {
+        echo "Error occurred while saving payment information for reservation_id: $reservation_id";
+      }
+    }
+  }
+}
+
+
+// Close the database connection
+$conn->close();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -83,57 +133,50 @@ while ($row = mysqli_fetch_assoc($result)) {
 
   <link rel="stylesheet" href="./global3.css" />
   <link rel="stylesheet" href="./book3.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto Sans Thai:wght@400;500;600;700&display=swap" />
 </head>
 
+<form method="post" action="">
 <body>
-  <?php echo $passenger['travel_date']; ?>
   <div class="payment-confirmation-page">
     <div class="frame-for-descrip-customer">
       <div class="frame-for-all-descrip-customer"></div>
       <div class="descrip-customer">
         <div class="text-descrip-customer">รายละเอียดผู้สั่งซื้อ</div>
         <div class="frame-fill-email">
-          <div class="info-paid"><?php echo $_SESSION['hello_user']; ?></div>
+          <div class="info-paid">
+            <?php echo $_SESSION['hello_user']; ?>
+          </div>
         </div>
         <div class="text-email">ที่อยู่อีเมล์</div>
       </div>
     </div>
     <div class="detail-number-order">
-      <div class="frame-for-all-detail-num-order"></div>
-      <div class="book-id">
-        <div class="text-book-id">หมายเลขการจอง</div>
-        <div class="text-fake-id"><?php echo $passenger['reservation_id']; ?></div>
-      </div>
-      <div class="your-travel">
-          <div class="text-depart-to-arri">
-            <div class="text-depart">
-              <ul class="bkk">
-                Hua Hin
-              </ul>
-            </div>
-            <div class="text-arri">Chiangmai</div>
-            <img
-              class="icon-arrow-right"
-              alt=""
-              src="./public/-icon-arrowright.svg"
-            />
-          </div>
-          <div class="text-your-travel">การเดินทางของคุณ</div>
-          <div class="text-date">2023-10-02</div>
-          <div class="fligh">
-            <div class="text-flight">เที่ยวบิน</div>
+        <div class="text-booking">
+          <span1>หมายเลขการจอง</span1>
+            <?php foreach ($passengers as $passenger): ?>
+                  <div class="text-fake-id"><?php echo $passenger['reservation_id']; ?></div>
+            <?php endforeach; ?>
+        </div>
+        <img src="./img/separate-line.svg" alt="">
+        <div class="text-travel">
+          <span1>การเดินทางของคุณ</span1>
+          <span1>เที่ยวบิน</span1>
+          <span><?php echo $passenger['travel_date']; ?></span>
+          <div class="travelfromto">
+            <span1><?php echo $passenger['departure_state']; ?></span1>
+            <span1>to</span1>
+            <span1><?php echo $passenger['arrival_state']; ?></span1>
           </div>
         </div>
-
-        <div class="name-passenger">
-          <div class="text-paeesnger-name">รายชื่อผู้โดยสาร</div>
-          <div class="text-name1"> อิอิ</div>
+        <img src="./img/separate-line.svg" alt="">
+        <div class="text-passenger">
+          <span1>รายชื่อผู้โดยสาร</span1>
+            <?php foreach ($passengers as $passenger): ?>
+              <div class="text-name1"><?php echo $passenger['title']; ?><?php echo $passenger['first_name']; ?> <?php echo $passenger['last_name']; ?></div>
+            <?php endforeach; ?>
         </div>
-
-      <img class="separate-line-icon" alt="" src="./public/separate-line.svg" />
-
-      <img class="separate-line-icon1" alt="" src="./public/separate-line.svg" />
     </div>
     <div class="frame-for-paying">
       <div class="top-frame">
@@ -164,6 +207,37 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 
 
+  <?php
+        // ตั้งค่าการเชื่อมต่อฐานข้อมูล
+          $servername = "localhost";
+          $username = "root";
+          $password = "";
+          $dbname = "mydb";
+
+          // ทำการเชื่อมต่อ
+          $conn = new mysqli($servername, $username, $password, $dbname);
+
+          // ตรวจสอบการเชื่อมต่อ
+          if ($conn->connect_error) {
+              die("การเชื่อมต่อล้มเหลว: " . $conn->connect_error);
+          }
+
+          // สร้างสอบงสำหรับการค้นหาราคาของ reservation_id โดยรวมกันตาม user_id
+          $sql = "SELECT user_id, SUM(total_price) AS total_price FROM reservations GROUP BY user_id";
+
+          $result = $conn->query($sql);
+
+          if ($result->num_rows > 0) {
+              // วนลูปผลลัพธ์และแสดงผล
+              while($row = $result->fetch_assoc()) {
+                  $userId = $row["user_id"];
+                  $totalPrice = $row["total_price"];
+              }
+          }
+
+          // ปิดการเชื่อมต่อฐานข้อมูล
+          $conn->close();
+        ?>
 
   <div class="payment-three-ways">
 
@@ -174,14 +248,13 @@ while ($row = mysqli_fetch_assoc($result)) {
       <div class="descrip-price">
         <div class="frame-for-all-descrip-price"></div>
         <div class="text-descrip-price">รายละเอียดราคา</div>
-        <div class="text-i-landed">I Landed Airline x *1*</div>
         <div class="text-total-price3">ราคารวม</div>
-        <div class="text-num-price">THB *1000.00*</div>
-        <div class="text-num-total">THB *1000.00*</div>
+        <div class="text-num-price">THB <?php echo "$totalPrice"; ?></div>
+        <div class="text-num-total">THB <?php echo "$totalPrice"; ?></div>
         <img class="separate-icon" alt="" src="./public/separate.svg" />
       </div>
       <div class="paid-by-counter" id="buttonContinueOrder3">
-        <div class="text-paid-by1">ชำระโดย เคาน์เตอร์ชำระเงิน</div>
+        <button type="submit" name="counter" id="buttonContinueOrder3" class="text-paid-by1">ชำระโดย เคาน์เตอร์ชำระเงิน</button>
       </div>
       <div class="text-click-to">
         เมื่อคลิกปุ่มด้านล่าง จะถือว่าเสร็จสิ้นการชำระเงินโดยทันที
@@ -221,12 +294,12 @@ while ($row = mysqli_fetch_assoc($result)) {
         <div class="text-descrip-price">รายละเอียดราคา</div>
         <div class="text-i-landed">I Landed Airline x *1*</div>
         <div class="text-total-price3">ราคารวม</div>
-        <div class="text-num-price">THB *1000.00*</div>
-        <div class="text-num-total">THB *1000.00*</div>
+        <div class="text-num-price">THB <?php echo "$totalPrice"; ?></div>
+        <div class="text-num-total">THB <?php echo "$totalPrice"; ?></div>
         <img class="separate-icon" alt="" src="./public/separate.svg" />
       </div>
       <div class="paid-by-bank" id="buttonContinueOrder2">
-        <div class="text-paid-by1">โอนเงินผ่านธนาคาร</div>
+        <button type="submit" name="promtpay" id="buttonContinueOrder2" class="text-paid-by1">โอนเงินผ่านธนาคาร</button>
       </div>
       <div class="text-click-to">
         เมื่อคลิกปุ่มด้านล่าง จะถือว่าเสร็จสิ้นการชำระเงินโดยทันที
@@ -296,8 +369,8 @@ while ($row = mysqli_fetch_assoc($result)) {
         <div class="text-descrip-price2">รายละเอียดราคา</div>
         <div class="text-i-landed2">I Landed Airline x *1*</div>
         <div class="text-total-price11">ราคารวม</div>
-        <div class="text-num-price2">THB *1000.00*</div>
-        <div class="text-num-total2">THB *1000.00*</div>
+        <div class="text-num-price2">THB <?php echo "$totalPrice"; ?></div>
+        <div class="text-num-total2">THB <?php echo "$totalPrice"; ?></div>
         <img class="separate-line-icon2" alt="" src="./public/separate.svg" />
       </div>
       <div class="pic">
@@ -400,13 +473,13 @@ while ($row = mysqli_fetch_assoc($result)) {
   var buttonContinueOrder2 = document.getElementById("buttonContinueOrder2");
   var buttonContinueOrder3 = document.getElementById("buttonContinueOrder3");
   if (buttonContinueOrder1 || buttonContinueOrder2 || buttonContinueOrder3) {
-    buttonContinueOrder1.addEventListener("click", function(e) {
+    buttonContinueOrder1.addEventListener("click", function (e) {
       window.location.href = "../ETICKET/checkticket.php";
     });
-    buttonContinueOrder2.addEventListener("click", function(e) {
+    buttonContinueOrder2.addEventListener("click", function (e) {
       window.location.href = "../ETICKET/checkticket.php";
     });
-    buttonContinueOrder3.addEventListener("click", function(e) {
+    buttonContinueOrder3.addEventListener("click", function (e) {
       window.location.href = "../ETICKET/checkticket.php";
     });
   }

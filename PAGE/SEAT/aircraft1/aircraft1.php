@@ -30,6 +30,8 @@ $user_id = $_SESSION['user_login'];
 
 
 ?>
+s
+
 
 <!DOCTYPE html>
 <html>
@@ -71,7 +73,7 @@ $user_id = $_SESSION['user_login'];
                         $conn->close();
                         ?>
                     </ul>
-                </div>
+                </div>  
             </div>
         </div>
 
@@ -615,75 +617,67 @@ $user_id = $_SESSION['user_login'];
 
 
     <script>
-        var selectedSeats = [];
-        var selectedPassengers = [];
-        var reservedSeats = []; // เก็บที่นั่งที่ถูกจองโดยผู้โดยสาร
-        var seatpluspass = [];
+    var selectedSeats = [];
+    var selectedPassengers = [];
+    var reservedSeats = []; // เก็บที่นั่งที่ถูกจองโดยผู้โดยสาร
+    var seatpluspass = [];
 
-        function toggleSeat(seat) {
-            var seatId = seat.getAttribute("data-seat");
-            var isChecked = seat.querySelector('input[type="checkbox"]').checked;
-            if (isChecked) {
-
-                selectedSeats.push(seatId);
-            } else {
-                var index = selectedSeats.indexOf(seatId);
-                if (index > -1) {
-                    selectedSeats.splice(index, 1);
-                }
+    function toggleSeat(seat) {
+        var seatId = seat.getAttribute("data-seat");
+        var isChecked = seat.querySelector('input[type="checkbox"]').checked;
+        
+        // ตรวจสอบว่าที่นั่งนี้ถูกจองหรือยัง
+        if (reservedSeats.includes(seatId)) {
+            alert("ที่นั่งนี้ถูกจองแล้ว");
+            seat.querySelector('input[type="checkbox"]').checked = false;
+            return;
+        }
+        
+        if (isChecked) {
+            selectedSeats.push(seatId);
+        } else {
+            var index = selectedSeats.indexOf(seatId);
+            if (index > -1) {
+                selectedSeats.splice(index, 1);
             }
-
-            document.getElementById("selectedSeat").textContent = selectedSeats.join(", ");
         }
 
-        function selectPassenger(passenger) {
-            var passengerName = passenger.querySelector('input[type="checkbox"]').value;
-            var isChecked = passenger.querySelector('input[type="checkbox"]').checked;
-            if (isChecked) {
+        document.getElementById("selectedSeat").textContent = selectedSeats.join(", ");
+    }
 
-
-                selectedPassengers.push(passengerName);
-            } else {
-                var index = selectedPassengers.indexOf(passengerName);
-                if (index > -1) {
-                    selectedPassengers.splice(index, 1);
-                }
+    function selectPassenger(passenger) {
+        var passengerName = passenger.querySelector('input[type="checkbox"]').value;
+        var isChecked = passenger.querySelector('input[type="checkbox"]').checked;
+        if (isChecked) {
+            selectedPassengers.push(passengerName);
+        } else {
+            var index = selectedPassengers.indexOf(passengerName);
+            if (index > -1) {
+                selectedPassengers.splice(index, 1);
             }
-
-            document.getElementById("selectedPassenger").textContent = selectedPassengers.join(", ");
         }
 
-        var seats = document.querySelectorAll(".seat");
-        seats.forEach(function (seat) {
-            seat.querySelector('input[type="checkbox"]').addEventListener("change", function () {
-                toggleSeat(seat);
-            });
+        document.getElementById("selectedPassenger").textContent = selectedPassengers.join(", ");
+    }
+
+    var seats = document.querySelectorAll(".seat");
+    seats.forEach(function (seat) {
+        seat.querySelector('input[type="checkbox"]').addEventListener("change", function () {
+            toggleSeat(seat);
         });
+    });
 
-        var passengers = document.querySelectorAll("#passengerList li");
-        passengers.forEach(function (passenger) {
-            passenger.querySelector('input[type="checkbox"]').addEventListener("change", function () {
-                selectPassenger(passenger);
-            });
+    var passengers = document.querySelectorAll("#passengerList li");
+    passengers.forEach(function (passenger) {
+        passenger.querySelector('input[type="checkbox"]').addEventListener("change", function () {
+            selectPassenger(passenger);
         });
+    });
 
-        // let allSeatSelected = document.querySelectorAll(".seat");
-        // allSeatSelected.forEach(each => each.addEventListener("click", e =>{
-        // if(e.target.className === "seat" || e.target.className === "seat-name"){
-        //     e.target.children[1].checked ^= 1}
-        // toggleSeat(e.target.children[1]);
-        // }));
+    // เรียก API หรือดึงข้อมูลที่นั่งที่ถูกจองโดยผู้โดยสาร
+    // เพิ่มข้อมูลที่นั่งที่ถูกจองลงใน reservedSeats
+    // เช่น reservedSeats = ["1A", "2B", "3C"];
 
-    </script>
-
-    <script>
-        document.getElementById("reserveButton").addEventListener("click", function (event) {
-
-            if (selectedSeats.length === 0 || selectedPassengers.length === 0) {
-                alert("โปรดเลือกที่นั่งและผู้โดยสาร");
-                event.preventDefault();
-            }
-        });
 
     </script>
 
