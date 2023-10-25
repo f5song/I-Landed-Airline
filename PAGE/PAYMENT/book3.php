@@ -253,7 +253,7 @@ $conn->close();
         <img class="separate-icon" alt="" src="./public/separate.svg" />
       </div>
       <div class="paid-by-counter" id="buttonContinueOrder3">
-        <button type="submit" name="counter" id="buttonContinueOrder3" class="text-paid-by1">ชำระโดย เคาน์เตอร์ชำระเงิน</button>
+      <div class="text-paid-by1">ชำระโดย เคาน์เตอร์ชำระเงิน</div>
       </div>
       <div class="text-click-to">
         เมื่อคลิกปุ่มด้านล่าง จะถือว่าเสร็จสิ้นการชำระเงินโดยทันที
@@ -298,7 +298,7 @@ $conn->close();
         <img class="separate-icon" alt="" src="./public/separate.svg" />
       </div>
       <div class="paid-by-bank" id="buttonContinueOrder2">
-        <button type="submit" name="promtpay" id="buttonContinueOrder2" class="text-paid-by1">โอนเงินผ่านธนาคาร</button>
+      <div class="text-paid-by1">ชำระผ่านธนาคาร</div>
       </div>
       <div class="text-click-to">
         เมื่อคลิกปุ่มด้านล่าง จะถือว่าเสร็จสิ้นการชำระเงินโดยทันที
