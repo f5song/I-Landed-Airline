@@ -248,8 +248,6 @@ body{
     height: 30px;
     border-radius: 5px;
     border-width: 0px;
-}.all-button-delete{
-    margin-top: 5%;
 }.deletelock2 img{
     width: 55px;
     height: 55px;
@@ -437,9 +435,11 @@ body{
     font-size: 15px;
     padding-left: 5%;
 }.content-password{
-    padding-left: 5%;
     margin-top: 20px;
     display: flex;
+    gap: 4%;
+    align-items: center;
+    justify-content: center;
 }.editlock{
     width: 100%;
     height: 100%;
@@ -452,9 +452,10 @@ body{
     height: 30px;
     border-radius: 5px;
 }.box-password-edit input{
-    width: 200px;
+    width: 160px;
     height: 30px;
     border-radius: 5px;
+    padding-left: 5%;
 }.box-email-edit{
     width: 100%;
     height: 100%;
@@ -470,9 +471,21 @@ body{
     background-color: rgb(12, 144, 39);
     color: white;
     font-size: 20px;
+    border: none;
 }
 .submitform2{
     display: flex;
     align-items: center;
-    padding-left: 5%;
+}
+
+.form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 11px;
+    width: 50%;
+    height: 200px;
+    background-color: white;
+    margin-top: 30px;
 }

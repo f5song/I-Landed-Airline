@@ -256,7 +256,7 @@ GROUP BY p.passenger_id;";
                     </div>
                     <div class="myaccemail">
                         <div class="header-email">
-                            <p>อีเมล์*</p>
+                            <p>อีเมล์</p>
                         </div>
                         <div class="content-email">
                             <div class="box-email">
@@ -304,10 +304,10 @@ GROUP BY p.passenger_id;";
                             </div>
                             <div class="content-password">
                                 <div class="box-password-edit">
-                                    <input required placeholder="" type="password" class="input" name="password">
+                                    <input required placeholder="รหัสผ่านใหม่" type="password" class="input" name="password">
                                 </div>
                                 <div class="box-password-edit">
-                                    <input required placeholder="" type="password" class="input" name="c_password">
+                                    <input required placeholder="กรอกรหัสผ่านใหม่อีกครั้ง" type="password" class="input" name="c_password">
                                 </div>
                         </div>
                         <div class="submitform2">
