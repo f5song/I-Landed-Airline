@@ -44,7 +44,7 @@ if (isset($_GET['logout'])) {
       <div class="rightcontainer">
         <p>สวัสดี,</p>
         <p>
-          <?php echo $_SESSION['user_login']; ?>
+          <?php echo $_SESSION['hello_user']; ?>
         </p>
         <a href="../HOMEPAGE/homepage.php?logout='1'">
           <img class="img-logout-icon" id="button-logout" alt="" src="../ALLNAVBAR/logout.png" />
