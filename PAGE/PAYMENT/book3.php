@@ -155,11 +155,11 @@ $conn->close();
     <div class="detail-number-order">
         <div class="text-booking">
           <span1>หมายเลขการจอง</span1>
-
+          <div class="all-text-fake-id">
             <?php foreach ($passengers as $passenger): ?>
                   <div class="text-fake-id"><?php echo $passenger['reservation_id']; ?></div>
             <?php endforeach; ?>
-
+          </div>
         </div>
         <img src="./img/separate-line.svg" alt="">
         <div class="text-travel">
